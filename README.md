@@ -19,35 +19,82 @@ combine unrelated scores into a global leaderboard.
 
 NEB is built on MTEB 2.16.2 and Sentence Transformers.
 
-## Quick start
+## Add and evaluate your own model
 
-You need Python 3.10 or newer and an internet connection for the first model or dataset download.
-Install the package in a virtual environment:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-python -m pip install nepali-embedding-benchmark
-
-# Confirm that all bundled tasks and models are valid.
-neb validate
-
-# See every available command.
-neb --help
-```
-
-If you want to contribute or run the dashboard, install the repository with
-[`uv`](https://docs.astral.sh/uv/):
+You need Python 3.10 or newer, [`uv`](https://docs.astral.sh/uv/), and an internet connection for
+the first model or dataset download. Clone the repository and install its locked environment:
 
 ```bash
 git clone https://github.com/jangedoo/nepali-embedding-benchmark.git
 cd nepali-embedding-benchmark
-uv sync --locked --extra dev
+make sync
+```
+
+Scaffold a registry entry for your public, ungated Sentence Transformers model:
+
+```bash
+uv run neb model scaffold owner/model
+```
+
+The command prints the generated model ID and registry path. Inspect that YAML manifest, then
+validate all registries:
+
+```bash
 uv run neb validate
 ```
 
-The examples below use the installed `neb` command. When working from a source checkout without
-activating its virtual environment, prefix it with `uv run`.
+Use the printed model ID—not the Hugging Face ID—to evaluate every registered task. CUDA is
+recommended for larger or retrieval-heavy runs:
+
+```bash
+uv run neb evaluate --model <generated-id> --device cuda --resume
+```
+
+To evaluate only part of the benchmark, repeat `--task` with one or more registered task IDs:
+
+```bash
+uv run neb evaluate \
+  --model <generated-id> \
+  --task stsb-nepali \
+  --device cuda \
+  --resume
+```
+
+Outputs are stored under `runs/`. `--resume` skips views that are already complete. Each task run
+contains MTEB-compatible result JSON, the exact model revision, runtime settings, effective
+prompts, dataset provenance, and result hashes.
+
+Publish completed v2 runs as explicitly unverified community evidence:
+
+```bash
+make publish-community MODEL=<generated-id>
+```
+
+This copies the model's v2 runs into `results/community/` and regenerates the dashboard exports.
+Install dashboard dependencies once, then start the local dashboard to inspect the
+community-labeled results:
+
+```bash
+make site-install
+make site-dev
+```
+
+Astro prints the local URL. To regenerate only the versioned files under
+`site/public/data/v2/`, run:
+
+```bash
+make export
+```
+
+Scaffolding is revision-aware. Re-running it for the same Hugging Face ID and commit is an
+idempotent no-op. A different commit creates a revision-qualified model ID while preserving the
+old registration and results. If several revisions are registered, evaluation by Hugging Face ID
+is rejected as ambiguous; use one of the printed registry model IDs.
+
+Some reviewed `jangedoo/*` models contain custom model code and require an explicit
+`--allow-remote-code` evaluation flag. NEB never enables it implicitly.
+
+## Python API
 
 To inspect the benchmark from Python:
 
@@ -61,43 +108,7 @@ for model in get_models():
     print(model.id, model.hf_id)
 ```
 
-## Run your first evaluation
-
-The following command evaluates the pinned multilingual E5 baseline on the three STS-B Nepali
-views:
-
-```bash
-neb evaluate \
-  --model multilingual-e5-small \
-  --task stsb-nepali \
-  --device cpu \
-  --resume
-```
-
-The first run downloads the pinned model and dataset from Hugging Face. CPU evaluation works, but a
-CUDA device is recommended for larger or retrieval-heavy runs:
-
-```bash
-neb evaluate \
-  --model multilingual-e5-small \
-  --task nanobeir-ne \
-  --device cuda \
-  --batch-size 64 \
-  --resume
-```
-
-Outputs are stored under `runs/`. Each task run contains:
-
-- MTEB-compatible JSON for every evaluation view;
-- `model_meta.json` with the exact model revision;
-- `run_settings.jsonl` with runtime options;
-- `provenance.json` with versions, effective prompts, dataset revision, hardware, and result
-  hashes.
-
-`--resume` skips views that are already complete. Some reviewed `jangedoo/*` models contain custom
-model code and require an explicit `--allow-remote-code` flag. NEB never enables it implicitly.
-
-The equivalent Python API is:
+The equivalent evaluation API is:
 
 ```python
 from neb import evaluate
@@ -140,7 +151,6 @@ by default. Missing results remain visible as missing coverage.
 Node.js 22.12 or newer is required only for dashboard development.
 
 ```bash
-make sync
 make site-install
 make site-dev
 ```
