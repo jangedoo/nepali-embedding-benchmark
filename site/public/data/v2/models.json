@@ -82,14 +82,14 @@
       ],
       "license": "unknown",
       "notes": null,
-      "parameter_count": "unknown",
+      "parameter_count": 22713216,
       "prompts": {
         "document": null,
         "query": null
       },
       "revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
       "trust_remote_code": false,
-      "vocab_size": "unknown"
+      "vocab_size": 30522
     },
     {
       "base_model": null,

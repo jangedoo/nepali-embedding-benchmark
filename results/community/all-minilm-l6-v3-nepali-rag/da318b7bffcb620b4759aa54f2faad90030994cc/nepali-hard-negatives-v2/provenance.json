@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "run_id": "all-minilm-l6-v3-nepali-rag-da318b7b",
+  "status": "community",
+  "model_id": "all-minilm-l6-v3-nepali-rag",
+  "model_hf_id": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+  "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+  "task_id": "nepali-hard-negatives",
+  "task_version": 2,
+  "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 22713216,
+  "vocab_size": 30522,
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "all-minilm-l6-v3-nepali-rag",
+    "--device",
+    "cuda",
+    "--allow-remote-code"
+  ],
+  "result_hashes": {
+    "results/hard-negatives.json": "cd4c65df5d131e6abb3cd1836d60afc11c1dca8e6a513f1d2d5e8dd9426360ba"
+  },
+  "created_at": "2026-07-02T14:10:03.040873Z"
+}

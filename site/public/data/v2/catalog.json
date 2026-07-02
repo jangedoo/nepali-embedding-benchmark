@@ -1,7 +1,7 @@
 {
   "counts": {
     "models": 8,
-    "results": 80,
+    "results": 100,
     "tasks": 5
   },
   "models": [
@@ -87,14 +87,14 @@
       ],
       "license": "unknown",
       "notes": null,
-      "parameter_count": "unknown",
+      "parameter_count": 22713216,
       "prompts": {
         "document": null,
         "query": null
       },
       "revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
       "trust_remote_code": false,
-      "vocab_size": "unknown"
+      "vocab_size": 30522
     },
     {
       "base_model": null,
@@ -227,6 +227,25 @@
     {
       "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
       "metrics": {
+        "accuracy": 0.8412698412698413,
+        "f1": 0.7945326278659613,
+        "precision": 0.7735449735449735,
+        "recall": 0.8412698412698413
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/en-ne-parallel-v2/results/en-ne.json",
+      "result_sha256": "a32ee3d249d4f7998c5c7d8bc190c9609c131a7b28490524053d201a4d7c8faf",
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 2,
+      "view_id": "en-ne",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metrics": {
         "accuracy": 0.8783068783068783,
         "f1": 0.8571428571428571,
         "precision": 0.847442680776014,
@@ -294,6 +313,25 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/en-ne-parallel-v2/results/ne-en.json",
       "result_sha256": "ec4f1dfb6601c50b97feec71aa6c9ecf4a60c5a45f2d0ecdc68a5f31bef1482e",
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 2,
+      "view_id": "ne-en",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metrics": {
+        "accuracy": 0.8359788359788359,
+        "f1": 0.789241622574956,
+        "precision": 0.7671957671957672,
+        "recall": 0.8359788359788359
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/en-ne-parallel-v2/results/ne-en.json",
+      "result_sha256": "d1f6af6c0f2f68b3e92f22999c8c37ee149559e756d032f8eca56e279a0457d2",
       "status": "verified",
       "task_id": "en-ne-parallel",
       "task_version": 2,
@@ -374,6 +412,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/arguana.json",
       "result_sha256": "c752f9522952053e78988519e049673c35630bb019a998b40f226b7f292fba5a",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "arguana",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.66,
+        "map_at_10": 0.28738,
+        "mrr_at_10": 0.28738095238095235,
+        "ndcg_at_10": 0.37678,
+        "precision_at_10": 0.066,
+        "recall_at_10": 0.66
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/arguana.json",
+      "result_sha256": "4546f213566c6b4a40e041f1711e6308b8456493ea0d60285874b5ba1aa99765",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -467,6 +526,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.24,
+        "map_at_10": 0.0614,
+        "mrr_at_10": 0.1111031746031746,
+        "ndcg_at_10": 0.08788,
+        "precision_at_10": 0.024,
+        "recall_at_10": 0.11567
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/climatefever.json",
+      "result_sha256": "bab3acb8b7426a6deb46d06bd811d2f733ffeeb3f832294a6c44bf2994ae348f",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "climatefever",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.48,
         "map_at_10": 0.10455,
         "mrr_at_10": 0.19402380952380952,
@@ -542,6 +622,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/dbpedia.json",
       "result_sha256": "fb1d2a345df93c44f52803c3c1dea03f0b8ad9cbd9590a518dd8e265ac81e655",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "dbpedia",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.78,
+        "map_at_10": 0.10001,
+        "mrr_at_10": 0.4881666666666667,
+        "ndcg_at_10": 0.30177,
+        "precision_at_10": 0.244,
+        "recall_at_10": 0.16314
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/dbpedia.json",
+      "result_sha256": "b3bb3f18638ef2426a2405ba349238d0164c830530510f2d4c13a10df5ba1b3d",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -635,6 +736,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.62,
+        "map_at_10": 0.35408,
+        "mrr_at_10": 0.37843650793650796,
+        "ndcg_at_10": 0.42005,
+        "precision_at_10": 0.066,
+        "recall_at_10": 0.60333
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/fever.json",
+      "result_sha256": "6a7e021a52672b8654ecc81c8d56455364553cbb30b26322f631a6c15632c141",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "fever",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.78,
         "map_at_10": 0.47519,
         "mrr_at_10": 0.494,
@@ -710,6 +832,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/fiqa2018.json",
       "result_sha256": "b13727cee71025cc12a80694c09974b2316151172b4af48b4e5b37ca1870060d",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "fiqa2018",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.22,
+        "map_at_10": 0.10838,
+        "mrr_at_10": 0.1716666666666667,
+        "ndcg_at_10": 0.13616,
+        "precision_at_10": 0.034,
+        "recall_at_10": 0.15638
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/fiqa2018.json",
+      "result_sha256": "9e5cda565f11445ee8ac96939e0e7ff2a52f04c0106260a732f263ba3a013b44",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -803,6 +946,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.6,
+        "map_at_10": 0.25482,
+        "mrr_at_10": 0.38785714285714284,
+        "ndcg_at_10": 0.32091,
+        "precision_at_10": 0.076,
+        "recall_at_10": 0.38
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/hotpotqa.json",
+      "result_sha256": "ecf0b6a0321bcc5cba2c9601f7380f8c68a9ab8b772f8b7411f00d5e4c3225de",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "hotpotqa",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.74,
         "map_at_10": 0.38603,
         "mrr_at_10": 0.5765,
@@ -878,6 +1042,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/msmarco.json",
       "result_sha256": "ee5828a9b136983b8022b534901dafc11bc60dbc9172980afd2c5b0dc4348850",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "msmarco",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.42,
+        "map_at_10": 0.16177,
+        "mrr_at_10": 0.16176984126984129,
+        "ndcg_at_10": 0.22208,
+        "precision_at_10": 0.042,
+        "recall_at_10": 0.42
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/msmarco.json",
+      "result_sha256": "6374f21721588133309263dc970c8de805630d06806943929778b0c79b75d2a9",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -971,6 +1156,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.24,
+        "map_at_10": 0.00564,
+        "mrr_at_10": 0.11788888888888889,
+        "ndcg_at_10": 0.07233,
+        "precision_at_10": 0.07,
+        "recall_at_10": 0.01025
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/nfcorpus.json",
+      "result_sha256": "1d04b69562d9965a6bc4045a396974a51445164af469196ed361b385212e1fb6",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "nfcorpus",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.56,
         "map_at_10": 0.0591,
         "mrr_at_10": 0.3105,
@@ -1046,6 +1252,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/nq.json",
       "result_sha256": "948ac297751523dfbf63d536967329f68c2b678e2e3c6f24de52a2944d6c86a0",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "nq",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.36,
+        "map_at_10": 0.15044,
+        "mrr_at_10": 0.17002380952380952,
+        "ndcg_at_10": 0.19599,
+        "precision_at_10": 0.036,
+        "recall_at_10": 0.32
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/nq.json",
+      "result_sha256": "6615b28c2b8611d27753af0082ae152bc2f2b3e7928b0f4642787d208f01a5bf",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -1139,6 +1366,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.9,
+        "map_at_10": 0.65366,
+        "mrr_at_10": 0.7193333333333334,
+        "ndcg_at_10": 0.71615,
+        "precision_at_10": 0.112,
+        "recall_at_10": 0.85333
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/quoraretrieval.json",
+      "result_sha256": "d9ae8d6f95389ea85aa3d0aa6cebd2595f1d8bde9317e19712e9adf2ab7aacc3",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "quoraretrieval",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.98,
         "map_at_10": 0.85478,
         "mrr_at_10": 0.8691904761904762,
@@ -1214,6 +1462,27 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v2/results/scidocs.json",
       "result_sha256": "8a48e51edacfb57e9c5106dc7c7db7153a3d2b8605fa600219c822004c413359",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "scidocs",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
+        "hit_rate_at_10": 0.6,
+        "map_at_10": 0.08862,
+        "mrr_at_10": 0.31827777777777777,
+        "ndcg_at_10": 0.1591,
+        "precision_at_10": 0.078,
+        "recall_at_10": 0.16267
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/scidocs.json",
+      "result_sha256": "02731ba02e87a241813f5d5c28e2c95784ada875cd067a4edca1f8fda9e6d353",
       "status": "verified",
       "task_id": "nanobeir-ne",
       "task_version": 2,
@@ -1307,6 +1576,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.44,
+        "map_at_10": 0.19073,
+        "mrr_at_10": 0.21326984126984125,
+        "ndcg_at_10": 0.24944,
+        "precision_at_10": 0.048,
+        "recall_at_10": 0.42
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/scifact.json",
+      "result_sha256": "22adeb55fd2047a9c87913fce573dab1200b5ea7bb2a900ae8c2529dead68f81",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "scifact",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.58,
         "map_at_10": 0.47687,
         "mrr_at_10": 0.48,
@@ -1391,6 +1681,27 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
+        "hit_rate_at_10": 0.87755,
+        "map_at_10": 0.0662,
+        "mrr_at_10": 0.5191448007774538,
+        "ndcg_at_10": 0.24712,
+        "precision_at_10": 0.22041,
+        "recall_at_10": 0.12501
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v2/results/touche2020.json",
+      "result_sha256": "5dce4ad284e11a68d45b0cb137f29c996c47aeb2bbe25a22386b1e7a30aabc51",
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 2,
+      "view_id": "touche2020",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metrics": {
         "hit_rate_at_10": 0.89796,
         "map_at_10": 0.15948,
         "mrr_at_10": 0.6740038872691935,
@@ -1462,6 +1773,25 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nepali-hard-negatives-v2/results/hard-negatives.json",
       "result_sha256": "c02f0f85a47f7793aae233e7b1ca6ec1de675dea4877af0ebcaeeb166c268944",
+      "status": "verified",
+      "task_id": "nepali-hard-negatives",
+      "task_version": 2,
+      "view_id": "hard-negatives",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+      "metrics": {
+        "hit_rate_at_1": 0.455,
+        "hit_rate_at_3": 0.8725,
+        "mrr_at_5": 0.6702083333333333,
+        "ndcg_at_5": 0.7533576458507939
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nepali-hard-negatives-v2/results/hard-negatives.json",
+      "result_sha256": "cd4c65df5d131e6abb3cd1836d60afc11c1dca8e6a513f1d2d5e8dd9426360ba",
       "status": "verified",
       "task_id": "nepali-hard-negatives",
       "task_version": 2,
@@ -1558,6 +1888,27 @@
         "cosine_recall": 1.0,
         "cosine_roc_auc": 1.0
       },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/paraphrase-nepali-v2/results/bilingual.json",
+      "result_sha256": "a2bbccc215bedef7618f287c563e941ce4e3a3d9e82965511d120e591011c026",
+      "status": "verified",
+      "task_id": "paraphrase-nepali",
+      "task_version": 2,
+      "view_id": "bilingual",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+      "metrics": {
+        "cosine_accuracy": 1.0,
+        "cosine_ap": 1.0,
+        "cosine_f1": 1.0,
+        "cosine_precision": 1.0,
+        "cosine_recall": 1.0,
+        "cosine_roc_auc": 1.0
+      },
       "model_id": "embeddinggemma-300m-ne-pruned",
       "model_revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
       "parameter_count": 127908864,
@@ -1618,6 +1969,23 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/stsb-nepali-v2/results/en-ne.json",
       "result_sha256": "71d61c986323306429846e7b511775534e4da020b465827b2feb8ca84d2ac2a9",
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 2,
+      "view_id": "en-ne",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metrics": {
+        "cosine_pearson": 0.4021789077440923,
+        "cosine_spearman": 0.3962411625432854
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v2/results/en-ne.json",
+      "result_sha256": "ce7cc4f2833c0c50a5d209b3a4159c176289abaffbd19d111cba8fe9d457dadf",
       "status": "verified",
       "task_id": "stsb-nepali",
       "task_version": 2,
@@ -1695,6 +2063,23 @@
     {
       "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
       "metrics": {
+        "cosine_pearson": 0.4177398118607664,
+        "cosine_spearman": 0.413690956826989
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v2/results/ne-en.json",
+      "result_sha256": "36d2fb064552a2ae2aef3ea8d5e0ae2b5efa9722967baae1fc4ca11c2fc63df1",
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 2,
+      "view_id": "ne-en",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metrics": {
         "cosine_pearson": 0.362240424243277,
         "cosine_spearman": 0.3601923756401951
       },
@@ -1754,6 +2139,23 @@
       "parameter_count": 22713216,
       "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/stsb-nepali-v2/results/ne-ne.json",
       "result_sha256": "e282089c165bbe8af1da174e075c24101b37727f7c9aba4cd7f6a8455d054255",
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 2,
+      "view_id": "ne-ne",
+      "vocab_size": 30522
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metrics": {
+        "cosine_pearson": 0.6112604955834492,
+        "cosine_spearman": 0.604689342860629
+      },
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "parameter_count": 22713216,
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v2/results/ne-ne.json",
+      "result_sha256": "e08ed13b772d644aed939bbccdc24f21818fc90d7798c0e7e0bc4191c6854ade",
       "status": "verified",
       "task_id": "stsb-nepali",
       "task_version": 2,

@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+  "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoSCIDOCS": [
+      {
+        "hf_subset": "scidocs",
+        "hit_rate_at_10": 0.6,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.1591,
+        "map_at_10": 0.08862,
+        "mrr_at_10": 0.31827777777777777,
+        "ndcg_at_10": 0.1591,
+        "precision_at_10": 0.078,
+        "recall_at_10": 0.16267
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

@@ -1,0 +1,27 @@
+{
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "model_name": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+  "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+  "mteb_dataset_name": "jangedoo/paraphrase-nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_accuracy": 1.0,
+        "cosine_ap": 1.0,
+        "cosine_f1": 1.0,
+        "cosine_precision": 1.0,
+        "cosine_recall": 1.0,
+        "cosine_roc_auc": 1.0,
+        "hf_subset": "bilingual",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 1.0
+      }
+    ]
+  },
+  "task_name": "paraphrase-nepali",
+  "task_revision": "2"
+}
