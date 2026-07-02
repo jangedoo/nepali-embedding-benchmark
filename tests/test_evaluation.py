@@ -8,6 +8,7 @@ from neb.evaluation import (
     bitext_metrics,
     pair_classification_metrics,
     reranking_metrics,
+    resolve_model_dtype,
     retrieval_metrics,
     select_classification_threshold,
     sts_metrics,
@@ -37,6 +38,23 @@ class FakeModel(FakeEncoder):
         return [FakeParameter(10), FakeParameter(20)]
 
 
+class FakeCuda:
+    def __init__(self, supports_bf16: bool):
+        self.supports_bf16 = supports_bf16
+
+    def is_bf16_supported(self) -> bool:
+        return self.supports_bf16
+
+
+class FakeTorch:
+    bfloat16 = object()
+    float16 = object()
+    float32 = object()
+
+    def __init__(self, supports_bf16: bool):
+        self.cuda = FakeCuda(supports_bf16)
+
+
 def test_manifest_prompt_overrides_native_prompt() -> None:
     spec = ModelSpec(
         id="model",
@@ -52,6 +70,33 @@ def test_manifest_prompt_overrides_native_prompt() -> None:
 
 def test_model_stats_are_extracted_from_loaded_encoder() -> None:
     assert EvaluationRunner._model_stats(FakeModel()) == (30, 30)
+
+
+@pytest.mark.parametrize(
+    ("supports_bf16", "expected_name", "expected_dtype"),
+    [(True, "bfloat16", FakeTorch.bfloat16), (False, "float16", FakeTorch.float16)],
+)
+def test_cuda_model_dtype_is_selected_from_hardware_support(
+    supports_bf16: bool, expected_name: str, expected_dtype: object
+) -> None:
+    runtime, dtype = resolve_model_dtype(RuntimeSettings(device="cuda"), FakeTorch(supports_bf16))
+    assert runtime.dtype == expected_name
+    assert dtype is expected_dtype
+
+
+def test_explicit_model_dtype_override_is_respected() -> None:
+    runtime, dtype = resolve_model_dtype(
+        RuntimeSettings(device="cuda", dtype="fp32"), FakeTorch(True)
+    )
+    assert runtime.dtype == "float32"
+    assert dtype is FakeTorch.float32
+
+
+def test_cpu_model_dtype_remains_unspecified_by_default() -> None:
+    original = RuntimeSettings(device="cpu")
+    runtime, dtype = resolve_model_dtype(original, FakeTorch(True))
+    assert runtime is original
+    assert dtype is None
 
 
 def test_sts_metric_family() -> None:

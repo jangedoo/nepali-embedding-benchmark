@@ -44,11 +44,15 @@ uv run neb validate
 ```
 
 Use the printed model ID—not the Hugging Face ID—to evaluate every registered task. CUDA is
-recommended for larger or retrieval-heavy runs:
+recommended for larger or retrieval-heavy runs. CUDA evaluations load models in BF16 when the
+GPU supports it and FP16 otherwise:
 
 ```bash
 uv run neb evaluate --model <generated-id> --device cuda --resume
 ```
+
+Use `--dtype fp32`, `--dtype bf16`, or `--dtype fp16` to override automatic selection. If an
+evaluation still runs out of GPU memory, reduce the encoding batch size with `--batch-size`.
 
 To evaluate only part of the benchmark, repeat `--task` with one or more registered task IDs:
 

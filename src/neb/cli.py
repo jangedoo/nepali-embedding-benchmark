@@ -50,6 +50,10 @@ def evaluate_command(
     resume: Annotated[bool, typer.Option("--resume")] = False,
     device: Annotated[str, typer.Option()] = "cpu",
     batch_size: Annotated[int, typer.Option(min=1)] = 32,
+    dtype: Annotated[
+        str | None,
+        typer.Option(help="Model dtype override (bf16, fp16, or fp32)"),
+    ] = None,
     allow_remote_code: Annotated[
         bool, typer.Option("--allow-remote-code", help="Allow pinned owner-only model code")
     ] = False,
@@ -59,7 +63,7 @@ def evaluate_command(
     paths = evaluate_api(
         model,
         task,
-        runtime=RuntimeSettings(device=device, batch_size=batch_size, resume=resume),
+        runtime=RuntimeSettings(device=device, batch_size=batch_size, dtype=dtype, resume=resume),
         allow_remote_code=allow_remote_code,
         output_dir=output_dir,
         root=project_root(root),
