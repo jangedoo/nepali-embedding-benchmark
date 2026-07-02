@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nepali-embedding-benchmark"
+version = "0.1.0"
+description = "NEB: a task-first Nepali embedding benchmark built on MTEB"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "NEB maintainers" }]
+dependencies = [
+  "mteb==2.16.2",
+  "pydantic>=2.9,<3",
+  "PyYAML>=6.0,<7",
+  "typer>=0.12,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "jsonschema>=4.23",
+  "pytest>=8.3",
+  "pytest-cov>=6",
+  "ruff>=0.9",
+]
+
+[project.scripts]
+neb = "neb.cli:app"
+
+[project.urls]
+Repository = "https://github.com/jangedoo/nepali-embedding-benchmark"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/neb"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"registries" = "neb/registries"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

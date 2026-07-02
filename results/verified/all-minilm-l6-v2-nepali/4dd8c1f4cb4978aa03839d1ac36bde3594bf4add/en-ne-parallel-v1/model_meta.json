@@ -1,0 +1,21 @@
+{
+  "id": "all-minilm-l6-v2-nepali",
+  "display_name": "all-MiniLM-L6-v2 Nepali",
+  "hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
+  "revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+  "trust_remote_code": false,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [
+    "en",
+    "ne"
+  ],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": null,
+  "license": "unknown",
+  "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v2-nepali",
+  "notes": null
+}

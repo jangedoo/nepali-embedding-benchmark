@@ -1,0 +1,21 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/all-MiniLM-L6-v3-nepali",
+  "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoTouche2020": [
+      {
+        "hf_subset": "touche2020",
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.25412083570545074,
+        "ndcg_at_10": 0.25412083570545074
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "1"
+}

@@ -1,0 +1,22 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "model_name": "jangedoo/all-MiniLM-L6-v2-nepali",
+  "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+  "mteb_dataset_name": "jangedoo/en_ne_parallel_corpus",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "f1": 0.8306878306878307,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 0.8306878306878307
+      }
+    ]
+  },
+  "task_name": "en-ne-parallel",
+  "task_revision": "1"
+}

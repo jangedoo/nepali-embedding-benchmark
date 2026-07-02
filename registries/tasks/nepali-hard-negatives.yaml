@@ -1,0 +1,18 @@
+id: nepali-hard-negatives
+version: 1
+display_name: Nepali Query–Passage Hard Negatives
+description: Reranking of one explicit positive against hard-negative passage candidates.
+dataset:
+  id: jangedoo/nepali-query-passage-hard-negatives-10k
+  revision: f92818df24ed4d95905ad928dbde18feb4aeb2fb
+  url: https://huggingface.co/datasets/jangedoo/nepali-query-passage-hard-negatives-10k/tree/f92818df24ed4d95905ad928dbde18feb4aeb2fb
+adapter: reranking
+license: unknown
+homepage: https://huggingface.co/datasets/jangedoo/nepali-query-passage-hard-negatives-10k
+reviewed_adapter: neb.adapters.explicit_positive_candidates
+views:
+  - id: hard-negatives
+    split: test
+    languages: [ne]
+    columns: {query: query, positive: positive, negatives: hard_negative_passages}
+    primary_metric: map_at_1000

@@ -1,0 +1,11 @@
+- id: multilingual-e5-small
+  display_name: Multilingual E5 Small
+  hf_id: intfloat/multilingual-e5-small
+  revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
+  languages: [multilingual]
+  license: mit
+  prompts:
+    query: "query: "
+    document: "passage: "
+  homepage: https://huggingface.co/intfloat/multilingual-e5-small
+

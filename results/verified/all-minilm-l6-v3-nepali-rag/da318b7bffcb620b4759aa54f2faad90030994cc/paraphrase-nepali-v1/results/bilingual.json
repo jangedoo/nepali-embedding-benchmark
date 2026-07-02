@@ -1,0 +1,22 @@
+{
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "model_name": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+  "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+  "mteb_dataset_name": "jangedoo/paraphrase-nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "hf_subset": "bilingual",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 1.0,
+        "max_ap": 1.0
+      }
+    ]
+  },
+  "task_name": "paraphrase-nepali",
+  "task_revision": "1"
+}

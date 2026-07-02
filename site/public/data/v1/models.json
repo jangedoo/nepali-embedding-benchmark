@@ -1,0 +1,168 @@
+{
+  "models": [
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "Multilingual E5 Small",
+      "excluded_base_model": null,
+      "hf_id": "intfloat/multilingual-e5-small",
+      "homepage": "https://huggingface.co/intfloat/multilingual-e5-small",
+      "id": "multilingual-e5-small",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "mit",
+      "notes": null,
+      "prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "all-MiniLM-L6-v2 Nepali",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v2-nepali",
+      "id": "all-minilm-l6-v2-nepali",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": "jangedoo/all-MiniLM-L6-v2-nepali",
+      "base_model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "display_name": "all-MiniLM-L6-v3 Nepali",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v3-nepali",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v3-nepali",
+      "id": "all-minilm-l6-v3-nepali",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": "jangedoo/all-MiniLM-L6-v3-nepali",
+      "base_model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "display_name": "all-MiniLM-L6-v3 Nepali RAG",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v3-nepali-rag",
+      "id": "all-minilm-l6-v3-nepali-rag",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "EmbeddingGemma 300M Pruned",
+      "excluded_base_model": "google/embeddinggemma-300m",
+      "hf_id": "jangedoo/embeddinggemma-300m-pruned",
+      "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-pruned",
+      "id": "embeddinggemma-300m-pruned",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": "intfloat/multilingual-e5-small",
+      "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "display_name": "Multilingual E5 Small Pruned",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/multilingual-e5-small-pruned",
+      "homepage": "https://huggingface.co/jangedoo/multilingual-e5-small-pruned",
+      "id": "multilingual-e5-small-pruned",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "696e4b64a2e33f6ffa036d24a666a16fd2280556",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": "intfloat/multilingual-e5-small",
+      "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "display_name": "Multilingual E5 Small Nepali-Pruned",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/multilingual-e5-small-ne-pruned",
+      "homepage": "https://huggingface.co/jangedoo/multilingual-e5-small-ne-pruned",
+      "id": "multilingual-e5-small-ne-pruned",
+      "languages": [
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "EmbeddingGemma 300M Nepali-Pruned",
+      "excluded_base_model": "google/embeddinggemma-300m",
+      "hf_id": "jangedoo/embeddinggemma-300m-ne-pruned",
+      "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-ne-pruned",
+      "id": "embeddinggemma-300m-ne-pruned",
+      "languages": [
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": "The gated base model is provenance-only and is not in the initial evaluation queue.",
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
+      "trust_remote_code": true
+    }
+  ],
+  "schema_version": 1
+}

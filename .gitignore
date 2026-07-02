@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+runs/
+site/node_modules/
+site/dist/
+site/.astro/
+

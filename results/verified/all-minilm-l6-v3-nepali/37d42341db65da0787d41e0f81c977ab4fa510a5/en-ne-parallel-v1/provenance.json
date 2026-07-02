@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "run_id": "all-minilm-l6-v3-nepali-37d42341",
+  "status": "verified",
+  "model_id": "all-minilm-l6-v3-nepali",
+  "model_hf_id": "jangedoo/all-MiniLM-L6-v3-nepali",
+  "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+  "task_id": "en-ne-parallel",
+  "task_version": 1,
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.1.0",
+  "sentence_transformers_version": "5.6.0",
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "all-minilm-l6-v3-nepali",
+    "--device",
+    "cuda"
+  ],
+  "result_hashes": {
+    "results/en-ne.json": "f8652bfa2707b850bd6544dbfe746dfd4a57e7b699101dbd4688b8a7b9621c30",
+    "results/ne-en.json": "fd154372e60f38ec06f21da3d8eebbaddbaf2bc1c1110bbaf9496cf00d620c3e"
+  },
+  "created_at": "2026-07-02T11:26:26.904814Z"
+}

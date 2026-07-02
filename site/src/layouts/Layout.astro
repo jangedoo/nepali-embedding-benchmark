@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+interface Props { title: string; compact?: boolean; }
+const { title, compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="NEB compares embedding models within individual Nepali benchmark tasks." />
+    <title>{title} · NEB</title>
+  </head>
+  <body class:list={{ compact }}>
+    {!compact && (
+      <header>
+        <a class="brand" href={base}>NEB <span>Nepali Embedding Benchmark</span></a>
+        <nav aria-label="Main navigation">
+          <a href={`${base}tasks/`}>Tasks</a>
+          <a href={`${base}models/`}>Models</a>
+          <a href={`${base}compare/`}>Compare</a>
+        </nav>
+      </header>
+    )}
+    <main><slot /></main>
+    {!compact && <footer>Nepali Embedding Benchmark</footer>}
+  </body>
+</html>

@@ -1,0 +1,18 @@
+id: paraphrase-nepali
+version: 1
+display_name: Nepali Paraphrase
+description: Bilingual sentence-pair classification.
+dataset:
+  id: jangedoo/paraphrase-nepali
+  revision: b521e5ab755a301191c9118c6afc6889895f37bf
+  url: https://huggingface.co/datasets/jangedoo/paraphrase-nepali/tree/b521e5ab755a301191c9118c6afc6889895f37bf
+adapter: pair_classification
+license: unknown
+homepage: https://huggingface.co/datasets/jangedoo/paraphrase-nepali
+views:
+  - id: bilingual
+    split: test
+    languages: [en, ne]
+    columns: {sentence1: sentence1, sentence2: sentence2, label: label}
+    primary_metric: max_ap
+

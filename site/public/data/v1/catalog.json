@@ -1,0 +1,1445 @@
+{
+  "counts": {
+    "models": 8,
+    "results": 60,
+    "tasks": 5
+  },
+  "models": [
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "Multilingual E5 Small",
+      "excluded_base_model": null,
+      "hf_id": "intfloat/multilingual-e5-small",
+      "homepage": "https://huggingface.co/intfloat/multilingual-e5-small",
+      "id": "multilingual-e5-small",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "mit",
+      "notes": null,
+      "prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "all-MiniLM-L6-v2 Nepali",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v2-nepali",
+      "id": "all-minilm-l6-v2-nepali",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": "jangedoo/all-MiniLM-L6-v2-nepali",
+      "base_model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "display_name": "all-MiniLM-L6-v3 Nepali",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v3-nepali",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v3-nepali",
+      "id": "all-minilm-l6-v3-nepali",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": "jangedoo/all-MiniLM-L6-v3-nepali",
+      "base_model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "display_name": "all-MiniLM-L6-v3 Nepali RAG",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/all-MiniLM-L6-v3-nepali-rag",
+      "homepage": "https://huggingface.co/jangedoo/all-MiniLM-L6-v3-nepali-rag",
+      "id": "all-minilm-l6-v3-nepali-rag",
+      "languages": [
+        "en",
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "trust_remote_code": false
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "EmbeddingGemma 300M Pruned",
+      "excluded_base_model": "google/embeddinggemma-300m",
+      "hf_id": "jangedoo/embeddinggemma-300m-pruned",
+      "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-pruned",
+      "id": "embeddinggemma-300m-pruned",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": "intfloat/multilingual-e5-small",
+      "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "display_name": "Multilingual E5 Small Pruned",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/multilingual-e5-small-pruned",
+      "homepage": "https://huggingface.co/jangedoo/multilingual-e5-small-pruned",
+      "id": "multilingual-e5-small-pruned",
+      "languages": [
+        "multilingual"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "696e4b64a2e33f6ffa036d24a666a16fd2280556",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": "intfloat/multilingual-e5-small",
+      "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "display_name": "Multilingual E5 Small Nepali-Pruned",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/multilingual-e5-small-ne-pruned",
+      "homepage": "https://huggingface.co/jangedoo/multilingual-e5-small-ne-pruned",
+      "id": "multilingual-e5-small-ne-pruned",
+      "languages": [
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": null,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+      "trust_remote_code": true
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "EmbeddingGemma 300M Nepali-Pruned",
+      "excluded_base_model": "google/embeddinggemma-300m",
+      "hf_id": "jangedoo/embeddinggemma-300m-ne-pruned",
+      "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-ne-pruned",
+      "id": "embeddinggemma-300m-ne-pruned",
+      "languages": [
+        "ne"
+      ],
+      "license": "unknown",
+      "notes": "The gated base model is provenance-only and is not in the initial evaluation queue.",
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
+      "trust_remote_code": true
+    }
+  ],
+  "results": [
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/en-ne-parallel-v1/results/en-ne.json",
+      "result_sha256": "4afc3e59297e30bb9b7ff8a3dd0bd28ef4763bfab929164b0104c1ab46127ccc",
+      "score": 0.8306878306878307,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/en-ne-parallel-v1/results/en-ne.json",
+      "result_sha256": "f8652bfa2707b850bd6544dbfe746dfd4a57e7b699101dbd4688b8a7b9621c30",
+      "score": 0.8624338624338624,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/en-ne-parallel-v1/results/en-ne.json",
+      "result_sha256": "7d19bf3598d3800d76ac7b779c8ea8d8c52bf06877be3e7b7c80e899bd78152b",
+      "score": 0.8412698412698413,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/en-ne-parallel-v1/results/ne-en.json",
+      "result_sha256": "32c3b7e70d96ee067ddcd1269fd44088d09427f82ede8b7c2563727994aa0487",
+      "score": 0.8042328042328042,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/en-ne-parallel-v1/results/ne-en.json",
+      "result_sha256": "fd154372e60f38ec06f21da3d8eebbaddbaf2bc1c1110bbaf9496cf00d620c3e",
+      "score": 0.8518518518518519,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+      "metric": "f1",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/en-ne-parallel-v1/results/ne-en.json",
+      "result_sha256": "be2ebca97e4c4c16133515f12f5b91fc252e1d62a4064c580f48c08b5e0cf167",
+      "score": 0.8359788359788359,
+      "status": "verified",
+      "task_id": "en-ne-parallel",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/arguana.json",
+      "result_sha256": "d4c597eee8e001f60433d9b4b751a0d46d46d9cfed7311764bf5b90a01ba96dc",
+      "score": 0.3011432136173081,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "arguana"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/arguana.json",
+      "result_sha256": "96f318fccf8e91555f852593f535265d115ed0944847fba8d18ff31147aeb6c3",
+      "score": 0.312360423575842,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "arguana"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/arguana.json",
+      "result_sha256": "e7d7b5bb1b483ce688c19138a867b2ce310b6eebc8870acb9532853fe3e1b838",
+      "score": 0.37427782577122753,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "arguana"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/climatefever.json",
+      "result_sha256": "bff62d16fa73772da451726d09495fa498ffae5e1840b6d388a50b28ebbeacfd",
+      "score": 0.04802075149259509,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "climatefever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/climatefever.json",
+      "result_sha256": "d0ec6aaefb54ad83c6a93abd5ca5adb5f1ce7b47cdfdbb2d9b42a61080304a83",
+      "score": 0.05719400415464089,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "climatefever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/climatefever.json",
+      "result_sha256": "eb578a88c14f3f709756179ba5e2ff5b04efb86c0b8c695dacc8e982997aba63",
+      "score": 0.08787619816538118,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "climatefever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/dbpedia.json",
+      "result_sha256": "c48e892b533e8baa60aa6920e79ed4678426dced6cc2568701b4cf191b658338",
+      "score": 0.27689718077285447,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "dbpedia"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/dbpedia.json",
+      "result_sha256": "936f857dd00b0ba2296d171dd82970e368ba505a61021e198305e28a8afa2547",
+      "score": 0.3377634857617363,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "dbpedia"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/dbpedia.json",
+      "result_sha256": "93e9f93d8cf88750478363b2942de4a8a679d5ea4215ca1c03e3bb314cbd3771",
+      "score": 0.30176690901807346,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "dbpedia"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/fever.json",
+      "result_sha256": "0614673135ab8a0e8cab5bb7ec4dad0f61d6bb7acba88e95fc6fc4ed825e6c09",
+      "score": 0.41301332273989294,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/fever.json",
+      "result_sha256": "1783b7b934699bbfe91d694c7020f33598f018a1eefd6bb50b73feeecaab4bcc",
+      "score": 0.39669948317127307,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/fever.json",
+      "result_sha256": "0fc26c08aa7436c12cf27b76605c148dd4ca54c6553c0ec3585d435657bd0b4f",
+      "score": 0.42005249929244165,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fever"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/fiqa2018.json",
+      "result_sha256": "b19ba6b2341f92da7bf90c2b49d16643bc55df0eebb818b71265e09d7b90c305",
+      "score": 0.17389017396338183,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fiqa2018"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/fiqa2018.json",
+      "result_sha256": "534c785ea4f7052ad159df43a40efca6a8378edd445e5588421d5f31dcf495eb",
+      "score": 0.18559345652878803,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fiqa2018"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/fiqa2018.json",
+      "result_sha256": "5bf35f67aa2a8238c6ca34e9be957482f0ad9cb3e448136949956aa42b3ca3c6",
+      "score": 0.1361607072579881,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "fiqa2018"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/hotpotqa.json",
+      "result_sha256": "c50ed82dbad2e7758248c85fd6fd7e3eda406e86a2fed1443ed5a9fee830f771",
+      "score": 0.2885506425137922,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "hotpotqa"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/hotpotqa.json",
+      "result_sha256": "2aa03fb69b80f4262b4664c96b62f1afa5d8e3e0d2b09e06be106b576cfb3341",
+      "score": 0.3484658827433669,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "hotpotqa"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/hotpotqa.json",
+      "result_sha256": "bad3abed1328eef79bbb95b1cf9f064bce8f90c76a00217075fab191285f4ffe",
+      "score": 0.3209091056113957,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "hotpotqa"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/msmarco.json",
+      "result_sha256": "b1f3d8c9c85ea544a258fd0d75e5c4a07eaebc1e9b18f6d516d0b54e1aa74f1e",
+      "score": 0.21181289745739684,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "msmarco"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/msmarco.json",
+      "result_sha256": "6a3f6fcbfd7243ad69723a0f3236f93da778e08ceddaa3c2b69bbab1106bf8b1",
+      "score": 0.22877887478486247,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "msmarco"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/msmarco.json",
+      "result_sha256": "9a6d970cb4a4b9a0768bebaf3308824f9beb1013eae96654ed91c6253f56a3bc",
+      "score": 0.22208406667617833,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "msmarco"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/nfcorpus.json",
+      "result_sha256": "6c667c227b73c0e0eccf8ae2bec6034175d4c22b350b06b4203ce55416fb47ca",
+      "score": 0.10988222779127722,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nfcorpus"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/nfcorpus.json",
+      "result_sha256": "5d11ef455785e5394134d0cc632aab7d12e1325dfc61102f278a606d7da816d6",
+      "score": 0.09869435347827281,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nfcorpus"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/nfcorpus.json",
+      "result_sha256": "9bc2c1189b32196f7aa5a87a5d96d9e24987a686fba6357230726d5a85438438",
+      "score": 0.07232765013871101,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nfcorpus"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/nq.json",
+      "result_sha256": "000c6f4516e890b5adf0bded4a568769da69e9ed99937961607ed3404f243cc7",
+      "score": 0.1403361430542241,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nq"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/nq.json",
+      "result_sha256": "f9880770296a2ea38ba3f3a84c35fb0c84ea68ff63b76373239751901e4b3f61",
+      "score": 0.21348258810354076,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nq"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/nq.json",
+      "result_sha256": "57f074099f4dbf35b448eab0cb08c8017e1314eaa7cf534a9986d9abb6eb6a5d",
+      "score": 0.19599150026037448,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "nq"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/quoraretrieval.json",
+      "result_sha256": "cdb59c3e15acfe40f5c6dd868237710b1d5a2e9507c04203a7ac78ed0957ff8a",
+      "score": 0.6713280550723375,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "quoraretrieval"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/quoraretrieval.json",
+      "result_sha256": "c429b532d6fba7c4abc33904e0db92bf5c92666e52db4bdd6de2366f2e37a104",
+      "score": 0.6894917338745702,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "quoraretrieval"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/quoraretrieval.json",
+      "result_sha256": "1850bdfa452c34a4dcf3e2d2b69f075b9de5dbf15526fee8dd89018f974c6ec4",
+      "score": 0.7203896001295178,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "quoraretrieval"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/scidocs.json",
+      "result_sha256": "8cb9320e096ddcfdbadeb2c8d20399cd5ce197f2a24d0290b018bc4dc6c02057",
+      "score": 0.1404615566190656,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scidocs"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/scidocs.json",
+      "result_sha256": "1593a400ab4d17229e9a4f3a76e47564c56f8d395d1983fa052488feb1094d6f",
+      "score": 0.1492138488998628,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scidocs"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/scidocs.json",
+      "result_sha256": "823df00e74a8492d96c6258395781f36f4669be584b7ed704849a9092df3c415",
+      "score": 0.15910122144511119,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scidocs"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/scifact.json",
+      "result_sha256": "b88ea84e78760b4cd001ba449b4b2a3366afc82b26d92afe0b3b2d82b290eae2",
+      "score": 0.18582691114704664,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scifact"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/scifact.json",
+      "result_sha256": "727ecf8ad84c21381483059aa522d01a154eb76f29eb3d75942a93f448b3c79f",
+      "score": 0.19151922021922868,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scifact"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/scifact.json",
+      "result_sha256": "bf4cd5585c93536a371fa2dbd2a9b469ebf5e6d6f6f9b875f1ad2eba26423355",
+      "score": 0.24944271370195573,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "scifact"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nanobeir-ne-v1/results/touche2020.json",
+      "result_sha256": "a3d8665e3ed3e21d9c3855db86ca6efa3fd3b3a37cbf78892f8173a993aa7d5e",
+      "score": 0.2673139899336223,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "touche2020"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nanobeir-ne-v1/results/touche2020.json",
+      "result_sha256": "ffed165b162805420559c8f454d5cff32aec86106b93fd0210ed25e561666e24",
+      "score": 0.25412083570545074,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "touche2020"
+    },
+    {
+      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+      "metric": "ndcg_at_10",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nanobeir-ne-v1/results/touche2020.json",
+      "result_sha256": "17e50ece11bafa14e0420404350ca2241df68dee2bf36b216427269e9ea76907",
+      "score": 0.24711932886736554,
+      "status": "verified",
+      "task_id": "nanobeir-ne",
+      "task_version": 1,
+      "view_id": "touche2020"
+    },
+    {
+      "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+      "metric": "map_at_1000",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/nepali-hard-negatives-v1/results/hard-negatives.json",
+      "result_sha256": "a182ef46606a858b466a948fb935bb2e1cad4eac4261ea8459a1c1d13c60d408",
+      "score": 0.6695833333333333,
+      "status": "verified",
+      "task_id": "nepali-hard-negatives",
+      "task_version": 1,
+      "view_id": "hard-negatives"
+    },
+    {
+      "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+      "metric": "map_at_1000",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/nepali-hard-negatives-v1/results/hard-negatives.json",
+      "result_sha256": "cff833d43db809659b2de31c771ad1dc64b636d44a734e9e323e2a98ee63a6e2",
+      "score": 0.7214583333333334,
+      "status": "verified",
+      "task_id": "nepali-hard-negatives",
+      "task_version": 1,
+      "view_id": "hard-negatives"
+    },
+    {
+      "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+      "metric": "map_at_1000",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/nepali-hard-negatives-v1/results/hard-negatives.json",
+      "result_sha256": "92ef8543b415c199f23c93737248697e6dde8403304bcf1c5bffe96c6279993f",
+      "score": 0.6702083333333333,
+      "status": "verified",
+      "task_id": "nepali-hard-negatives",
+      "task_version": 1,
+      "view_id": "hard-negatives"
+    },
+    {
+      "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+      "metric": "max_ap",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/paraphrase-nepali-v1/results/bilingual.json",
+      "result_sha256": "0b16a8625c4b43b89b4eb74c069fd8477e1af3183e240ef54f36c802628b4299",
+      "score": 1.0,
+      "status": "verified",
+      "task_id": "paraphrase-nepali",
+      "task_version": 1,
+      "view_id": "bilingual"
+    },
+    {
+      "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+      "metric": "max_ap",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/paraphrase-nepali-v1/results/bilingual.json",
+      "result_sha256": "63abb96b70f650c8edb493ee56e669b68e3898cebfd71948bf8fc03eb38b23cb",
+      "score": 1.0,
+      "status": "verified",
+      "task_id": "paraphrase-nepali",
+      "task_version": 1,
+      "view_id": "bilingual"
+    },
+    {
+      "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+      "metric": "max_ap",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/paraphrase-nepali-v1/results/bilingual.json",
+      "result_sha256": "dd000d5de4d2813775e44c167653436a02cc7d4e92b50bc57f6f04d52d70b96a",
+      "score": 1.0,
+      "status": "verified",
+      "task_id": "paraphrase-nepali",
+      "task_version": 1,
+      "view_id": "bilingual"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/stsb-nepali-v1/results/en-ne.json",
+      "result_sha256": "1f0d51d2dc387e53ab57c1003a03eb15c934d28020f9e464d4fbb36cd52bcf23",
+      "score": 0.3897940219368359,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/stsb-nepali-v1/results/en-ne.json",
+      "result_sha256": "d23ad3accf327b809be7acf3d06a152049e4adc693e0cc2544e873088290f237",
+      "score": 0.43199518360752764,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v1/results/en-ne.json",
+      "result_sha256": "e2ee6b3048aa84e6581b658bc07629299a0a24007125534df368a8abed9ac95c",
+      "score": 0.3962411625432854,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "en-ne"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/stsb-nepali-v1/results/ne-en.json",
+      "result_sha256": "2fd2adfca63cb224b108dfb0cdaef6dd566d7809d3e21286803ea303bb5cbdda",
+      "score": 0.39318355863056326,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/stsb-nepali-v1/results/ne-en.json",
+      "result_sha256": "e2e16ef5715c7d6e62dcd04681dcd96144dc0a6bc9c8eb752b861bb20c9146d6",
+      "score": 0.4699444042034017,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v1/results/ne-en.json",
+      "result_sha256": "09b0ae927bb43ffa0e64a5157f7b263d74453da470d971590073714821bf558b",
+      "score": 0.413690956826989,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-en"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v2-nepali",
+      "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+      "result_path": "results/verified/all-minilm-l6-v2-nepali/4dd8c1f4cb4978aa03839d1ac36bde3594bf4add/stsb-nepali-v1/results/ne-ne.json",
+      "result_sha256": "78d5425a05385ddda19b5a00a19fa2700535dc06dfe0f5cabb4276e344fd5b48",
+      "score": 0.6136054713879975,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-ne"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali",
+      "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali/37d42341db65da0787d41e0f81c977ab4fa510a5/stsb-nepali-v1/results/ne-ne.json",
+      "result_sha256": "d882bfe9fa2471b41e778629004da6969e0e11210504ab0b668cdfe15b601303",
+      "score": 0.6345460021535556,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-ne"
+    },
+    {
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "metric": "cosine_spearman",
+      "model_id": "all-minilm-l6-v3-nepali-rag",
+      "model_revision": "da318b7bffcb620b4759aa54f2faad90030994cc",
+      "result_path": "results/verified/all-minilm-l6-v3-nepali-rag/da318b7bffcb620b4759aa54f2faad90030994cc/stsb-nepali-v1/results/ne-ne.json",
+      "result_sha256": "3ac9bc6a51bbaf5679c6ec2405f9a27b850ae4f19aa2e764fb7e9d9f33cb5f0e",
+      "score": 0.604689342860629,
+      "status": "verified",
+      "task_id": "stsb-nepali",
+      "task_version": 1,
+      "view_id": "ne-ne"
+    }
+  ],
+  "schema_version": 1,
+  "tasks": [
+    {
+      "adapter": "bitext_mining",
+      "dataset": {
+        "id": "jangedoo/en_ne_parallel_corpus",
+        "revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+        "url": "https://huggingface.co/datasets/jangedoo/en_ne_parallel_corpus/tree/e4c18f52adbb7dfa4a7aead58c69394b2f446ea6"
+      },
+      "description": "Bidirectional English–Nepali bitext mining.",
+      "display_name": "English–Nepali Parallel Corpus",
+      "homepage": "https://huggingface.co/datasets/jangedoo/en_ne_parallel_corpus",
+      "id": "en-ne-parallel",
+      "license": "unknown",
+      "reviewed_adapter": "neb.adapters.normalize_parallel_direction",
+      "version": 1,
+      "views": [
+        {
+          "columns": {
+            "language": "language",
+            "text": "title",
+            "translation": "translation"
+          },
+          "config": null,
+          "description": null,
+          "id": "en-ne",
+          "languages": [
+            "en",
+            "ne"
+          ],
+          "primary_metric": "f1",
+          "resources": {},
+          "split": "test"
+        },
+        {
+          "columns": {
+            "language": "language",
+            "text": "title",
+            "translation": "translation"
+          },
+          "config": null,
+          "description": null,
+          "id": "ne-en",
+          "languages": [
+            "ne",
+            "en"
+          ],
+          "primary_metric": "f1",
+          "resources": {},
+          "split": "test"
+        }
+      ]
+    },
+    {
+      "adapter": "retrieval",
+      "dataset": {
+        "id": "jangedoo/NanoBEIR-ne",
+        "revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+        "url": "https://huggingface.co/datasets/jangedoo/NanoBEIR-ne/tree/dbe0a6befdfce448982392bd461ac5d16485e99e"
+      },
+      "description": "Thirteen separately reported Nepali retrieval subsets.",
+      "display_name": "NanoBEIR Nepali",
+      "homepage": "https://huggingface.co/datasets/jangedoo/NanoBEIR-ne",
+      "id": "nanobeir-ne",
+      "license": "unknown",
+      "reviewed_adapter": "neb.adapters.add_nanobeir_relevance",
+      "version": 1,
+      "views": [
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "arguana",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoArguAna"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "climatefever",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoClimateFEVER"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "dbpedia",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoDBPedia"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "fever",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoFEVER"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "fiqa2018",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoFiQA2018"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "hotpotqa",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoHotpotQA"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "msmarco",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoMSMARCO"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "nfcorpus",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoNFCorpus"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "nq",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoNQ"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "quoraretrieval",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoQuoraRetrieval"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "scidocs",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoSCIDOCS"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "scifact",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoSciFact"
+        },
+        {
+          "columns": {
+            "corpus_id": "corpus-id",
+            "query": "query",
+            "query_id": "query-id",
+            "score": "score",
+            "text": "text"
+          },
+          "config": null,
+          "description": null,
+          "id": "touche2020",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "ndcg_at_10",
+          "resources": {
+            "corpus": "corpus",
+            "qrels": "qrels",
+            "queries": "queries"
+          },
+          "split": "NanoTouche2020"
+        }
+      ]
+    },
+    {
+      "adapter": "reranking",
+      "dataset": {
+        "id": "jangedoo/nepali-query-passage-hard-negatives-10k",
+        "revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+        "url": "https://huggingface.co/datasets/jangedoo/nepali-query-passage-hard-negatives-10k/tree/f92818df24ed4d95905ad928dbde18feb4aeb2fb"
+      },
+      "description": "Reranking of one explicit positive against hard-negative passage candidates.",
+      "display_name": "Nepali Query–Passage Hard Negatives",
+      "homepage": "https://huggingface.co/datasets/jangedoo/nepali-query-passage-hard-negatives-10k",
+      "id": "nepali-hard-negatives",
+      "license": "unknown",
+      "reviewed_adapter": "neb.adapters.explicit_positive_candidates",
+      "version": 1,
+      "views": [
+        {
+          "columns": {
+            "negatives": "hard_negative_passages",
+            "positive": "positive",
+            "query": "query"
+          },
+          "config": null,
+          "description": null,
+          "id": "hard-negatives",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "map_at_1000",
+          "resources": {},
+          "split": "test"
+        }
+      ]
+    },
+    {
+      "adapter": "pair_classification",
+      "dataset": {
+        "id": "jangedoo/paraphrase-nepali",
+        "revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+        "url": "https://huggingface.co/datasets/jangedoo/paraphrase-nepali/tree/b521e5ab755a301191c9118c6afc6889895f37bf"
+      },
+      "description": "Bilingual sentence-pair classification.",
+      "display_name": "Nepali Paraphrase",
+      "homepage": "https://huggingface.co/datasets/jangedoo/paraphrase-nepali",
+      "id": "paraphrase-nepali",
+      "license": "unknown",
+      "reviewed_adapter": null,
+      "version": 1,
+      "views": [
+        {
+          "columns": {
+            "label": "label",
+            "sentence1": "sentence1",
+            "sentence2": "sentence2"
+          },
+          "config": null,
+          "description": null,
+          "id": "bilingual",
+          "languages": [
+            "en",
+            "ne"
+          ],
+          "primary_metric": "max_ap",
+          "resources": {},
+          "split": "test"
+        }
+      ]
+    },
+    {
+      "adapter": "sts",
+      "dataset": {
+        "id": "jangedoo/stsb_nepali",
+        "revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+        "url": "https://huggingface.co/datasets/jangedoo/stsb_nepali/tree/4bfcc74faa37875185b27a5dc64888f4711e833b"
+      },
+      "description": "Semantic textual similarity in Nepali and cross-lingual English–Nepali directions.",
+      "display_name": "STS-B Nepali",
+      "homepage": "https://huggingface.co/datasets/jangedoo/stsb_nepali",
+      "id": "stsb-nepali",
+      "license": "unknown",
+      "reviewed_adapter": null,
+      "version": 1,
+      "views": [
+        {
+          "columns": {
+            "score": "score",
+            "sentence1": "sentence1_ne",
+            "sentence2": "sentence2_ne"
+          },
+          "config": null,
+          "description": null,
+          "id": "ne-ne",
+          "languages": [
+            "ne"
+          ],
+          "primary_metric": "cosine_spearman",
+          "resources": {},
+          "split": "test"
+        },
+        {
+          "columns": {
+            "score": "score",
+            "sentence1": "sentence1",
+            "sentence2": "sentence2_ne"
+          },
+          "config": null,
+          "description": null,
+          "id": "en-ne",
+          "languages": [
+            "en",
+            "ne"
+          ],
+          "primary_metric": "cosine_spearman",
+          "resources": {},
+          "split": "test"
+        },
+        {
+          "columns": {
+            "score": "score",
+            "sentence1": "sentence1_ne",
+            "sentence2": "sentence2"
+          },
+          "config": null,
+          "description": null,
+          "id": "ne-en",
+          "languages": [
+            "ne",
+            "en"
+          ],
+          "primary_metric": "cosine_spearman",
+          "resources": {},
+          "split": "test"
+        }
+      ]
+    }
+  ]
+}

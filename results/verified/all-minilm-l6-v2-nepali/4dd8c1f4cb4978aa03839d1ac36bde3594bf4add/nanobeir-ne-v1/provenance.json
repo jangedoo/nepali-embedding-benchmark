@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "run_id": "all-minilm-l6-v2-nepali-4dd8c1f4",
+  "status": "verified",
+  "model_id": "all-minilm-l6-v2-nepali",
+  "model_hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
+  "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+  "task_id": "nanobeir-ne",
+  "task_version": 1,
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.1.0",
+  "sentence_transformers_version": "5.6.0",
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "all-minilm-l6-v2-nepali",
+    "--device",
+    "cuda"
+  ],
+  "result_hashes": {
+    "results/arguana.json": "d4c597eee8e001f60433d9b4b751a0d46d46d9cfed7311764bf5b90a01ba96dc",
+    "results/climatefever.json": "bff62d16fa73772da451726d09495fa498ffae5e1840b6d388a50b28ebbeacfd",
+    "results/dbpedia.json": "c48e892b533e8baa60aa6920e79ed4678426dced6cc2568701b4cf191b658338",
+    "results/fever.json": "0614673135ab8a0e8cab5bb7ec4dad0f61d6bb7acba88e95fc6fc4ed825e6c09",
+    "results/fiqa2018.json": "b19ba6b2341f92da7bf90c2b49d16643bc55df0eebb818b71265e09d7b90c305",
+    "results/hotpotqa.json": "c50ed82dbad2e7758248c85fd6fd7e3eda406e86a2fed1443ed5a9fee830f771",
+    "results/msmarco.json": "b1f3d8c9c85ea544a258fd0d75e5c4a07eaebc1e9b18f6d516d0b54e1aa74f1e",
+    "results/nfcorpus.json": "6c667c227b73c0e0eccf8ae2bec6034175d4c22b350b06b4203ce55416fb47ca",
+    "results/nq.json": "000c6f4516e890b5adf0bded4a568769da69e9ed99937961607ed3404f243cc7",
+    "results/quoraretrieval.json": "cdb59c3e15acfe40f5c6dd868237710b1d5a2e9507c04203a7ac78ed0957ff8a",
+    "results/scidocs.json": "8cb9320e096ddcfdbadeb2c8d20399cd5ce197f2a24d0290b018bc4dc6c02057",
+    "results/scifact.json": "b88ea84e78760b4cd001ba449b4b2a3366afc82b26d92afe0b3b2d82b290eae2",
+    "results/touche2020.json": "a3d8665e3ed3e21d9c3855db86ca6efa3fd3b3a37cbf78892f8173a993aa7d5e"
+  },
+  "created_at": "2026-07-02T11:04:36.965516Z"
+}

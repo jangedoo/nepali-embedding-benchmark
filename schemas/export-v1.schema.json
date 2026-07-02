@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nepali-embedding-benchmark.example/schemas/export-v1.json",
+  "title": "NEB version 1 static export",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "counts": { "type": "object" },
+    "tasks": { "type": "array", "items": { "type": "object" } },
+    "models": { "type": "array", "items": { "type": "object" } },
+    "results": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": false,
+  "anyOf": [
+    { "required": ["tasks"] },
+    { "required": ["models"] },
+    { "required": ["results"] }
+  ]
+}
+
