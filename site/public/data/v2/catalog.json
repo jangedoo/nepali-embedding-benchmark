@@ -1,6 +1,6 @@
 {
   "counts": {
-    "models": 8,
+    "models": 9,
     "results": 160,
     "tasks": 5
   },
@@ -183,6 +183,26 @@
       "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
       "trust_remote_code": true,
       "vocab_size": 262145
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "Qwen3-Embedding-0.6B",
+      "excluded_base_model": null,
+      "hf_id": "Qwen/Qwen3-Embedding-0.6B",
+      "homepage": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "id": "qwen--qwen3-embedding-0.6b",
+      "languages": [],
+      "license": "apache-2.0",
+      "notes": null,
+      "parameter_count": "unknown",
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+      "trust_remote_code": false,
+      "vocab_size": "unknown"
     }
   ],
   "results": [

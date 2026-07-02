@@ -24,9 +24,13 @@ def test_static_export_contract(tmp_path: Path) -> None:
     schema = json.loads((ROOT / "schemas/export-v2.schema.json").read_text())
     for name in ("catalog.json", "models.json", "tasks.json", "results.json"):
         jsonschema.validate(json.loads((tmp_path / name).read_text()), schema)
-    models = json.loads((tmp_path / "models.json").read_text())["models"]
-    assert all(isinstance(model["parameter_count"], int) for model in models)
-    assert all(isinstance(model["vocab_size"], int) for model in models)
+    models = {
+        model["id"]: model for model in json.loads((tmp_path / "models.json").read_text())["models"]
+    }
+    assert isinstance(models["multilingual-e5-small"]["parameter_count"], int)
+    assert isinstance(models["multilingual-e5-small"]["vocab_size"], int)
+    assert models["qwen--qwen3-embedding-0.6b"]["parameter_count"] == "unknown"
+    assert models["qwen--qwen3-embedding-0.6b"]["vocab_size"] == "unknown"
     with (tmp_path / "results.csv").open(newline="") as stream:
         reader = csv.DictReader(stream)
         assert reader.fieldnames is not None

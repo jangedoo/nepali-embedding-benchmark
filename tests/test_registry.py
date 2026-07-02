@@ -8,7 +8,7 @@ ROOT = Path(__file__).parents[1]
 def test_seed_registry() -> None:
     tasks, models = validate_registries(ROOT)
     assert len(tasks) == 5
-    assert len(models) == 8
+    assert len(models) == 9
     assert sum(len(task.views) for task in tasks) == 20
     assert all(len(task.dataset.revision) == 40 for task in tasks)
     assert all(len(model.revision) == 40 for model in models)
