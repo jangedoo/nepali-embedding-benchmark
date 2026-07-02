@@ -22,12 +22,13 @@ def make_root(tmp_path: Path) -> Path:
 def make_run(
     root: Path,
     *,
+    model_id: str = "all-minilm-l6-v2-nepali",
     task_id: str = "stsb-nepali",
     directory: str = "incoming",
     parameter_count: int = 10_000,
     vocab_size: int = 1_000,
 ) -> Path:
-    model = next(item for item in load_models(root) if item.id == "all-minilm-l6-v2-nepali")
+    model = next(item for item in load_models(root) if item.id == model_id)
     task = next(item for item in load_tasks(root) if item.id == task_id)
     run = root / directory
     result_dir = run / "results"

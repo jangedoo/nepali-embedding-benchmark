@@ -44,11 +44,16 @@ def sha256_file(path: Path) -> str:
 
 def _lookup(items: list[Any], identifier: str, kind: str) -> Any:
     by_id = {item.id: item for item in items}
-    by_hf = {getattr(item, "hf_id", ""): item for item in items}
     if identifier in by_id:
         return by_id[identifier]
-    if identifier in by_hf:
-        return by_hf[identifier]
+    by_hf = [item for item in items if getattr(item, "hf_id", None) == identifier]
+    if len(by_hf) == 1:
+        return by_hf[0]
+    if len(by_hf) > 1:
+        choices = ", ".join(sorted(item.id for item in by_hf))
+        raise ValueError(
+            f"ambiguous {kind} HF id {identifier!r}; use one of these registered ids: {choices}"
+        )
     raise ValueError(f"unknown {kind} {identifier!r}")
 
 

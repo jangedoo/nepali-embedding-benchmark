@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import jsonschema
+import yaml
 from test_results import make_root, make_run
 
 from neb.export import export_static
@@ -55,3 +56,41 @@ def test_results_json_is_one_record_per_view_and_csv_is_long_form(tmp_path: Path
     assert len(rows) == 6
     assert sum(row["is_primary"] == "True" for row in rows) == 3
     assert [row["metric"] for row in rows[:2]] == ["cosine_spearman", "cosine_pearson"]
+
+
+def test_two_model_revisions_publish_and_export_separately(tmp_path: Path) -> None:
+    root = tmp_path / "root"
+    root.mkdir()
+    make_root(root)
+    registry = root / "registries/models/jangedoo.yaml"
+    entries = yaml.safe_load(registry.read_text(encoding="utf-8"))
+    original = next(entry for entry in entries if entry["id"] == "all-minilm-l6-v2-nepali")
+    revision = {
+        **original,
+        "id": "all-minilm-l6-v2-nepali-bbbbbbbb",
+        "display_name": "all-MiniLM-L6-v2-nepali (rev bbbbbbbb)",
+        "revision": "b" * 40,
+    }
+    entries.append(revision)
+    registry.write_text(yaml.safe_dump(entries, sort_keys=False), encoding="utf-8")
+
+    first = make_run(root, directory="first")
+    second = make_run(
+        root,
+        model_id="all-minilm-l6-v2-nepali-bbbbbbbb",
+        directory="second",
+    )
+    first_destination = publish_run(first, VerificationStatus.community, root)
+    second_destination = publish_run(second, VerificationStatus.community, root)
+    assert first_destination != second_destination
+
+    output = tmp_path / "export"
+    export_static(root, output)
+    models = json.loads((output / "models.json").read_text(encoding="utf-8"))["models"]
+    results = json.loads((output / "results.json").read_text(encoding="utf-8"))["results"]
+    expected_ids = {
+        "all-minilm-l6-v2-nepali",
+        "all-minilm-l6-v2-nepali-bbbbbbbb",
+    }
+    assert expected_ids <= {model["id"] for model in models}
+    assert expected_ids == {result["model_id"] for result in results}
