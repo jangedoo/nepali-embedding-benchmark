@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Badge } from "./Badge";
-import { coverage, initialQuery, rank } from "../lib/catalog";
-import type { Catalog, Model, Result, Task } from "../lib/types";
+import { coverage, formatCount, initialQuery, rank } from "../lib/catalog";
+import type { Catalog, Model, Result, Task, View } from "../lib/types";
 
 type Mode = "tasks" | "models" | "compare";
 
@@ -19,7 +19,7 @@ export default function CatalogExplorer({ mode, compact = false }: { mode: Mode;
   const [selected, setSelected] = useState<string[]>(() => (initialQuery("models") || "").split(",").filter(Boolean).slice(0, 5));
 
   useEffect(() => {
-    fetch(`${__NEB_BASE__}data/v1/catalog.json`)
+    fetch(`${__NEB_BASE__}data/v2/catalog.json`)
       .then((response) => {
         if (!response.ok) throw new Error(`catalog request failed (${response.status})`);
         return response.json();
@@ -86,40 +86,159 @@ function TaskCatalog({ catalog, activeTask, taskId, selectedViewIds, setTaskId, 
     </section>
     <section className="panel"><div className="section-head"><div><h2>{activeTask.display_name}</h2><p>{activeTask.description}</p></div><a href={activeTask.dataset.url}>dataset {activeTask.dataset.revision.slice(0, 8)}</a></div>
       {selectedViews.length ? selectedViews.map((view) => {
-        const scores = rank(catalog.results.filter((result) => result.task_id === activeTask.id && result.view_id === view.id));
         const headingId = `view-${activeTask.id}-${view.id}`;
-        return <section className="view-ranking" aria-labelledby={headingId} key={view.id}><h3 id={headingId}>{view.id}</h3>{scores.length ? <Ranking results={scores} models={catalog.models} /> : <p className="empty">No submitted results for this view yet.</p>}</section>;
+        const results = catalog.results.filter((result) => result.task_id === activeTask.id && result.view_id === view.id);
+        return <section className="view-ranking" aria-labelledby={headingId} key={`${activeTask.id}/${view.id}`}><h3 id={headingId}>{view.id}</h3>{results.length ? <ViewResults results={results} models={catalog.models} view={view} /> : <p className="empty">No submitted results for this view yet.</p>}</section>;
       }) : <p className="empty">Select at least one view.</p>}
     </section>
   </>;
 }
 
-function Ranking({ results, models }: { results: Result[]; models: Model[] }) {
-  const names = new Map(models.map((model) => [model.id, model.display_name]));
-  return <div className="table-wrap"><table><thead><tr><th scope="col">Rank</th><th scope="col">Model</th><th scope="col">Metric</th><th scope="col">Score</th></tr></thead><tbody>{results.map((result, index) => <tr key={result.model_id}><td>{index + 1}</td><th scope="row">{names.get(result.model_id) || result.model_id}</th><td>{result.metric}</td><td className="score">{fmt(result.score)} <Badge status={result.status} /></td></tr>)}</tbody></table></div>;
+function ViewResults({ results, models, view }: { results: Result[]; models: Model[]; view: View }) {
+  const [selectedMetrics, setSelectedMetrics] = useState([...view.metrics]);
+  const secondary = view.metrics.filter((metric) => metric !== view.primary_metric);
+  function toggleMetric(metric: string) {
+    setSelectedMetrics(selectedMetrics.includes(metric)
+      ? selectedMetrics.filter((selected) => selected !== metric)
+      : view.metrics.filter((candidate) => selectedMetrics.includes(candidate) || candidate === metric));
+  }
+  return <>
+    {secondary.length > 0 && <fieldset className="metric-picker"><legend>Table metrics</legend>{view.metrics.map((metric) => <label key={metric}><input type="checkbox" checked={selectedMetrics.includes(metric)} disabled={metric === view.primary_metric} onChange={() => toggleMetric(metric)} /> {metric}{metric === view.primary_metric ? " (primary)" : ""}</label>)}</fieldset>}
+    <Ranking results={rank(results, view.primary_metric)} models={models} metrics={selectedMetrics} primaryMetric={view.primary_metric} />
+  </>;
+}
+
+function Ranking({ results, models, metrics, primaryMetric }: { results: Result[]; models: Model[]; metrics: string[]; primaryMetric: string }) {
+  const byId = new Map(models.map((model) => [model.id, model]));
+  return <div className="table-wrap"><table><thead><tr><th scope="col">Rank</th><th scope="col">Model</th>{metrics.map((metric) => <th scope="col" key={metric}>{metric}{metric === primaryMetric && <span className="sr-only"> (primary metric)</span>}</th>)}</tr></thead><tbody>{results.map((result, index) => { const model = byId.get(result.model_id); return <tr key={result.model_id}><td>{index + 1}</td><th scope="row"><span>{model?.display_name || result.model_id}</span>{model && <ModelInfo model={model} />}</th>{metrics.map((metric) => <td className="score" key={metric}>{fmt(result.metrics[metric])} {metric === primaryMetric && result.status === "community" && <Badge status="community" />}</td>)}</tr>; })}</tbody></table></div>;
+}
+
+function ModelInfo({ model }: { model: Model }) {
+  const popoverId = `model-info-${React.useId().replaceAll(":", "")}`;
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const popoverRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const trigger = triggerRef.current;
+    const popover = popoverRef.current;
+    if (!trigger || !popover) return;
+    function position() {
+      const triggerBounds = trigger!.getBoundingClientRect();
+      const width = popover!.offsetWidth || 220;
+      const height = popover!.offsetHeight || 100;
+      const left = Math.min(Math.max(8, triggerBounds.left), window.innerWidth - width - 8);
+      const below = triggerBounds.bottom + 6;
+      const top = below + height <= window.innerHeight - 8 ? below : Math.max(8, triggerBounds.top - height - 6);
+      popover!.style.left = `${left}px`;
+      popover!.style.top = `${top}px`;
+    }
+    function handleToggle(event: Event) {
+      if ((event as Event & { newState?: string }).newState === "open") position();
+    }
+    popover.addEventListener("toggle", handleToggle);
+    window.addEventListener("resize", position);
+    return () => {
+      popover.removeEventListener("toggle", handleToggle);
+      window.removeEventListener("resize", position);
+    };
+  }, []);
+
+  return <span className="model-info"><button ref={triggerRef} type="button" className="model-info-trigger" popoverTarget={popoverId} aria-label={`Model details for ${model.display_name}`} title="Model details">?</button><div ref={popoverRef} id={popoverId} className="model-tooltip" popover="auto"><span>Parameters: {formatCount(model.parameter_count)}</span><span>Vocabulary: {formatCount(model.vocab_size)}</span><a href={`https://huggingface.co/${model.hf_id}`}>{model.hf_id}</a></div></span>;
 }
 
 function ModelCatalog({ catalog, models, search, setSearch }: { catalog: Catalog; models: Model[]; search: string; setSearch: (value: string) => void }) {
-  return <><section className="hero"><p className="eyebrow">Pinned model catalog</p><h1>Models</h1></section><section className="panel"><label>Search models<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Name or Hugging Face id" /></label><div className="card-grid">{models.map((model) => { const count = coverage(catalog, model.id); return <article className="model-card" key={model.id}><h2>{model.display_name}</h2><a href={model.homepage}>{model.hf_id}</a><p><code>{model.revision.slice(0, 12)}</code></p><p>Coverage: {count.complete} / {count.total} task views</p>{count.complete === 0 && <p className="empty">Awaiting results</p>}</article>; })}</div></section></>;
+  return <><section className="hero"><p className="eyebrow">Pinned model catalog</p><h1>Models</h1></section><section className="panel"><label>Search models<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Name or Hugging Face id" /></label><div className="card-grid">{models.map((model) => { const count = coverage(catalog, model.id); return <article className="model-card" key={model.id}><h2>{model.display_name}</h2><a href={model.homepage}>{model.hf_id}</a><p><code>{model.revision.slice(0, 12)}</code></p><p>Parameters: {formatCount(model.parameter_count)}<br />Vocabulary: {formatCount(model.vocab_size)}</p><p>Coverage: {count.complete} / {count.total} task views</p>{count.complete === 0 && <p className="empty">Awaiting results</p>}</article>; })}</div></section></>;
 }
 
 function Comparison({ catalog, selected, setSelected, compact }: { catalog: Catalog; selected: string[]; setSelected: (value: string[]) => void; compact: boolean }) {
+  const [selectedTaskIds, setSelectedTaskIds] = useState(() => catalog.tasks.map((task) => task.id));
+  const [metricsByTask, setMetricsByTask] = useState<Record<string, string[]>>(() => Object.fromEntries(catalog.tasks.map((task) => [task.id, taskMetrics(task)])));
   function toggle(id: string) { setSelected(selected.includes(id) ? selected.filter((value) => value !== id) : selected.length < 5 ? [...selected, id] : selected); }
+  function toggleTask(id: string) {
+    setSelectedTaskIds((current) => current.includes(id)
+      ? current.length > 1 ? current.filter((value) => value !== id) : current
+      : catalog.tasks.filter((task) => current.includes(task.id) || task.id === id).map((task) => task.id));
+  }
+  function toggleMetric(taskId: string, metric: string) {
+    const task = catalog.tasks.find((candidate) => candidate.id === taskId)!;
+    if (primaryMetrics(task).includes(metric)) return;
+    setMetricsByTask((current) => {
+      const selectedMetrics = current[taskId];
+      const next = selectedMetrics.includes(metric)
+        ? selectedMetrics.filter((value) => value !== metric)
+        : taskMetrics(task).filter((value) => selectedMetrics.includes(value) || value === metric);
+      return { ...current, [taskId]: next };
+    });
+  }
   const rows = catalog.results.filter((result) => selected.includes(result.model_id));
-  return <><section className={compact ? "" : "hero"}><p className="eyebrow">Two to five models</p><h1>Task-by-task comparison</h1></section><section className="panel"><fieldset><legend>Choose models ({selected.length}/5)</legend><div className="checks">{catalog.models.map((model) => <label key={model.id}><input type="checkbox" checked={selected.includes(model.id)} disabled={!selected.includes(model.id) && selected.length >= 5} onChange={() => toggle(model.id)} /> {model.display_name}</label>)}</div></fieldset>{selected.length < 2 ? <p className="empty">Select at least two models.</p> : <ComparisonTable catalog={catalog} rows={rows} selected={selected} />}</section></>;
+  const selectedMetricCount = selectedTaskIds.reduce((count, id) => count + metricsByTask[id].length, 0);
+  return <>
+    <section className={compact ? "" : "hero"}><p className="eyebrow">Two to five models</p><h1>Task-by-task comparison</h1></section>
+    <section className="panel comparison-panel">
+      <details className="comparison-editor">
+        <summary><span>Edit comparison</span><span className="comparison-summary">{selectionCount(selected.length, "model")} · {selectionCount(selectedTaskIds.length, "dataset")} · {selectionCount(selectedMetricCount, "metric")}</span></summary>
+        <div className="comparison-controls">
+          <fieldset><legend>Choose models ({selected.length}/5)</legend><div className="checks">{catalog.models.map((model) => <label key={model.id}><input type="checkbox" checked={selected.includes(model.id)} disabled={!selected.includes(model.id) && selected.length >= 5} onChange={() => toggle(model.id)} /> {model.display_name}</label>)}</div></fieldset>
+          <fieldset><legend>Datasets ({selectedTaskIds.length}/{catalog.tasks.length})</legend><div className="checks">{catalog.tasks.map((task) => <label key={task.id}><input type="checkbox" checked={selectedTaskIds.includes(task.id)} disabled={selectedTaskIds.includes(task.id) && selectedTaskIds.length === 1} onChange={() => toggleTask(task.id)} /> {task.display_name}</label>)}</div></fieldset>
+          <section className="metric-filters" aria-labelledby="metric-filters-heading">
+            <h2 id="metric-filters-heading">Metrics by dataset</h2>
+            <p>Metric choices apply to every view in a dataset. Primary metrics are always shown.</p>
+            <div className="metric-filter-grid">{catalog.tasks.filter((task) => selectedTaskIds.includes(task.id)).map((task) => {
+              const lockedMetrics = primaryMetrics(task);
+              return <fieldset key={task.id}><legend>{task.display_name}</legend>{taskMetrics(task).map((metric) => {
+                const locked = lockedMetrics.includes(metric);
+                return <label key={metric}><input type="checkbox" aria-label={`${metric} for ${task.display_name}`} checked={metricsByTask[task.id].includes(metric)} disabled={locked} onChange={() => toggleMetric(task.id, metric)} /> {metric}{locked ? " (primary)" : ""}</label>;
+              })}</fieldset>;
+            })}</div>
+          </section>
+        </div>
+      </details>
+      {selected.length < 2 ? <p className="empty">Select at least two models.</p> : <ComparisonTable catalog={catalog} rows={rows} selected={selected} selectedTaskIds={selectedTaskIds} metricsByTask={metricsByTask} />}
+    </section>
+  </>;
 }
 
-function ComparisonTable({ catalog, rows, selected }: { catalog: Catalog; rows: Result[]; selected: string[] }) {
-  const names = new Map(catalog.models.map((model) => [model.id, model.display_name]));
-  const keys = [...new Set(rows.map((row) => `${row.task_id}/${row.view_id}`))].sort();
-  return <div className="table-wrap"><table className="comparison-table"><thead><tr><th>Task / view</th>{selected.map((id) => <th key={id}>{names.get(id)}</th>)}</tr></thead><tbody>{keys.map((key) => {
-    const results = rows.filter((row) => `${row.task_id}/${row.view_id}` === key);
-    const bestScore = Math.max(...results.map((result) => result.score));
-    const metric = results[0].metric;
-    return <tr key={key}><th scope="row"><span>{key}</span><span className="metric-name">Metric: {metric}</span></th>{selected.map((id) => {
-      const result = results.find((row) => row.model_id === id);
-      const isBest = result?.score === bestScore;
-      return <td className={isBest ? "best-result" : undefined} key={id}>{result ? <><span className="sr-only">{isBest ? "Best score: " : "Score: "}</span>{fmt(result.score)} {result.status === "community" && <Badge status="community" />}</> : <span className="missing">missing</span>}</td>;
-    })}</tr>;
-  })}</tbody></table></div>;
+function taskMetrics(task: Task): string[] {
+  return [...new Set(task.views.flatMap((view) => view.metrics))];
+}
+
+function primaryMetrics(task: Task): string[] {
+  return [...new Set(task.views.map((view) => view.primary_metric))];
+}
+
+function selectionCount(count: number, singular: string): string {
+  return `${count} ${singular}${count === 1 ? "" : "s"}`;
+}
+
+function ComparisonTable({ catalog, rows, selected, selectedTaskIds, metricsByTask }: { catalog: Catalog; rows: Result[]; selected: string[]; selectedTaskIds: string[]; metricsByTask: Record<string, string[]> }) {
+  const models = new Map(catalog.models.map((model) => [model.id, model]));
+  const visibleTasks = catalog.tasks.filter((task) => selectedTaskIds.includes(task.id));
+  return <div className="table-wrap comparison-table-wrap"><table className="comparison-table">
+    <thead><tr><th scope="col">Dataset / view</th>{selected.map((id) => {
+      const model = models.get(id);
+      return <th scope="col" key={id}><span>{model?.display_name || id}</span>{model && <ModelInfo model={model} />}</th>;
+    })}</tr></thead>
+    {visibleTasks.map((task) => <tbody key={task.id} aria-label={task.display_name}>
+      <tr className="dataset-heading"><th scope="rowgroup" colSpan={selected.length + 1}>{task.display_name}</th></tr>
+      {task.views.map((view) => {
+        const selectedMetrics = metricsByTask[task.id].filter((metric) => view.metrics.includes(metric));
+        const metrics = [view.primary_metric, ...selectedMetrics.filter((metric) => metric !== view.primary_metric)];
+        return <ComparisonRow key={view.id} view={view} metrics={metrics} results={rows.filter((row) => row.task_id === task.id && row.view_id === view.id)} selected={selected} />;
+      })}
+    </tbody>)}
+  </table></div>;
+}
+
+function ComparisonRow({ view, metrics, results, selected }: { view: View; metrics: string[]; results: Result[]; selected: string[] }) {
+  const bestScores = Object.fromEntries(metrics.map((metric) => [metric, Math.max(...results.map((result) => result.metrics[metric]).filter((score) => score !== undefined))]));
+  return <tr className="view-row"><th scope="row"><span>{view.id}</span></th>{selected.map((id) => {
+    const result = results.find((row) => row.model_id === id);
+    if (!result) return <td key={id}><span className="missing">Missing result</span></td>;
+    return <td key={id}><div className="result-cell"><div className="mini-metric-grid">{metrics.map((metric) => {
+      const primary = metric === view.primary_metric;
+      const isBest = result.metrics[metric] === bestScores[metric];
+      const classes = ["mini-metric", primary ? "primary-metric" : "secondary-metric", isBest ? primary ? "primary-winner" : "secondary-winner" : ""].filter(Boolean).join(" ");
+      return <div className={classes} data-metric={metric} key={metric}><span className="mini-metric-name">{metric}{primary && <span className="sr-only"> (primary metric)</span>}</span><span className="mini-score"><span className="sr-only">{isBest ? "Best score: " : "Score: "}</span>{fmt(result.metrics[metric])}</span></div>;
+    })}</div>{result.status === "community" && <Badge status="community" />}</div></td>;
+  })}</tr>;
 }
