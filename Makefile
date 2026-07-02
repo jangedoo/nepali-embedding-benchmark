@@ -4,7 +4,8 @@ SHELL := /bin/bash
 PYTHON ?= uv run
 SITE_DIR := site
 BASE_PATH ?= /
-EXPORT_DIR ?= $(SITE_DIR)/public/data/v1
+EXPORT_DIR ?= $(SITE_DIR)/public/data/v2
+RESULT_SCHEMA_VERSION := 2
 
 .PHONY: help sync validate test test-contracts lint format check export queue publish \
 	publish-verified publish-community package site-install site-test site-build site-check \
@@ -51,9 +52,9 @@ publish: ## Publish all task runs for MODEL with STATUS, then refresh exports
 		exit 2; \
 	fi
 	@mapfile -t run_dirs < <(find runs -mindepth 2 -maxdepth 2 -type d \
-		-path "runs/$(MODEL)-*/*-v*" | sort); \
+		-path "runs/$(MODEL)-*/*-v$(RESULT_SCHEMA_VERSION)" | sort); \
 	if (( $${#run_dirs[@]} == 0 )); then \
-		echo "No completed task runs found for model '$(MODEL)'"; \
+		echo "No v$(RESULT_SCHEMA_VERSION) task runs found for model '$(MODEL)'"; \
 		exit 1; \
 	fi; \
 	for run_dir in "$${run_dirs[@]}"; do \

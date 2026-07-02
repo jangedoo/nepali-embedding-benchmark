@@ -1,5 +1,5 @@
 id: nepali-hard-negatives
-version: 1
+version: 2
 display_name: Nepali Query–Passage Hard Negatives
 description: Reranking of one explicit positive against hard-negative passage candidates.
 dataset:
@@ -15,4 +15,5 @@ views:
     split: test
     languages: [ne]
     columns: {query: query, positive: positive, negatives: hard_negative_passages}
-    primary_metric: map_at_1000
+    metrics: [hit_rate_at_1, mrr_at_5, ndcg_at_5, hit_rate_at_3]
+    primary_metric: hit_rate_at_1

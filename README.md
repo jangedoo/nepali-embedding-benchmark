@@ -118,12 +118,12 @@ NEB currently includes:
 | Task | Views | Primary metric |
 | --- | --- | --- |
 | STS-B Nepali | Nepali–Nepali, English–Nepali, Nepali–English | Cosine Spearman |
-| Nepali hard-negative reranking | One explicit-positive candidate set | MAP@1000 |
+| Nepali hard-negative reranking | One explicit-positive candidate set | Hit rate@1 |
 | NanoBEIR Nepali | 13 separately reported retrieval subsets | NDCG@10 |
-| Nepali paraphrase classification | One bilingual view | Maximum average precision |
+| Nepali paraphrase classification | One bilingual view | Cosine average precision |
 | English–Nepali parallel corpus | English→Nepali and Nepali→English | F1 |
 
-Every displayed result has an evidence label:
+Community results carry a yellow evidence icon; verified results are intentionally unmarked:
 
 - **Verified** means a maintainer ran the pinned model and dataset in the pinned environment. It is
   not a claim about training-data contamination.
@@ -143,8 +143,11 @@ make site-install
 make site-dev
 ```
 
-Open the local URL printed by Astro. The dashboard provides task rankings, model search, coverage,
-and side-by-side comparison for two to five models.
+Open the local URL printed by Astro. The dashboard provides task rankings with all metrics visible
+by default, per-view metric selection, model search, coverage, and side-by-side comparison for two
+to five models. The comparison view shows selected metrics as compact per-model cells and provides
+global dataset and per-dataset metric filters, all selected by default. Model sizes are measured
+during evaluation and remain `unknown` until results are published.
 
 To build the production site:
 
@@ -164,15 +167,17 @@ Run `make export` to regenerate the public, versioned artifacts from canonical r
 results:
 
 ```text
-/data/v1/catalog.json
-/data/v1/models.json
-/data/v1/tasks.json
-/data/v1/results.json
-/data/v1/results.csv
+/data/v2/catalog.json
+/data/v2/models.json
+/data/v2/tasks.json
+/data/v2/results.json
+/data/v2/results.csv
 ```
 
 These files are suitable for notebooks, plots, static websites, and Jekyll data visualizations.
-Generated files under `site/public/data/v1/` should not be edited by hand.
+JSON contains one result per model/task/view with a metric map; CSV is long-form with one row per
+metric and an `is_primary` column.
+Generated files under `site/public/data/v2/` should not be edited by hand.
 
 ## Common commands
 

@@ -11,6 +11,8 @@ from neb.evaluation import sha256_file
 from neb.registry import load_models, load_tasks
 from neb.schemas import ModelSpec, ResultRecord, RunProvenance, RuntimeSettings, VerificationStatus
 
+ModelMetadata = tuple[int, int]
+
 
 def validate_run(run_dir: Path, root: Path) -> tuple[RunProvenance, list[ResultRecord]]:
     provenance_path = run_dir / "provenance.json"
@@ -61,7 +63,12 @@ def validate_run(run_dir: Path, root: Path) -> tuple[RunProvenance, list[ResultR
         matching = [entry for entry in entries if entry.get("hf_subset") == view.id]
         if len(matching) != 1:
             raise ValueError(f"expected one score entry for {task.id}/{view.id}")
-        score = matching[0].get(view.primary_metric, matching[0].get("main_score"))
+        entry = matching[0]
+        missing = [metric for metric in view.metrics if metric not in entry]
+        if missing:
+            raise ValueError(f"missing required metrics for {task.id}/{view.id}: {missing}")
+        if entry.get("main_score") != entry[view.primary_metric]:
+            raise ValueError(f"main_score does not match primary metric for {task.id}/{view.id}")
         key = f"{model.revision}:{task.versioned_id}:{view.id}"
         if key in seen:
             raise ValueError(f"duplicate result: {key}")
@@ -73,12 +80,13 @@ def validate_run(run_dir: Path, root: Path) -> tuple[RunProvenance, list[ResultR
                 task_id=task.id,
                 task_version=task.version,
                 view_id=view.id,
-                metric=view.primary_metric,
-                score=score,
+                metrics={metric: entry[metric] for metric in view.metrics},
                 status=provenance.status,
                 result_path=relative,
                 result_sha256=digest,
                 dataset_revision=task.dataset.revision,
+                parameter_count=provenance.parameter_count,
+                vocab_size=provenance.vocab_size,
             )
         )
     return provenance, records
@@ -104,7 +112,9 @@ def publish_run(
     )
     if destination.exists():
         if skip_existing:
-            validate_run(destination, root)
+            existing, _ = validate_run(destination, root)
+            if existing.status != status:
+                raise ValueError("published result status does not match its directory")
             return destination
         raise FileExistsError(f"a {status.value} submission already exists: {destination}")
     shutil.copytree(run_dir, destination)
@@ -128,7 +138,9 @@ def discover_results(root: Path, *, include_community: bool = True) -> list[Resu
         if not base.exists():
             continue
         for provenance_path in sorted(base.glob("*/*/*/provenance.json")):
-            _, run_records = validate_run(provenance_path.parent, root)
+            provenance, run_records = validate_run(provenance_path.parent, root)
+            if provenance.status != status:
+                raise ValueError("published result status does not match its directory")
             for record in run_records:
                 record.status = status
                 record.result_path = str(
@@ -136,3 +148,32 @@ def discover_results(root: Path, *, include_community: bool = True) -> list[Resu
                 )
                 records[(record.model_id, record.task_id, record.view_id)] = record
     return sorted(records.values(), key=lambda item: (item.task_id, item.view_id, item.model_id))
+
+
+def discover_model_metadata(
+    root: Path, *, include_community: bool = True
+) -> dict[tuple[str, str], ModelMetadata]:
+    """Aggregate result-derived model size, with verified evidence taking precedence."""
+    selected: dict[tuple[str, str], ModelMetadata] = {}
+    observed: dict[tuple[str, str, VerificationStatus], ModelMetadata] = {}
+    statuses = [VerificationStatus.community, VerificationStatus.verified]
+    if not include_community:
+        statuses = [VerificationStatus.verified]
+    for status in statuses:
+        base = root / "results" / status.value
+        if not base.exists():
+            continue
+        for provenance_path in sorted(base.glob("*/*/*/provenance.json")):
+            provenance, _ = validate_run(provenance_path.parent, root)
+            if provenance.status != status:
+                raise ValueError("published result status does not match its directory")
+            values = (provenance.parameter_count, provenance.vocab_size)
+            status_key = (provenance.model_id, provenance.model_revision, status)
+            if status_key in observed and observed[status_key] != values:
+                raise ValueError(
+                    "conflicting model metadata for "
+                    f"{provenance.model_id}@{provenance.model_revision} ({status.value})"
+                )
+            observed[status_key] = values
+            selected[(provenance.model_id, provenance.model_revision)] = values
+    return selected

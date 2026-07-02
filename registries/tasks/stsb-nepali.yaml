@@ -1,5 +1,5 @@
 id: stsb-nepali
-version: 1
+version: 2
 display_name: STS-B Nepali
 description: Semantic textual similarity in Nepali and cross-lingual English–Nepali directions.
 dataset:
@@ -14,14 +14,17 @@ views:
     split: test
     languages: [ne]
     columns: {sentence1: sentence1_ne, sentence2: sentence2_ne, score: score}
+    metrics: [cosine_spearman, cosine_pearson]
     primary_metric: cosine_spearman
   - id: en-ne
     split: test
     languages: [en, ne]
     columns: {sentence1: sentence1, sentence2: sentence2_ne, score: score}
+    metrics: [cosine_spearman, cosine_pearson]
     primary_metric: cosine_spearman
   - id: ne-en
     split: test
     languages: [ne, en]
     columns: {sentence1: sentence1_ne, sentence2: sentence2, score: score}
+    metrics: [cosine_spearman, cosine_pearson]
     primary_metric: cosine_spearman

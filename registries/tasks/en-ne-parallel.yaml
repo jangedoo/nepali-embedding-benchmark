@@ -1,5 +1,5 @@
 id: en-ne-parallel
-version: 1
+version: 2
 display_name: English–Nepali Parallel Corpus
 description: Bidirectional English–Nepali bitext mining.
 dataset:
@@ -15,9 +15,11 @@ views:
     split: test
     languages: [en, ne]
     columns: {text: title, language: language, translation: translation}
+    metrics: [f1, precision, recall, accuracy]
     primary_metric: f1
   - id: ne-en
     split: test
     languages: [ne, en]
     columns: {text: title, language: language, translation: translation}
+    metrics: [f1, precision, recall, accuracy]
     primary_metric: f1

@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
 SHA = Annotated[str, Field(pattern=r"^[0-9a-f]{40}$")]
 SHA256 = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
 Identifier = Annotated[str, Field(pattern=r"^[a-z0-9][a-z0-9._-]*$")]
+MetricName = Annotated[str, Field(min_length=1, pattern=r"^[a-z0-9][a-z0-9_]*$")]
 
 
 class StrictModel(BaseModel):
@@ -43,8 +44,17 @@ class TaskView(StrictModel):
     resources: dict[str, str] = Field(default_factory=dict)
     languages: list[str] = Field(min_length=1)
     columns: dict[str, str]
-    primary_metric: str
+    metrics: list[MetricName] = Field(min_length=1)
+    primary_metric: MetricName
     description: str | None = None
+
+    @model_validator(mode="after")
+    def validate_metrics(self) -> TaskView:
+        if len(self.metrics) != len(set(self.metrics)):
+            raise ValueError("task view metrics must be unique")
+        if self.primary_metric not in self.metrics:
+            raise ValueError("primary_metric must be present in metrics")
+        return self
 
 
 class TaskSpec(StrictModel):
@@ -109,7 +119,7 @@ class RuntimeSettings(StrictModel):
 
 
 class RunProvenance(StrictModel):
-    schema_version: Literal[1] = 1
+    schema_version: Literal[2] = 2
     run_id: Identifier
     status: VerificationStatus
     model_id: Identifier
@@ -121,6 +131,8 @@ class RunProvenance(StrictModel):
     mteb_version: Literal["2.16.2"] = "2.16.2"
     neb_version: str
     sentence_transformers_version: str
+    parameter_count: int = Field(gt=0)
+    vocab_size: int = Field(gt=0)
     effective_prompts: PromptOverrides = Field(default_factory=PromptOverrides)
     runtime: RuntimeSettings
     hardware: dict[str, str] = Field(default_factory=dict)
@@ -135,17 +147,21 @@ class ResultRecord(StrictModel):
     task_id: Identifier
     task_version: int = Field(ge=1)
     view_id: Identifier
-    metric: str
-    score: float
+    metrics: dict[str, float] = Field(min_length=1)
     status: VerificationStatus
     result_path: str
     result_sha256: SHA256
     dataset_revision: SHA
+    parameter_count: int = Field(gt=0)
+    vocab_size: int = Field(gt=0)
 
     @model_validator(mode="after")
-    def finite_score(self) -> ResultRecord:
-        if self.score != self.score or self.score in (float("inf"), float("-inf")):
-            raise ValueError("score must be finite")
-        if not -1.0 <= self.score <= 1.0:
-            raise ValueError("benchmark metrics must be in [-1, 1]")
+    def finite_metrics(self) -> ResultRecord:
+        for name, value in self.metrics.items():
+            if not name:
+                raise ValueError("metric names must not be empty")
+            if value != value or value in (float("inf"), float("-inf")):
+                raise ValueError(f"metric {name!r} must be finite")
+            if not -1.0 <= value <= 1.0:
+                raise ValueError(f"metric {name!r} must be in [-1, 1]")
         return self

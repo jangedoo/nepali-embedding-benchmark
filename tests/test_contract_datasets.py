@@ -23,9 +23,12 @@ def test_pinned_dataset_splits_and_columns() -> None:
             assert set(configs) >= {"corpus", "queries", "qrels"}
             continue
         for view in task.views:
-            assert view.split in get_dataset_split_names(
+            splits = get_dataset_split_names(
                 task.dataset.id, view.config, revision=task.dataset.revision
             )
+            assert view.split in splits
+            if task.adapter.value == "pair_classification":
+                assert "valid" in splits
         sample = load_dataset(
             task.dataset.id,
             task.views[0].config,

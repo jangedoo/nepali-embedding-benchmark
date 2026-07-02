@@ -11,7 +11,7 @@ task-first design: never introduce a global score or an overall model ranking.
 - `results/verified/`: maintainer-verified canonical results; CODEOWNERS-protected.
 - `results/community/`: schema-checked, explicitly unverified community results.
 - `site/`: Astro and React dashboard.
-- `site/public/data/v1/`: generated exports; regenerate with `make export`.
+- `site/public/data/v2/`: generated exports; regenerate with `make export`.
 - `tests/`: Python unit and opt-in network contract tests.
 
 ## Development commands
@@ -51,7 +51,7 @@ make test-contracts
 ## Editing and generated files
 
 - Edit registry YAML, canonical results, Python source, and dashboard source directly.
-- Do not hand-edit files under `site/public/data/v1/`; run `make export` after source-data changes.
+- Do not hand-edit files under `site/public/data/v2/`; run `make export` after source-data changes.
 - Do not commit `runs/`, `site/dist/`, `site/node_modules/`, caches, or virtual environments.
 - Keep Python dependencies locked in `uv.lock` and dashboard dependencies locked in
   `site/package-lock.json`.
@@ -71,4 +71,3 @@ make test-contracts
 
 Real benchmark scores require the maintainer's local evaluation environment. Do not fabricate
 results or mark a run verified merely to satisfy coverage targets.
-

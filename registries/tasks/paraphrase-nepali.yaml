@@ -1,5 +1,5 @@
 id: paraphrase-nepali
-version: 1
+version: 2
 display_name: Nepali Paraphrase
 description: Bilingual sentence-pair classification.
 dataset:
@@ -14,5 +14,5 @@ views:
     split: test
     languages: [en, ne]
     columns: {sentence1: sentence1, sentence2: sentence2, label: label}
-    primary_metric: max_ap
-
+    metrics: [cosine_ap, cosine_roc_auc, cosine_accuracy, cosine_f1, cosine_precision, cosine_recall]
+    primary_metric: cosine_ap

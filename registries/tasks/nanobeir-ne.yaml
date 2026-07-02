@@ -1,5 +1,5 @@
 id: nanobeir-ne
-version: 1
+version: 2
 display_name: NanoBEIR Nepali
 description: Thirteen separately reported Nepali retrieval subsets.
 dataset:
@@ -17,6 +17,7 @@ views:
     resources: {corpus: corpus, queries: queries, qrels: qrels}
     languages: [ne]
     columns: {query_id: query-id, query: query, corpus_id: corpus-id, text: text, score: score}
+    metrics: [ndcg_at_10, map_at_10, mrr_at_10, recall_at_10, precision_at_10, hit_rate_at_10]
     primary_metric: ndcg_at_10
   - <<: *retrieval
     id: climatefever
