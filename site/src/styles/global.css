@@ -100,6 +100,6 @@ legend { font-weight: 800; margin-bottom: .75rem; }
 footer { border-top: 1px solid var(--line); color: var(--muted); padding: 2rem max(1.25rem, calc((100% - 1180px) / 2)); }
 .citation { border-top: 1px solid var(--line); padding: 2rem max(1.25rem, calc((100% - 1180px) / 2)); }
 .citation h2 { font-size: 1rem; }
-.citation p { color: var(--muted); margin: .5rem 0 0; }
+.citation pre { color: var(--muted); font-size: .8rem; margin: .5rem 0 0; overflow-x: auto; padding-bottom: .25rem; }
 @media (max-width: 600px) { .brand span { display: none; } .section-head { display: block; } .comparison-editor > summary { align-items: start; flex-direction: column; gap: .25rem; } .comparison-summary { margin-left: 0; } h1 { font-size: 2.6rem; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }

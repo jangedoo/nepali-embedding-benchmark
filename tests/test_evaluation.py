@@ -4,6 +4,7 @@ import pytest
 
 from neb.evaluation import (
     EvaluationRunner,
+    _lookup,
     bitext_metrics,
     pair_classification_metrics,
     reranking_metrics,
@@ -108,3 +109,29 @@ def test_remote_code_requires_explicit_runtime_flag(tmp_path: Path) -> None:
             allow_remote_code=False,
             output_dir=tmp_path,
         )
+
+
+def test_model_lookup_accepts_unique_hf_id() -> None:
+    spec = ModelSpec(
+        id="model-a",
+        display_name="Model",
+        hf_id="owner/model",
+        revision="a" * 40,
+    )
+    assert _lookup([spec], "owner/model", "model") is spec
+
+
+def test_model_lookup_rejects_ambiguous_hf_id_with_valid_ids() -> None:
+    specs = [
+        ModelSpec(
+            id=f"model-{suffix}",
+            display_name="Model",
+            hf_id="owner/model",
+            revision=revision * 40,
+        )
+        for suffix, revision in [("a", "a"), ("b", "b")]
+    ]
+    with pytest.raises(ValueError, match=r"ambiguous.*model-a, model-b"):
+        _lookup(specs, "owner/model", "model")
+
+    assert _lookup(specs, "model-b", "model") is specs[1]
