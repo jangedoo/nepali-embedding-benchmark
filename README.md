@@ -75,7 +75,8 @@ neb evaluate \
 ```
 
 The first run downloads the pinned model and dataset from Hugging Face. CPU evaluation works, but a
-CUDA device is recommended for larger or retrieval-heavy runs:
+CUDA device is recommended for larger or retrieval-heavy runs. CUDA evaluations load models in
+BF16 when the GPU supports it and FP16 otherwise:
 
 ```bash
 neb evaluate \
@@ -85,6 +86,9 @@ neb evaluate \
   --batch-size 64 \
   --resume
 ```
+
+Use `--dtype fp32`, `--dtype bf16`, or `--dtype fp16` to override automatic selection. If an
+evaluation still runs out of GPU memory, reduce the encoding batch size with `--batch-size`.
 
 Outputs are stored under `runs/`. Each task run contains:
 

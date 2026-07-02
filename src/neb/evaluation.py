@@ -52,6 +52,29 @@ def _lookup(items: list[Any], identifier: str, kind: str) -> Any:
     raise ValueError(f"unknown {kind} {identifier!r}")
 
 
+def resolve_model_dtype(runtime: RuntimeSettings, torch: Any) -> tuple[RuntimeSettings, Any | None]:
+    """Resolve the requested model dtype and return settings suitable for provenance."""
+    aliases = {
+        "bf16": "bfloat16",
+        "bfloat16": "bfloat16",
+        "fp16": "float16",
+        "float16": "float16",
+        "fp32": "float32",
+        "float32": "float32",
+    }
+    requested = runtime.dtype.lower() if runtime.dtype is not None else None
+    if requested is None and runtime.device.lower().split(":", 1)[0] == "cuda":
+        requested = "bfloat16" if torch.cuda.is_bf16_supported() else "float16"
+    if requested is None:
+        return runtime, None
+    try:
+        resolved = aliases[requested]
+    except KeyError as exc:
+        choices = ", ".join(sorted(aliases))
+        raise ValueError(f"unsupported dtype {runtime.dtype!r}; choose one of: {choices}") from exc
+    return runtime.model_copy(update={"dtype": resolved}), getattr(torch, resolved)
+
+
 def sts_metrics(similarities: Sequence[float], gold: Sequence[float]) -> dict[str, float]:
     from scipy.stats import pearsonr, spearmanr
 
@@ -210,17 +233,21 @@ class EvaluationRunner:
         )
         try:
             import sentence_transformers
+            import torch
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:  # pragma: no cover - depends on optional runtime
             raise RuntimeError("evaluation dependencies are missing; install the package") from exc
 
         if importlib.metadata.version("mteb") != "2.16.2":
             raise RuntimeError("NEB evaluations require exactly mteb 2.16.2")
+        runtime, model_dtype = resolve_model_dtype(runtime, torch)
+        model_kwargs = {"torch_dtype": model_dtype} if model_dtype is not None else None
         encoder = SentenceTransformer(
             model_spec.hf_id,
             revision=model_spec.revision,
             trust_remote_code=model_spec.trust_remote_code,
             device=runtime.device,
+            model_kwargs=model_kwargs,
         )
         parameter_count, vocab_size = self._model_stats(encoder)
         effective_prompts = self._effective_prompts(model_spec, encoder)
