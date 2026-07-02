@@ -3,6 +3,8 @@
 NEB helps you compare sentence-embedding models on Nepali and English–Nepali tasks. It provides a
 Python package, command-line interface, reproducible evaluation workflow, and static dashboard.
 
+[Explore the published benchmark dashboard](https://jangedoo.github.io/nepali-embedding-benchmark/).
+
 NEB is task-first: models are ranked within a specific task, subset, and metric. It does **not**
 combine unrelated scores into a global leaderboard.
 
@@ -227,6 +229,22 @@ If you are using an AI coding agent in this repository, also read [AGENTS.md](AG
 - Partial model coverage is allowed.
 - Unknown upstream metadata is shown as `unknown` rather than guessed.
 - NEB does not currently detect or filter training-data contamination.
+
+## Citation
+
+If you use NEB in research or evaluation, please cite:
+
+> Sanjaya Subedi. *NEB — Nepali Embedding Benchmark*. 2026.
+> https://github.com/jangedoo/nepali-embedding-benchmark
+
+```bibtex
+@software{subedi2026neb,
+  author = {Subedi, Sanjaya},
+  title = {NEB: Nepali Embedding Benchmark},
+  year = {2026},
+  url = {https://github.com/jangedoo/nepali-embedding-benchmark}
+}
+```
 
 ## License
 

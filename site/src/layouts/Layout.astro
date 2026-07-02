@@ -24,6 +24,12 @@ const base = import.meta.env.BASE_URL;
       </header>
     )}
     <main><slot /></main>
+    {!compact && (
+      <section class="citation" aria-labelledby="citation-heading">
+        <h2 id="citation-heading">Citation</h2>
+        <p>If you use NEB in research or evaluation, please cite Sanjaya Subedi, <cite>NEB — Nepali Embedding Benchmark</cite> (2026).</p>
+      </section>
+    )}
     {!compact && <footer>Nepali Embedding Benchmark</footer>}
   </body>
 </html>
