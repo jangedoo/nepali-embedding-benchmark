@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nepali-embedding-benchmark.example/schemas/export-v2.json",
+  "title": "NEB version 2 static export",
+  "type": "object",
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "counts": { "type": "object" },
+    "tasks": { "type": "array", "items": { "type": "object" } },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["parameter_count", "vocab_size"],
+        "properties": {
+          "parameter_count": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "const": "unknown" }] },
+          "vocab_size": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "const": "unknown" }] }
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metrics", "parameter_count", "vocab_size"],
+        "properties": {
+          "metrics": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": { "type": "number", "minimum": -1, "maximum": 1 }
+          },
+          "parameter_count": { "type": "integer", "minimum": 1 },
+          "vocab_size": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "anyOf": [
+    { "required": ["tasks"] },
+    { "required": ["models"] },
+    { "required": ["results"] }
+  ]
+}

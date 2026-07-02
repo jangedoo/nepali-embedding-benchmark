@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "run_id": "multilingual-e5-small-614241f6",
+  "status": "verified",
+  "model_id": "multilingual-e5-small",
+  "model_hf_id": "intfloat/multilingual-e5-small",
+  "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "task_id": "paraphrase-nepali",
+  "task_version": 2,
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 117653760,
+  "vocab_size": 250002,
+  "effective_prompts": {
+    "query": "query: ",
+    "document": "passage: "
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "multilingual-e5-small",
+    "--device",
+    "cuda"
+  ],
+  "result_hashes": {
+    "results/bilingual.json": "ff5deefdd567f387145086d27aedfaa6f834c2a8e9b7b914576a670371a205fb"
+  },
+  "created_at": "2026-07-02T13:16:52.859277Z"
+}

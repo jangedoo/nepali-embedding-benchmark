@@ -1,0 +1,20 @@
+{
+  "id": "embeddinggemma-300m-ne-pruned",
+  "display_name": "EmbeddingGemma 300M Nepali-Pruned",
+  "hf_id": "jangedoo/embeddinggemma-300m-ne-pruned",
+  "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
+  "trust_remote_code": true,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [
+    "ne"
+  ],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": "google/embeddinggemma-300m",
+  "license": "unknown",
+  "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-ne-pruned",
+  "notes": "The gated base model is provenance-only and is not in the initial evaluation queue."
+}

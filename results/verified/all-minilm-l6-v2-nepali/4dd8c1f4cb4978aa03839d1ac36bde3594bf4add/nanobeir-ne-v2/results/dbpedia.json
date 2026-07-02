@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/all-MiniLM-L6-v2-nepali",
+  "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoDBPedia": [
+      {
+        "hf_subset": "dbpedia",
+        "hit_rate_at_10": 0.78,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.2769,
+        "map_at_10": 0.10131,
+        "mrr_at_10": 0.5030714285714286,
+        "ndcg_at_10": 0.2769,
+        "precision_at_10": 0.204,
+        "recall_at_10": 0.15379
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

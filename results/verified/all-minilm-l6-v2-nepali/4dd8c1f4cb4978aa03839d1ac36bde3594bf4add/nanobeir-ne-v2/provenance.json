@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "run_id": "all-minilm-l6-v2-nepali-4dd8c1f4",
+  "status": "verified",
+  "model_id": "all-minilm-l6-v2-nepali",
+  "model_hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
+  "model_revision": "4dd8c1f4cb4978aa03839d1ac36bde3594bf4add",
+  "task_id": "nanobeir-ne",
+  "task_version": 2,
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 22713216,
+  "vocab_size": 30522,
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "all-minilm-l6-v2-nepali",
+    "--device",
+    "cuda"
+  ],
+  "result_hashes": {
+    "results/arguana.json": "d01732791db33131e826609a9dc968cbcb238a22da6923413c4d090282ac413e",
+    "results/climatefever.json": "6e4d554d829f7eff4a4d213aad2228d5112b46cf49bd8cada9b971a7d3cdb1a7",
+    "results/dbpedia.json": "c8a14124ebe25ca26b21c796ca956df6a80aa59ccbfb6190807f876dcb265e2e",
+    "results/fever.json": "43c986663fc4c4d1bd65571c15c5df3b9ecb52490432d073ea654307ee395668",
+    "results/fiqa2018.json": "53348f42971f2e58ba3331cd5628094648eb949c4aae0cb069a5bf102a6b61c3",
+    "results/hotpotqa.json": "ef10b390534871b4739e32a1f955506a2936708b4161fbbf0e39b0db26ceacde",
+    "results/msmarco.json": "f4b856bca387320a73f11f41ce63f50f308a29eb355c3899e4f9b1a886142ab2",
+    "results/nfcorpus.json": "5a297490bc4ecec6236fbf3af19d8d136d6230330dcfed6ef6eb92d0edf5a612",
+    "results/nq.json": "69c737a6c6c7ae354fa25d8e79d619c9528e2a355b4158536de4e63a4816600a",
+    "results/quoraretrieval.json": "50bc70732f26950bb1bc237281b88fd9905697897557e4555aa7a72933879077",
+    "results/scidocs.json": "7bdf50f6fa9bec9781eee9e46de596b144adbaf0978ce3ce58cf5024d02c8332",
+    "results/scifact.json": "bb93c2733eb83ab8398dfcecd01d9b9fca18ccee0538e0dd434d35a73225c596",
+    "results/touche2020.json": "25609c83dbe326c7dd55c6aeb73da9d7e7a4f4dcadca3ac4944122a0cb3e566d"
+  },
+  "created_at": "2026-07-02T13:21:19.786552Z"
+}

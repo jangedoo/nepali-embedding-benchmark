@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "intfloat/multilingual-e5-small",
+  "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoSCIDOCS": [
+      {
+        "hf_subset": "scidocs",
+        "hit_rate_at_10": 0.42,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.12545,
+        "map_at_10": 0.07203,
+        "mrr_at_10": 0.24582539682539684,
+        "ndcg_at_10": 0.12545,
+        "precision_at_10": 0.058,
+        "recall_at_10": 0.119
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

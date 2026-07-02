@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/all-MiniLM-L6-v3-nepali",
+  "model_revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoClimateFEVER": [
+      {
+        "hf_subset": "climatefever",
+        "hit_rate_at_10": 0.18,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.05719,
+        "map_at_10": 0.03371,
+        "mrr_at_10": 0.07338095238095238,
+        "ndcg_at_10": 0.05719,
+        "precision_at_10": 0.02,
+        "recall_at_10": 0.084
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

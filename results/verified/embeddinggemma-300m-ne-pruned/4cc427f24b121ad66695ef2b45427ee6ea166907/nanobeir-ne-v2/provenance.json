@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "run_id": "embeddinggemma-300m-ne-pruned-4cc427f2",
+  "status": "verified",
+  "model_id": "embeddinggemma-300m-ne-pruned",
+  "model_hf_id": "jangedoo/embeddinggemma-300m-ne-pruned",
+  "model_revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
+  "task_id": "nanobeir-ne",
+  "task_version": 2,
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 127908864,
+  "vocab_size": 262145,
+  "effective_prompts": {
+    "query": "task: search result | query: ",
+    "document": "title: none | text: "
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "embeddinggemma-300m-ne-pruned",
+    "--device",
+    "cuda",
+    "--allow-remote-code"
+  ],
+  "result_hashes": {
+    "results/arguana.json": "e1aab5d6d3ac968169d31b622b20d45f0536f590f503b137c6fb5a5c93e46434",
+    "results/climatefever.json": "a54108c3e02edb3909e391f20781accea1e0bb11cd281f3c59383c43371b647e",
+    "results/dbpedia.json": "986c7f19363dc39c405ff2856f62d97a3f28900cc050d3a912a435ca6e180dff",
+    "results/fever.json": "124694b1625c72dba1034994b119985673944eb4f9b446f9af2215fa525c9c6b",
+    "results/fiqa2018.json": "c6cfdc3d46561065ea5cb9e85cc09c3b56b68eec64f0589f1606e5734404e604",
+    "results/hotpotqa.json": "469607d62161a06385565820cc878d852cc8b785403de34bc5e3b9372f34bce8",
+    "results/msmarco.json": "6abb841c3b3764da765132ac8c797bd315aa19c993a2fa5a82d3b7f48365905c",
+    "results/nfcorpus.json": "5c600635c10bea8925164c03414488150e0c96b421fd32be24565a28191a9d0e",
+    "results/nq.json": "effee6b702fada8279e99c6414f5c258c109dc83c0bc190d85707836cb1fef40",
+    "results/quoraretrieval.json": "c1e96f7da323de0a9ce9b2c214e29b30991f2c5203b2908756123ddde91b82c2",
+    "results/scidocs.json": "4aa50adf8a9731fdba46a75a450886600806abfa44eb7f68769250b7a454e6e3",
+    "results/scifact.json": "1ef529cad112c9ef82e10964a6d831dbdfc72849eaa75c2516c7fa1975229bb6",
+    "results/touche2020.json": "d3324246417ab44dbc8e169dad324ec2705f9d190d8edd31f1b4725518cec059"
+  },
+  "created_at": "2026-07-02T13:37:54.662355Z"
+}
