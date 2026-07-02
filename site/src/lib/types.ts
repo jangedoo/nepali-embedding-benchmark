@@ -4,6 +4,7 @@ export interface View {
   id: string;
   split: string;
   languages: string[];
+  metrics: string[];
   primary_metric: string;
 }
 
@@ -24,17 +25,20 @@ export interface Model {
   revision: string;
   languages: string[];
   homepage?: string;
+  parameter_count: number | "unknown";
+  vocab_size: number | "unknown";
 }
 
 export interface Result {
   model_id: string;
   task_id: string;
   view_id: string;
-  metric: string;
-  score: number;
+  metrics: Record<string, number>;
   status: Status;
   model_revision: string;
   dataset_revision: string;
+  parameter_count: number;
+  vocab_size: number;
 }
 
 export interface Catalog {
@@ -42,4 +46,3 @@ export interface Catalog {
   models: Model[];
   results: Result[];
 }
-
