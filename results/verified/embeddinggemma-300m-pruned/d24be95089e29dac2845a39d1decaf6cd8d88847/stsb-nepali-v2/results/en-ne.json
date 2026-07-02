@@ -1,0 +1,23 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "model_name": "jangedoo/embeddinggemma-300m-pruned",
+  "model_revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+  "mteb_dataset_name": "jangedoo/stsb_nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_pearson": 0.5918552956254761,
+        "cosine_spearman": 0.5778306997910385,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 0.5778306997910385
+      }
+    ]
+  },
+  "task_name": "stsb-nepali",
+  "task_revision": "2"
+}

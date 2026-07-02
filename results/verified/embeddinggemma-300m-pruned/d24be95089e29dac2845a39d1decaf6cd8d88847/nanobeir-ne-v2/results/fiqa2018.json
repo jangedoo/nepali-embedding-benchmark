@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/embeddinggemma-300m-pruned",
+  "model_revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoFiQA2018": [
+      {
+        "hf_subset": "fiqa2018",
+        "hit_rate_at_10": 0.76,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.41378,
+        "map_at_10": 0.33232,
+        "mrr_at_10": 0.4457777777777778,
+        "ndcg_at_10": 0.41378,
+        "precision_at_10": 0.104,
+        "recall_at_10": 0.53458
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

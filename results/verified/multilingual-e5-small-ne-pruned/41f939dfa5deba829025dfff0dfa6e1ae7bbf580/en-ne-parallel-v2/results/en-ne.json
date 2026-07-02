@@ -1,0 +1,25 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "model_name": "jangedoo/multilingual-e5-small-ne-pruned",
+  "model_revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+  "mteb_dataset_name": "jangedoo/en_ne_parallel_corpus",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "accuracy": 0.9523809523809523,
+        "f1": 0.9365079365079365,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 0.9365079365079365,
+        "precision": 0.9285714285714286,
+        "recall": 0.9523809523809523
+      }
+    ]
+  },
+  "task_name": "en-ne-parallel",
+  "task_revision": "2"
+}

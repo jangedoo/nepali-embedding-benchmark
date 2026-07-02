@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "run_id": "multilingual-e5-small-ne-pruned-41f939df",
+  "status": "verified",
+  "model_id": "multilingual-e5-small-ne-pruned",
+  "model_hf_id": "jangedoo/multilingual-e5-small-ne-pruned",
+  "model_revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+  "task_id": "en-ne-parallel",
+  "task_version": 2,
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 29675904,
+  "vocab_size": 250002,
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": null,
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "multilingual-e5-small-ne-pruned",
+    "--device",
+    "cuda",
+    "--allow-remote-code"
+  ],
+  "result_hashes": {
+    "results/en-ne.json": "dc185f18d7696b0039e5e57a25a2b0fc6157a131d7964db1b60b830aa8c54726",
+    "results/ne-en.json": "f61de6651192b62f0f26afd9eb3cfaaf9fe8120a9e27f2d0a369184a20fae4f4"
+  },
+  "created_at": "2026-07-02T14:34:10.008968Z"
+}

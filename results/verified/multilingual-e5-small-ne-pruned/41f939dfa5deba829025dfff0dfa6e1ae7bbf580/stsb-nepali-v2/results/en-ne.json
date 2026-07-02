@@ -1,0 +1,23 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "model_name": "jangedoo/multilingual-e5-small-ne-pruned",
+  "model_revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+  "mteb_dataset_name": "jangedoo/stsb_nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_pearson": 0.5187943665279534,
+        "cosine_spearman": 0.49060552527564966,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 0.49060552527564966
+      }
+    ]
+  },
+  "task_name": "stsb-nepali",
+  "task_revision": "2"
+}

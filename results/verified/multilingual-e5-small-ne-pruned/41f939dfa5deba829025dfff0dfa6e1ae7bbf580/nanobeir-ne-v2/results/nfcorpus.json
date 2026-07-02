@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/multilingual-e5-small-ne-pruned",
+  "model_revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoNFCorpus": [
+      {
+        "hf_subset": "nfcorpus",
+        "hit_rate_at_10": 0.48,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.2019,
+        "map_at_10": 0.04542,
+        "mrr_at_10": 0.33055555555555555,
+        "ndcg_at_10": 0.2019,
+        "precision_at_10": 0.166,
+        "recall_at_10": 0.08618
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

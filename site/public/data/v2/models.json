@@ -104,14 +104,14 @@
       ],
       "license": "unknown",
       "notes": null,
-      "parameter_count": "unknown",
+      "parameter_count": 250785792,
       "prompts": {
         "document": null,
         "query": null
       },
       "revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
       "trust_remote_code": true,
-      "vocab_size": "unknown"
+      "vocab_size": 262145
     },
     {
       "base_model": "intfloat/multilingual-e5-small",
@@ -126,14 +126,14 @@
       ],
       "license": "unknown",
       "notes": null,
-      "parameter_count": "unknown",
+      "parameter_count": 87906048,
       "prompts": {
         "document": null,
         "query": null
       },
       "revision": "696e4b64a2e33f6ffa036d24a666a16fd2280556",
       "trust_remote_code": true,
-      "vocab_size": "unknown"
+      "vocab_size": 250002
     },
     {
       "base_model": "intfloat/multilingual-e5-small",
@@ -148,14 +148,14 @@
       ],
       "license": "unknown",
       "notes": null,
-      "parameter_count": "unknown",
+      "parameter_count": 29675904,
       "prompts": {
         "document": null,
         "query": null
       },
       "revision": "41f939dfa5deba829025dfff0dfa6e1ae7bbf580",
       "trust_remote_code": true,
-      "vocab_size": "unknown"
+      "vocab_size": 250002
     },
     {
       "base_model": null,

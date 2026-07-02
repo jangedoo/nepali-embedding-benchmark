@@ -1,0 +1,25 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "model_name": "jangedoo/embeddinggemma-300m-pruned",
+  "model_revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+  "mteb_dataset_name": "jangedoo/en_ne_parallel_corpus",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "accuracy": 0.9629629629629629,
+        "f1": 0.9506172839506174,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 0.9506172839506174,
+        "precision": 0.9444444444444444,
+        "recall": 0.9629629629629629
+      }
+    ]
+  },
+  "task_name": "en-ne-parallel",
+  "task_revision": "2"
+}

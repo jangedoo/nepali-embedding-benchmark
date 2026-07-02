@@ -1,0 +1,20 @@
+{
+  "id": "embeddinggemma-300m-pruned",
+  "display_name": "EmbeddingGemma 300M Pruned",
+  "hf_id": "jangedoo/embeddinggemma-300m-pruned",
+  "revision": "d24be95089e29dac2845a39d1decaf6cd8d88847",
+  "trust_remote_code": true,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [
+    "multilingual"
+  ],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": "google/embeddinggemma-300m",
+  "license": "unknown",
+  "homepage": "https://huggingface.co/jangedoo/embeddinggemma-300m-pruned",
+  "notes": null
+}

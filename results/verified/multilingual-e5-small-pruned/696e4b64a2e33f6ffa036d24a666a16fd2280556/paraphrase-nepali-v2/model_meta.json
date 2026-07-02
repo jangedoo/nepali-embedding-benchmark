@@ -1,0 +1,20 @@
+{
+  "id": "multilingual-e5-small-pruned",
+  "display_name": "Multilingual E5 Small Pruned",
+  "hf_id": "jangedoo/multilingual-e5-small-pruned",
+  "revision": "696e4b64a2e33f6ffa036d24a666a16fd2280556",
+  "trust_remote_code": true,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [
+    "multilingual"
+  ],
+  "base_model": "intfloat/multilingual-e5-small",
+  "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "excluded_base_model": null,
+  "license": "unknown",
+  "homepage": "https://huggingface.co/jangedoo/multilingual-e5-small-pruned",
+  "notes": null
+}
