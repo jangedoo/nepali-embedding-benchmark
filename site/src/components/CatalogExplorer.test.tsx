@@ -47,6 +47,25 @@ afterEach(() => {
 });
 
 describe("task views", () => {
+  it("closes the views picker when clicking outside", async () => {
+    vi.stubGlobal("__NEB_BASE__", "/");
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
+    const { container } = render(<CatalogExplorer mode="tasks" />);
+
+    await screen.findByRole("heading", { name: "first" });
+    const picker = container.querySelector<HTMLDetailsElement>(".view-picker details")!;
+    const summary = screen.getByText("All views");
+
+    fireEvent.click(summary);
+    expect(picker.open).toBe(true);
+
+    fireEvent.click(screen.getByRole("checkbox", { name: "first" }));
+    expect(picker.open).toBe(true);
+
+    fireEvent.click(document.body);
+    expect(picker.open).toBe(false);
+  });
+
   it("shows all views and metrics by default and supports multi-selection", async () => {
     vi.stubGlobal("__NEB_BASE__", "/");
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
@@ -90,7 +109,7 @@ describe("task views", () => {
 });
 
 describe("model comparison", () => {
-  it("groups views, defaults filters, and summarizes the collapsed editor", async () => {
+  it("groups views, keeps selections visible, and defaults metric filters", async () => {
     window.history.replaceState({}, "", "/compare/?models=model,model-two");
     vi.stubGlobal("__NEB_BASE__", "/");
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
@@ -102,11 +121,14 @@ describe("model comparison", () => {
     expect(container.querySelectorAll(".dataset-heading")).toHaveLength(2);
     expect(container.querySelector(".dataset-heading")?.textContent).toBe("Example task");
     expect(screen.queryByText("task/first")).toBeNull();
-    expect(screen.getByText("2 models · 2 datasets · 3 metrics")).not.toBeNull();
+    expect(screen.getByText("3 metrics")).not.toBeNull();
     expect((container.querySelector(".comparison-editor") as HTMLDetailsElement).open).toBe(false);
+    expect(screen.getByRole("group", { name: "Choose models (2/5)" })).not.toBeNull();
+    expect(screen.getByRole("group", { name: "Datasets (2/2)" })).not.toBeNull();
 
     const modelHeaders = screen.getAllByRole("columnheader").slice(1);
     expect(modelHeaders.map((header) => header.textContent)).toEqual(["Example model?Parameters: 10MVocabulary: 30Kowner/model", "Second model?Parameters: 20MVocabulary: 40Kowner/model-two"]);
+    expect(modelHeaders.every((header) => header.querySelector(".model-name"))).toBe(true);
     expect(screen.getAllByLabelText(/Model details for/)).toHaveLength(2);
     expect(container.querySelectorAll("[data-metric='f1']")).toHaveLength(4);
     expect(container.querySelectorAll("[data-metric='precision']")).toHaveLength(4);
@@ -122,7 +144,7 @@ describe("model comparison", () => {
     expect(within(firstRow).queryByRole("combobox")).toBeNull();
     expect(container.querySelector(".comparison-table-wrap")).not.toBeNull();
 
-    fireEvent.click(screen.getByText("Edit comparison"));
+    fireEvent.click(screen.getByText("Edit metrics"));
     expect((container.querySelector(".comparison-editor") as HTMLDetailsElement).open).toBe(true);
     expect(screen.getAllByRole("checkbox").every((checkbox) => (checkbox as HTMLInputElement).checked)).toBe(true);
     const primary = screen.getByRole("checkbox", { name: "f1 for Example task" });
@@ -135,12 +157,12 @@ describe("model comparison", () => {
     fireEvent.click(precision);
     expect(container.querySelectorAll("[data-metric='precision']")).toHaveLength(0);
     expect(container.querySelectorAll("[data-metric='f1']")).toHaveLength(4);
-    expect(screen.getByText("2 models · 2 datasets · 2 metrics")).not.toBeNull();
+    expect(screen.getByText("2 metrics")).not.toBeNull();
 
     fireEvent.click(screen.getByRole("checkbox", { name: "Second dataset" }));
     expect(screen.queryByRole("rowheader", { name: "only" })).toBeNull();
     expect(container.querySelectorAll(".dataset-heading")).toHaveLength(1);
-    expect(screen.getByText("2 models · 1 dataset · 1 metric")).not.toBeNull();
+    expect(screen.getByText("1 metric")).not.toBeNull();
 
     const report = await axe(container);
     expect(report.violations).toHaveLength(0);

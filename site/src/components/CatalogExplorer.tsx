@@ -51,7 +51,18 @@ function TaskCatalog({ catalog, activeTask, taskId, selectedViewIds, setTaskId, 
   catalog: Catalog; activeTask: Task; taskId: string; selectedViewIds: string[];
   setTaskId: (value: string) => void; setViewIds: (value: string[]) => void; compact: boolean;
 }) {
+  const viewPickerRef = React.useRef<HTMLDetailsElement>(null);
   const selectedViews = activeTask.views.filter((view) => selectedViewIds.includes(view.id));
+
+  useEffect(() => {
+    function closeViewPicker(event: MouseEvent) {
+      const picker = viewPickerRef.current;
+      if (picker?.open && !picker.contains(event.target as Node)) picker.open = false;
+    }
+
+    document.addEventListener("click", closeViewPicker);
+    return () => document.removeEventListener("click", closeViewPicker);
+  }, []);
 
   function selectTask(id: string) {
     const task = catalog.tasks.find((candidate) => candidate.id === id)!;
@@ -71,7 +82,7 @@ function TaskCatalog({ catalog, activeTask, taskId, selectedViewIds, setTaskId, 
       <label>Task<select value={taskId} onChange={(event) => selectTask(event.target.value)}>{catalog.tasks.map((task) => <option key={task.id} value={task.id}>{task.display_name}</option>)}</select></label>
       <div className="view-picker">
         <span className="control-label">Views</span>
-        <details>
+        <details ref={viewPickerRef}>
           <summary>{selectedViewIds.length === activeTask.views.length ? "All views" : `${selectedViewIds.length} of ${activeTask.views.length} views`}</summary>
           <fieldset>
             <legend className="sr-only">Choose task views</legend>
@@ -175,11 +186,13 @@ function Comparison({ catalog, selected, setSelected, compact }: { catalog: Cata
   return <>
     <section className={compact ? "" : "hero"}><p className="eyebrow">Two to five models</p><h1>Task-by-task comparison</h1></section>
     <section className="panel comparison-panel">
+      <div className="comparison-controls comparison-selection-controls">
+        <fieldset><legend>Choose models ({selected.length}/5)</legend><div className="checks">{catalog.models.map((model) => <label key={model.id}><input type="checkbox" checked={selected.includes(model.id)} disabled={!selected.includes(model.id) && selected.length >= 5} onChange={() => toggle(model.id)} /> {model.display_name}</label>)}</div></fieldset>
+        <fieldset><legend>Datasets ({selectedTaskIds.length}/{catalog.tasks.length})</legend><div className="checks">{catalog.tasks.map((task) => <label key={task.id}><input type="checkbox" checked={selectedTaskIds.includes(task.id)} disabled={selectedTaskIds.includes(task.id) && selectedTaskIds.length === 1} onChange={() => toggleTask(task.id)} /> {task.display_name}</label>)}</div></fieldset>
+      </div>
       <details className="comparison-editor">
-        <summary><span>Edit comparison</span><span className="comparison-summary">{selectionCount(selected.length, "model")} · {selectionCount(selectedTaskIds.length, "dataset")} · {selectionCount(selectedMetricCount, "metric")}</span></summary>
+        <summary><span>Edit metrics</span><span className="comparison-summary">{selectionCount(selectedMetricCount, "metric")}</span></summary>
         <div className="comparison-controls">
-          <fieldset><legend>Choose models ({selected.length}/5)</legend><div className="checks">{catalog.models.map((model) => <label key={model.id}><input type="checkbox" checked={selected.includes(model.id)} disabled={!selected.includes(model.id) && selected.length >= 5} onChange={() => toggle(model.id)} /> {model.display_name}</label>)}</div></fieldset>
-          <fieldset><legend>Datasets ({selectedTaskIds.length}/{catalog.tasks.length})</legend><div className="checks">{catalog.tasks.map((task) => <label key={task.id}><input type="checkbox" checked={selectedTaskIds.includes(task.id)} disabled={selectedTaskIds.includes(task.id) && selectedTaskIds.length === 1} onChange={() => toggleTask(task.id)} /> {task.display_name}</label>)}</div></fieldset>
           <section className="metric-filters" aria-labelledby="metric-filters-heading">
             <h2 id="metric-filters-heading">Metrics by dataset</h2>
             <p>Metric choices apply to every view in a dataset. Primary metrics are always shown.</p>
@@ -216,7 +229,7 @@ function ComparisonTable({ catalog, rows, selected, selectedTaskIds, metricsByTa
   return <div className="table-wrap comparison-table-wrap"><table className="comparison-table">
     <thead><tr><th scope="col">Dataset / view</th>{selected.map((id) => {
       const model = models.get(id);
-      return <th scope="col" key={id}><span>{model?.display_name || id}</span>{model && <ModelInfo model={model} />}</th>;
+      return <th scope="col" key={id}><span className="model-header"><span className="model-name">{model?.display_name || id}</span>{model && <ModelInfo model={model} />}</span></th>;
     })}</tr></thead>
     {visibleTasks.map((task) => <tbody key={task.id} aria-label={task.display_name}>
       <tr className="dataset-heading"><th scope="rowgroup" colSpan={selected.length + 1}>{task.display_name}</th></tr>
