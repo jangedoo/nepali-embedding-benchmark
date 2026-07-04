@@ -1,0 +1,27 @@
+{
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "model_name": "Yunika/sentence-transformer-nepali",
+  "model_revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+  "mteb_dataset_name": "jangedoo/paraphrase-nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_accuracy": 1.0,
+        "cosine_ap": 1.0,
+        "cosine_f1": 1.0,
+        "cosine_precision": 1.0,
+        "cosine_recall": 1.0,
+        "cosine_roc_auc": 1.0,
+        "hf_subset": "bilingual",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 1.0
+      }
+    ]
+  },
+  "task_name": "paraphrase-nepali",
+  "task_revision": "2"
+}

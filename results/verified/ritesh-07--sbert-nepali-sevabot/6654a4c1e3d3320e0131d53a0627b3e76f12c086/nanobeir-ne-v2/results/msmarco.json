@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "ritesh-07/sbert-nepali-sevabot",
+  "model_revision": "6654a4c1e3d3320e0131d53a0627b3e76f12c086",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoMSMARCO": [
+      {
+        "hf_subset": "msmarco",
+        "hit_rate_at_10": 0.4,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.21376,
+        "map_at_10": 0.15766,
+        "mrr_at_10": 0.15765873015873016,
+        "ndcg_at_10": 0.21376,
+        "precision_at_10": 0.04,
+        "recall_at_10": 0.4
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

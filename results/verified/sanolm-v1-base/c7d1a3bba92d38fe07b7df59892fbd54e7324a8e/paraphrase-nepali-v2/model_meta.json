@@ -1,0 +1,18 @@
+{
+  "id": "sanolm-v1-base",
+  "display_name": "sanolm-v1-base",
+  "hf_id": "jangedoo/sanolm-v1-base",
+  "revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
+  "trust_remote_code": false,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": null,
+  "license": "unknown",
+  "homepage": "https://huggingface.co/jangedoo/sanolm-v1-base",
+  "notes": null
+}

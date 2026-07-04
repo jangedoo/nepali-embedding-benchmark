@@ -2,14 +2,18 @@
   display_name: all-MiniLM-L6-v2 Nepali
   hf_id: jangedoo/all-MiniLM-L6-v2-nepali
   revision: 4dd8c1f4cb4978aa03839d1ac36bde3594bf4add
-  languages: [en, ne]
+  languages:
+  - en
+  - ne
   license: unknown
   homepage: https://huggingface.co/jangedoo/all-MiniLM-L6-v2-nepali
 - id: all-minilm-l6-v3-nepali
   display_name: all-MiniLM-L6-v3 Nepali
   hf_id: jangedoo/all-MiniLM-L6-v3-nepali
   revision: 37d42341db65da0787d41e0f81c977ab4fa510a5
-  languages: [en, ne]
+  languages:
+  - en
+  - ne
   base_model: jangedoo/all-MiniLM-L6-v2-nepali
   base_model_revision: 4dd8c1f4cb4978aa03839d1ac36bde3594bf4add
   license: unknown
@@ -18,7 +22,9 @@
   display_name: all-MiniLM-L6-v3 Nepali RAG
   hf_id: jangedoo/all-MiniLM-L6-v3-nepali-rag
   revision: da318b7bffcb620b4759aa54f2faad90030994cc
-  languages: [en, ne]
+  languages:
+  - en
+  - ne
   base_model: jangedoo/all-MiniLM-L6-v3-nepali
   base_model_revision: 37d42341db65da0787d41e0f81c977ab4fa510a5
   license: unknown
@@ -28,7 +34,8 @@
   hf_id: jangedoo/embeddinggemma-300m-pruned
   revision: d24be95089e29dac2845a39d1decaf6cd8d88847
   trust_remote_code: true
-  languages: [multilingual]
+  languages:
+  - multilingual
   excluded_base_model: google/embeddinggemma-300m
   homepage: https://huggingface.co/jangedoo/embeddinggemma-300m-pruned
 - id: multilingual-e5-small-pruned
@@ -36,7 +43,8 @@
   hf_id: jangedoo/multilingual-e5-small-pruned
   revision: 696e4b64a2e33f6ffa036d24a666a16fd2280556
   trust_remote_code: true
-  languages: [multilingual]
+  languages:
+  - multilingual
   base_model: intfloat/multilingual-e5-small
   base_model_revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
   homepage: https://huggingface.co/jangedoo/multilingual-e5-small-pruned
@@ -45,7 +53,8 @@
   hf_id: jangedoo/multilingual-e5-small-ne-pruned
   revision: 41f939dfa5deba829025dfff0dfa6e1ae7bbf580
   trust_remote_code: true
-  languages: [ne]
+  languages:
+  - ne
   base_model: intfloat/multilingual-e5-small
   base_model_revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
   homepage: https://huggingface.co/jangedoo/multilingual-e5-small-ne-pruned
@@ -54,8 +63,18 @@
   hf_id: jangedoo/embeddinggemma-300m-ne-pruned
   revision: 4cc427f24b121ad66695ef2b45427ee6ea166907
   trust_remote_code: true
-  languages: [ne]
+  languages:
+  - ne
   excluded_base_model: google/embeddinggemma-300m
   homepage: https://huggingface.co/jangedoo/embeddinggemma-300m-ne-pruned
-  notes: The gated base model is provenance-only and is not in the initial evaluation queue.
-
+  notes: The gated base model is provenance-only and is not in the initial evaluation
+    queue.
+- id: sanolm-v1-base
+  display_name: sanolm-v1-base
+  hf_id: jangedoo/sanolm-v1-base
+  revision: c7d1a3bba92d38fe07b7df59892fbd54e7324a8e
+  trust_remote_code: false
+  prompts: {}
+  languages: []
+  license: unknown
+  homepage: https://huggingface.co/jangedoo/sanolm-v1-base

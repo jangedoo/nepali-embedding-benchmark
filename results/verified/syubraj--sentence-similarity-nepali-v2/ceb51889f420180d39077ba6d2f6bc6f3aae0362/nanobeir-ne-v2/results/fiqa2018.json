@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "syubraj/sentence_similarity_nepali_v2",
+  "model_revision": "ceb51889f420180d39077ba6d2f6bc6f3aae0362",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoFiQA2018": [
+      {
+        "hf_subset": "fiqa2018",
+        "hit_rate_at_10": 0.08,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.03212,
+        "map_at_10": 0.02467,
+        "mrr_at_10": 0.036222222222222225,
+        "ndcg_at_10": 0.03212,
+        "precision_at_10": 0.008,
+        "recall_at_10": 0.04622
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

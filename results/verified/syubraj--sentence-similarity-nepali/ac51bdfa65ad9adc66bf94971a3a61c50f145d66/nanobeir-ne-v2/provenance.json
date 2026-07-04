@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "run_id": "syubraj--sentence-similarity-nepali-ac51bdfa",
+  "status": "verified",
+  "model_id": "syubraj--sentence-similarity-nepali",
+  "model_hf_id": "syubraj/sentence_similarity_nepali",
+  "model_revision": "ac51bdfa65ad9adc66bf94971a3a61c50f145d66",
+  "task_id": "nanobeir-ne",
+  "task_version": 2,
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 81914112,
+  "vocab_size": 50000,
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": "bfloat16",
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "syubraj--sentence-similarity-nepali",
+    "--device",
+    "cuda",
+    "--dtype",
+    "bf16"
+  ],
+  "result_hashes": {
+    "results/arguana.json": "de28fddd6b58309b41ba3620a861e78f09792752f64d67b298c6c1165b7dc7ce",
+    "results/climatefever.json": "db2d2d13d9636bf720280ea664563baa7ecd36a79d0cf488f84df47c4759a696",
+    "results/dbpedia.json": "9fdd56374347f6af2180053498b20c01876cbab043aee303e2ac21622d76b3fd",
+    "results/fever.json": "9e58a692d4edcb2f0e367b51fd0c3016b709a093ffd8d57d3ff2efbe5107137c",
+    "results/fiqa2018.json": "84df4daf487e59f843f26e13aa9a6e1aa27f474b0ca3693ee0887b3d5d5f11d8",
+    "results/hotpotqa.json": "45210938c10d9468259e7d80709e92dc2911300d127a40fdd7979ed720c666e3",
+    "results/msmarco.json": "68cd3e0c75c4eb59d0b857e93aaca9504b0e2255d48363436487318afc85c75c",
+    "results/nfcorpus.json": "1b7ae8dc9473d646974f7d229bf1488f7708acafa4691e31dbda8f15fc6eb1ec",
+    "results/nq.json": "53a2cfaba4d0f3457dc02b8031d1a8b503fe1c3ba286c98a42cdaa7dd0ee9d15",
+    "results/quoraretrieval.json": "074b284fe57a614c572dfd062bc77f03e1047c0e4b6a37ce5bfd71bea1b013a4",
+    "results/scidocs.json": "d168bd76ddb646bb69089c4cdb5b469e1c4b5ca1a05d1bd09c6d176e0fe7ce1a",
+    "results/scifact.json": "ddd50816abf85ed28ad8a93a3dd2f9399e4b7d0daac27b924f1b6ad5a8d82610",
+    "results/touche2020.json": "a8823c6eb018acef26be3fd0cabc1601b6f06d73b7e745c6cf277e6ce0a69d51"
+  },
+  "created_at": "2026-07-04T07:13:05.925722Z"
+}

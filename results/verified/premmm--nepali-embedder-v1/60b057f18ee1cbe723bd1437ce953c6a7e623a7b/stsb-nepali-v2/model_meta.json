@@ -1,0 +1,18 @@
+{
+  "id": "premmm--nepali-embedder-v1",
+  "display_name": "nepali-embedder-v1",
+  "hf_id": "premmm/nepali-embedder-v1",
+  "revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+  "trust_remote_code": false,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": null,
+  "license": "apache-2.0",
+  "homepage": "https://huggingface.co/premmm/nepali-embedder-v1",
+  "notes": null
+}

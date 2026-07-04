@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "jangedoo/sanolm-v1-base",
+  "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoTouche2020": [
+      {
+        "hf_subset": "touche2020",
+        "hit_rate_at_10": 0.30612,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.04187,
+        "map_at_10": 0.00755,
+        "mrr_at_10": 0.10209750566893423,
+        "ndcg_at_10": 0.04187,
+        "precision_at_10": 0.04082,
+        "recall_at_10": 0.02176
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

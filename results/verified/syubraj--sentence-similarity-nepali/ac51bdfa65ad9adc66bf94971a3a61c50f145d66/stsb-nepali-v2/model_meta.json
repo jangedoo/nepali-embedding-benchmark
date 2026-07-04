@@ -1,0 +1,18 @@
+{
+  "id": "syubraj--sentence-similarity-nepali",
+  "display_name": "sentence_similarity_nepali",
+  "hf_id": "syubraj/sentence_similarity_nepali",
+  "revision": "ac51bdfa65ad9adc66bf94971a3a61c50f145d66",
+  "trust_remote_code": false,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": null,
+  "license": "unknown",
+  "homepage": "https://huggingface.co/syubraj/sentence_similarity_nepali",
+  "notes": null
+}

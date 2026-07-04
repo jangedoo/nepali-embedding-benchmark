@@ -1,0 +1,23 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "model_name": "Yunika/sentence-transformer-nepali",
+  "model_revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+  "mteb_dataset_name": "jangedoo/stsb_nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_pearson": 0.723749252995571,
+        "cosine_spearman": 0.7170564790148535,
+        "hf_subset": "ne-en",
+        "languages": [
+          "ne",
+          "en"
+        ],
+        "main_score": 0.7170564790148535
+      }
+    ]
+  },
+  "task_name": "stsb-nepali",
+  "task_revision": "2"
+}

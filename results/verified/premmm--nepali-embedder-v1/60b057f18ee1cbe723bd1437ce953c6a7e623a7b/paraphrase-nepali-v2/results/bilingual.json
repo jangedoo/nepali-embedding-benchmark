@@ -1,0 +1,27 @@
+{
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "model_name": "premmm/nepali-embedder-v1",
+  "model_revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+  "mteb_dataset_name": "jangedoo/paraphrase-nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_accuracy": 1.0,
+        "cosine_ap": 1.0,
+        "cosine_f1": 1.0,
+        "cosine_precision": 1.0,
+        "cosine_recall": 1.0,
+        "cosine_roc_auc": 1.0,
+        "hf_subset": "bilingual",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 1.0
+      }
+    ]
+  },
+  "task_name": "paraphrase-nepali",
+  "task_revision": "2"
+}

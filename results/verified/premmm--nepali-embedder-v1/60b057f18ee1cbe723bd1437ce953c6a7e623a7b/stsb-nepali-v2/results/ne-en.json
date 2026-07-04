@@ -1,0 +1,23 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "model_name": "premmm/nepali-embedder-v1",
+  "model_revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+  "mteb_dataset_name": "jangedoo/stsb_nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_pearson": 0.5829834459339573,
+        "cosine_spearman": 0.555746187159993,
+        "hf_subset": "ne-en",
+        "languages": [
+          "ne",
+          "en"
+        ],
+        "main_score": 0.555746187159993
+      }
+    ]
+  },
+  "task_name": "stsb-nepali",
+  "task_revision": "2"
+}

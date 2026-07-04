@@ -1,0 +1,18 @@
+{
+  "id": "universalml--nepali-embedding-model",
+  "display_name": "Nepali_Embedding_Model",
+  "hf_id": "universalml/Nepali_Embedding_Model",
+  "revision": "b7a62f3a5c7967918f75f30f318d2eb6289b28d5",
+  "trust_remote_code": false,
+  "prompts": {
+    "query": null,
+    "document": null
+  },
+  "languages": [],
+  "base_model": null,
+  "base_model_revision": null,
+  "excluded_base_model": null,
+  "license": "apache-2.0",
+  "homepage": "https://huggingface.co/universalml/Nepali_Embedding_Model",
+  "notes": null
+}
