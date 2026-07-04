@@ -1,0 +1,24 @@
+{
+  "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+  "model_name": "ritesh-07/sbert-nepali-sevabot",
+  "model_revision": "6654a4c1e3d3320e0131d53a0627b3e76f12c086",
+  "mteb_dataset_name": "jangedoo/nepali-query-passage-hard-negatives-10k",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "hf_subset": "hard-negatives",
+        "hit_rate_at_1": 0.4725,
+        "hit_rate_at_3": 0.8875,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.4725,
+        "mrr_at_5": 0.6839583333333333,
+        "ndcg_at_5": 0.7638021462475504
+      }
+    ]
+  },
+  "task_name": "nepali-hard-negatives",
+  "task_revision": "2"
+}

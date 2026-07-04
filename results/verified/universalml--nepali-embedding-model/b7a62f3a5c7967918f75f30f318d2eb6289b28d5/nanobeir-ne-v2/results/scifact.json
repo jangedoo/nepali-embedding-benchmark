@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "universalml/Nepali_Embedding_Model",
+  "model_revision": "b7a62f3a5c7967918f75f30f318d2eb6289b28d5",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoSciFact": [
+      {
+        "hf_subset": "scifact",
+        "hit_rate_at_10": 0.64,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.49601,
+        "map_at_10": 0.44739,
+        "mrr_at_10": 0.44966666666666666,
+        "ndcg_at_10": 0.49601,
+        "precision_at_10": 0.074,
+        "recall_at_10": 0.64
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

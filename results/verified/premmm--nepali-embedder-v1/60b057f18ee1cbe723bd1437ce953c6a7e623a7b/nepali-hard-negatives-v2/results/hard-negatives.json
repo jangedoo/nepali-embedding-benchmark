@@ -1,0 +1,24 @@
+{
+  "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+  "model_name": "premmm/nepali-embedder-v1",
+  "model_revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+  "mteb_dataset_name": "jangedoo/nepali-query-passage-hard-negatives-10k",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "hf_subset": "hard-negatives",
+        "hit_rate_at_1": 0.535,
+        "hit_rate_at_3": 0.925,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.535,
+        "mrr_at_5": 0.725,
+        "ndcg_at_5": 0.7947058558644403
+      }
+    ]
+  },
+  "task_name": "nepali-hard-negatives",
+  "task_revision": "2"
+}

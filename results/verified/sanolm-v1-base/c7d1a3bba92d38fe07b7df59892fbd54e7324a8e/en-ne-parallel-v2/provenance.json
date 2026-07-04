@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "run_id": "sanolm-v1-base-c7d1a3bb",
+  "status": "verified",
+  "model_id": "sanolm-v1-base",
+  "model_hf_id": "jangedoo/sanolm-v1-base",
+  "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
+  "task_id": "en-ne-parallel",
+  "task_version": 2,
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "mteb_version": "2.16.2",
+  "neb_version": "0.2.0",
+  "sentence_transformers_version": "5.6.0",
+  "parameter_count": 48775680,
+  "vocab_size": 42000,
+  "effective_prompts": {
+    "query": "",
+    "document": null
+  },
+  "runtime": {
+    "device": "cuda",
+    "batch_size": 32,
+    "dtype": "bfloat16",
+    "encode_kwargs": {},
+    "resume": false
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+    "python": "3.12.11"
+  },
+  "command": [
+    "/home/jangedoo/Desktop/projects/nep_embed_eval/.venv/bin/neb",
+    "evaluate",
+    "--model",
+    "sanolm-v1-base",
+    "--device",
+    "cuda",
+    "--dtype",
+    "bf16"
+  ],
+  "result_hashes": {
+    "results/en-ne.json": "a332bed5da2b666ca9b79c5cd44d83d7ea01f3a5e5616f38df18bb8634a69265",
+    "results/ne-en.json": "84766e1a3a8dea497f62b571657f083b6709c5fb3f701f82f780909d187396a4"
+  },
+  "created_at": "2026-07-04T06:50:59.222756Z"
+}

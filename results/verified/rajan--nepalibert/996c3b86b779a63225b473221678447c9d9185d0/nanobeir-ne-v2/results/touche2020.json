@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "Rajan/NepaliBERT",
+  "model_revision": "996c3b86b779a63225b473221678447c9d9185d0",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoTouche2020": [
+      {
+        "hf_subset": "touche2020",
+        "hit_rate_at_10": 0.42857,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.07516,
+        "map_at_10": 0.01704,
+        "mrr_at_10": 0.19194201490119858,
+        "ndcg_at_10": 0.07516,
+        "precision_at_10": 0.06531,
+        "recall_at_10": 0.03732
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

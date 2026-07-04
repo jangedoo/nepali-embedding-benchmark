@@ -1,0 +1,25 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "model_name": "syubraj/sentence_similarity_nepali_v2",
+  "model_revision": "ceb51889f420180d39077ba6d2f6bc6f3aae0362",
+  "mteb_dataset_name": "jangedoo/en_ne_parallel_corpus",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "accuracy": 0.005291005291005291,
+        "f1": 5.6892530010809584e-05,
+        "hf_subset": "en-ne",
+        "languages": [
+          "en",
+          "ne"
+        ],
+        "main_score": 5.6892530010809584e-05,
+        "precision": 2.8600028600028603e-05,
+        "recall": 0.005291005291005291
+      }
+    ]
+  },
+  "task_name": "en-ne-parallel",
+  "task_revision": "2"
+}

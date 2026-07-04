@@ -25,6 +25,146 @@
     {
       "base_model": null,
       "base_model_revision": null,
+      "display_name": "Nepali_Embedding_Model",
+      "excluded_base_model": null,
+      "hf_id": "universalml/Nepali_Embedding_Model",
+      "homepage": "https://huggingface.co/universalml/Nepali_Embedding_Model",
+      "id": "universalml--nepali-embedding-model",
+      "languages": [],
+      "license": "apache-2.0",
+      "notes": null,
+      "parameter_count": 559890432,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "b7a62f3a5c7967918f75f30f318d2eb6289b28d5",
+      "trust_remote_code": false,
+      "vocab_size": 250002
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "sentence_similarity_nepali",
+      "excluded_base_model": null,
+      "hf_id": "syubraj/sentence_similarity_nepali",
+      "homepage": "https://huggingface.co/syubraj/sentence_similarity_nepali",
+      "id": "syubraj--sentence-similarity-nepali",
+      "languages": [],
+      "license": "unknown",
+      "notes": null,
+      "parameter_count": 81914112,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "ac51bdfa65ad9adc66bf94971a3a61c50f145d66",
+      "trust_remote_code": false,
+      "vocab_size": 50000
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "sentence_similarity_nepali_v2",
+      "excluded_base_model": null,
+      "hf_id": "syubraj/sentence_similarity_nepali_v2",
+      "homepage": "https://huggingface.co/syubraj/sentence_similarity_nepali_v2",
+      "id": "syubraj--sentence-similarity-nepali-v2",
+      "languages": [],
+      "license": "unknown",
+      "notes": null,
+      "parameter_count": 81914112,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "ceb51889f420180d39077ba6d2f6bc6f3aae0362",
+      "trust_remote_code": false,
+      "vocab_size": 50000
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "NepaliBERT",
+      "excluded_base_model": null,
+      "hf_id": "Rajan/NepaliBERT",
+      "homepage": "https://huggingface.co/Rajan/NepaliBERT",
+      "id": "rajan--nepalibert",
+      "languages": [],
+      "license": "unknown",
+      "notes": null,
+      "parameter_count": 81914112,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "996c3b86b779a63225b473221678447c9d9185d0",
+      "trust_remote_code": false,
+      "vocab_size": 50000
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "nepali-embedder-v1",
+      "excluded_base_model": null,
+      "hf_id": "premmm/nepali-embedder-v1",
+      "homepage": "https://huggingface.co/premmm/nepali-embedder-v1",
+      "id": "premmm--nepali-embedder-v1",
+      "languages": [],
+      "license": "apache-2.0",
+      "notes": null,
+      "parameter_count": 237556224,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+      "trust_remote_code": false,
+      "vocab_size": 197258
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "sbert-nepali-sevabot",
+      "excluded_base_model": null,
+      "hf_id": "ritesh-07/sbert-nepali-sevabot",
+      "homepage": "https://huggingface.co/ritesh-07/sbert-nepali-sevabot",
+      "id": "ritesh-07--sbert-nepali-sevabot",
+      "languages": [],
+      "license": "apache-2.0",
+      "notes": null,
+      "parameter_count": 22713216,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "6654a4c1e3d3320e0131d53a0627b3e76f12c086",
+      "trust_remote_code": false,
+      "vocab_size": 30522
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "sentence-transformer-nepali",
+      "excluded_base_model": null,
+      "hf_id": "Yunika/sentence-transformer-nepali",
+      "homepage": "https://huggingface.co/Yunika/sentence-transformer-nepali",
+      "id": "yunika--sentence-transformer-nepali",
+      "languages": [],
+      "license": "unknown",
+      "notes": null,
+      "parameter_count": 237556224,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+      "trust_remote_code": false,
+      "vocab_size": 197285
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
       "display_name": "all-MiniLM-L6-v2 Nepali",
       "excluded_base_model": null,
       "hf_id": "jangedoo/all-MiniLM-L6-v2-nepali",
@@ -178,6 +318,26 @@
       "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
       "trust_remote_code": true,
       "vocab_size": 262145
+    },
+    {
+      "base_model": null,
+      "base_model_revision": null,
+      "display_name": "sanolm-v1-base",
+      "excluded_base_model": null,
+      "hf_id": "jangedoo/sanolm-v1-base",
+      "homepage": "https://huggingface.co/jangedoo/sanolm-v1-base",
+      "id": "sanolm-v1-base",
+      "languages": [],
+      "license": "unknown",
+      "notes": null,
+      "parameter_count": 48775680,
+      "prompts": {
+        "document": null,
+        "query": null
+      },
+      "revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
+      "trust_remote_code": false,
+      "vocab_size": 42000
     },
     {
       "base_model": null,

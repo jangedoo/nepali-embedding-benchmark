@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "premmm/nepali-embedder-v1",
+  "model_revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoDBPedia": [
+      {
+        "hf_subset": "dbpedia",
+        "hit_rate_at_10": 0.9,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.39727,
+        "map_at_10": 0.1695,
+        "mrr_at_10": 0.6543809523809524,
+        "ndcg_at_10": 0.39727,
+        "precision_at_10": 0.282,
+        "recall_at_10": 0.2334
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

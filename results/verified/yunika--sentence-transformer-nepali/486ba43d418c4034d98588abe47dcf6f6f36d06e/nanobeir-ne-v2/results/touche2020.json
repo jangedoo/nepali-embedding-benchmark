@@ -1,0 +1,26 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "model_name": "Yunika/sentence-transformer-nepali",
+  "model_revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+  "mteb_dataset_name": "jangedoo/NanoBEIR-ne",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "NanoTouche2020": [
+      {
+        "hf_subset": "touche2020",
+        "hit_rate_at_10": 0.95918,
+        "languages": [
+          "ne"
+        ],
+        "main_score": 0.40766,
+        "map_at_10": 0.15503,
+        "mrr_at_10": 0.6880061548428895,
+        "ndcg_at_10": 0.40766,
+        "precision_at_10": 0.3551,
+        "recall_at_10": 0.22667
+      }
+    ]
+  },
+  "task_name": "nanobeir-ne",
+  "task_revision": "2"
+}

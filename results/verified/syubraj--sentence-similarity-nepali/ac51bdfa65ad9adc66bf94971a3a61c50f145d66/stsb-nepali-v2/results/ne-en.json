@@ -1,0 +1,23 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "model_name": "syubraj/sentence_similarity_nepali",
+  "model_revision": "ac51bdfa65ad9adc66bf94971a3a61c50f145d66",
+  "mteb_dataset_name": "jangedoo/stsb_nepali",
+  "mteb_version": "2.16.2",
+  "scores": {
+    "test": [
+      {
+        "cosine_pearson": 0.03156926878295181,
+        "cosine_spearman": 0.021811495655729842,
+        "hf_subset": "ne-en",
+        "languages": [
+          "ne",
+          "en"
+        ],
+        "main_score": 0.021811495655729842
+      }
+    ]
+  },
+  "task_name": "stsb-nepali",
+  "task_revision": "2"
+}

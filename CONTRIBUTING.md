@@ -4,7 +4,10 @@
 
 Run `neb model scaffold owner/model`, inspect the pinned manifest, then open a pull request. A
 community model must be public, ungated, loadable by `SentenceTransformer`, and must not require
-remote code. Merging a model adds it to the pending queue; CI never downloads submitted weights.
+remote code. The scaffold accepts Sentence Transformers models and plain Transformers checkpoints
+tagged for `feature-extraction` or `fill-mask`. For plain checkpoints, Sentence Transformers adds
+its automatic mean-pooling layer. Merging a model adds it to the pending queue; CI never downloads
+submitted weights.
 
 ## Submit a community result
 

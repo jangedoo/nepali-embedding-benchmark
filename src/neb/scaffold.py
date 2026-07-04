@@ -25,7 +25,11 @@ DEDICATED_OWNERS = {
     "nomic-ai",
     "snowflake",
     "mixedbread-ai",
+    "jangedoo",
 }
+
+SUPPORTED_LIBRARIES = {"sentence-transformers", "transformers"}
+SUPPORTED_TRANSFORMERS_PIPELINES = {"feature-extraction", "fill-mask"}
 
 
 @dataclass(frozen=True)
@@ -110,8 +114,15 @@ def scaffold_model(hf_id: str, root: Path) -> ScaffoldResult:
     info = _fetch_model_info(hf_id)
     if info.private or info.gated:
         raise ValueError("community models must be public and ungated")
-    if info.library_name != "sentence-transformers":
-        raise ValueError("model must declare the sentence-transformers library")
+    if info.library_name not in SUPPORTED_LIBRARIES:
+        raise ValueError("model must declare the sentence-transformers or transformers library")
+    if (
+        info.library_name == "transformers"
+        and getattr(info, "pipeline_tag", None) not in SUPPORTED_TRANSFORMERS_PIPELINES
+    ):
+        raise ValueError(
+            "transformers models must declare a feature-extraction or fill-mask pipeline"
+        )
     if "custom_code" in (info.tags or []):
         raise ValueError("community models must not require remote code")
     if not isinstance(info.sha, str) or re.fullmatch(r"[0-9a-f]{40}", info.sha) is None:

@@ -30,7 +30,8 @@ cd nepali-embedding-benchmark
 make sync
 ```
 
-Scaffold a registry entry for your public, ungated Sentence Transformers model:
+Scaffold a registry entry for your public, ungated Sentence Transformers model or compatible plain
+Transformers text encoder:
 
 ```bash
 uv run neb model scaffold owner/model
@@ -42,6 +43,9 @@ validate all registries:
 ```bash
 uv run neb validate
 ```
+
+Plain Transformers checkpoints must use the `feature-extraction` or `fill-mask` pipeline. Sentence
+Transformers loads these checkpoints with its automatic mean pooling.
 
 Use the printed model ID—not the Hugging Face ID—to evaluate every registered task. CUDA is
 recommended for larger or retrieval-heavy runs. CUDA evaluations load models in BF16 when the
@@ -223,7 +227,7 @@ neb export
 
 Contributions are welcome. You can:
 
-- propose a public Sentence Transformers model;
+- propose a public Sentence Transformers model or compatible plain Transformers text encoder;
 - submit community evaluation results;
 - add a pinned dataset and task definition;
 - improve adapters, tests, documentation, or the dashboard.
