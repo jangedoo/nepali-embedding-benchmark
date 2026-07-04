@@ -14,6 +14,7 @@ def info(revision: str, **overrides: object) -> SimpleNamespace:
         "private": False,
         "gated": False,
         "library_name": "sentence-transformers",
+        "pipeline_tag": None,
         "tags": [],
         "card_data": {"license": "apache-2.0"},
     }
@@ -62,6 +63,26 @@ def test_unknown_owner_appends_to_community_and_converts_mapping(
 
     raw = yaml.safe_load(path.read_text(encoding="utf-8"))
     assert [entry["id"] for entry in raw] == ["old", "new-owner--new-model"]
+
+
+@pytest.mark.parametrize("pipeline_tag", ["feature-extraction", "fill-mask"])
+def test_transformers_text_encoder_is_accepted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, pipeline_tag: str
+) -> None:
+    monkeypatch.setattr(
+        scaffold,
+        "_fetch_model_info",
+        lambda _: info(
+            "a" * 40,
+            library_name="transformers",
+            pipeline_tag=pipeline_tag,
+        ),
+    )
+
+    result = scaffold.scaffold_model("owner/model", tmp_path)
+
+    assert result.action == "created"
+    assert result.model_id == "owner--model"
 
 
 def test_exact_revision_is_noop_across_registry_files(
@@ -117,7 +138,7 @@ def test_malformed_or_empty_registry_is_rejected(
     [
         ({"private": True}, "public and ungated"),
         ({"gated": True}, "public and ungated"),
-        ({"library_name": "transformers"}, "sentence-transformers"),
+        ({"library_name": "pytorch"}, "sentence-transformers or transformers"),
         ({"tags": ["custom_code"]}, "remote code"),
     ],
 )
@@ -130,6 +151,36 @@ def test_model_policy_checks(
     monkeypatch.setattr(scaffold, "_fetch_model_info", lambda _: info("a" * 40, **overrides))
 
     with pytest.raises(ValueError, match=message):
+        scaffold.scaffold_model("owner/model", tmp_path)
+
+
+@pytest.mark.parametrize(
+    "pipeline_tag",
+    [
+        None,
+        "text-generation",
+        "text-classification",
+        "image-classification",
+        "automatic-speech-recognition",
+        "image-text-to-text",
+    ],
+)
+def test_transformers_unsupported_pipeline_is_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    pipeline_tag: str | None,
+) -> None:
+    monkeypatch.setattr(
+        scaffold,
+        "_fetch_model_info",
+        lambda _: info(
+            "a" * 40,
+            library_name="transformers",
+            pipeline_tag=pipeline_tag,
+        ),
+    )
+
+    with pytest.raises(ValueError, match="feature-extraction or fill-mask"):
         scaffold.scaffold_model("owner/model", tmp_path)
 
 
