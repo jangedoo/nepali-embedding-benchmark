@@ -45,6 +45,9 @@
   trust_remote_code: true
   languages:
   - multilingual
+  prompts:
+    query: "query: "
+    document: "passage: "
   base_model: intfloat/multilingual-e5-small
   base_model_revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
   homepage: https://huggingface.co/jangedoo/multilingual-e5-small-pruned
@@ -67,14 +70,3 @@
   - ne
   excluded_base_model: google/embeddinggemma-300m
   homepage: https://huggingface.co/jangedoo/embeddinggemma-300m-ne-pruned
-  notes: The gated base model is provenance-only and is not in the initial evaluation
-    queue.
-- id: sanolm-v1-base
-  display_name: sanolm-v1-base
-  hf_id: jangedoo/sanolm-v1-base
-  revision: c7d1a3bba92d38fe07b7df59892fbd54e7324a8e
-  trust_remote_code: false
-  prompts: {}
-  languages: []
-  license: unknown
-  homepage: https://huggingface.co/jangedoo/sanolm-v1-base
