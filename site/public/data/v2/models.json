@@ -268,8 +268,8 @@
       "notes": null,
       "parameter_count": 87906048,
       "prompts": {
-        "document": null,
-        "query": null
+        "document": "passage: ",
+        "query": "query: "
       },
       "revision": "696e4b64a2e33f6ffa036d24a666a16fd2280556",
       "trust_remote_code": true,
@@ -309,7 +309,7 @@
         "ne"
       ],
       "license": "unknown",
-      "notes": "The gated base model is provenance-only and is not in the initial evaluation queue.",
+      "notes": null,
       "parameter_count": 127908864,
       "prompts": {
         "document": null,
@@ -318,26 +318,6 @@
       "revision": "4cc427f24b121ad66695ef2b45427ee6ea166907",
       "trust_remote_code": true,
       "vocab_size": 262145
-    },
-    {
-      "base_model": null,
-      "base_model_revision": null,
-      "display_name": "sanolm-v1-base",
-      "excluded_base_model": null,
-      "hf_id": "jangedoo/sanolm-v1-base",
-      "homepage": "https://huggingface.co/jangedoo/sanolm-v1-base",
-      "id": "sanolm-v1-base",
-      "languages": [],
-      "license": "unknown",
-      "notes": null,
-      "parameter_count": 48775680,
-      "prompts": {
-        "document": null,
-        "query": null
-      },
-      "revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "trust_remote_code": false,
-      "vocab_size": 42000
     },
     {
       "base_model": null,

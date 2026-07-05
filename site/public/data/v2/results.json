@@ -212,25 +212,6 @@
     {
       "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
       "metrics": {
-        "accuracy": 0.06878306878306878,
-        "f1": 0.03865503203564669,
-        "precision": 0.03313971321217698,
-        "recall": 0.06878306878306878
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/en-ne-parallel-v2/results/en-ne.json",
-      "result_sha256": "a332bed5da2b666ca9b79c5cd44d83d7ea01f3a5e5616f38df18bb8634a69265",
-      "status": "verified",
-      "task_id": "en-ne-parallel",
-      "task_version": 2,
-      "view_id": "en-ne",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
-      "metrics": {
         "accuracy": 0.005291005291005291,
         "f1": 5.628729032984352e-05,
         "precision": 2.8294145941204763e-05,
@@ -512,25 +493,6 @@
       "task_version": 2,
       "view_id": "ne-en",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
-      "metrics": {
-        "accuracy": 0.06349206349206349,
-        "f1": 0.05181978515311848,
-        "precision": 0.049107142857142856,
-        "recall": 0.06349206349206349
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/en-ne-parallel-v2/results/ne-en.json",
-      "result_sha256": "84766e1a3a8dea497f62b571657f083b6709c5fb3f701f82f780909d187396a4",
-      "status": "verified",
-      "task_id": "en-ne-parallel",
-      "task_version": 2,
-      "view_id": "ne-en",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
@@ -838,27 +800,6 @@
       "task_version": 2,
       "view_id": "arguana",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.16,
-        "map_at_10": 0.08352,
-        "mrr_at_10": 0.08452380952380953,
-        "ndcg_at_10": 0.10226,
-        "precision_at_10": 0.016,
-        "recall_at_10": 0.16
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/arguana.json",
-      "result_sha256": "f2671abf857bdc35f63c42b4c671e9cce5b4f77f47c62ad4ca9665dcb0b8de40",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "arguana",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -1178,27 +1119,6 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
-        "hit_rate_at_10": 0.02,
-        "map_at_10": 0.00067,
-        "mrr_at_10": 0.002,
-        "ndcg_at_10": 0.00271,
-        "precision_at_10": 0.002,
-        "recall_at_10": 0.00667
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/climatefever.json",
-      "result_sha256": "4275f63cd6693d488f2fa08b4e1335978328494ad5429bce6d8c1f5e5efd27ae",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "climatefever",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
         "hit_rate_at_10": 0.04,
         "map_at_10": 0.00229,
         "mrr_at_10": 0.009523809523809523,
@@ -1510,27 +1430,6 @@
       "task_version": 2,
       "view_id": "dbpedia",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.38,
-        "map_at_10": 0.02617,
-        "mrr_at_10": 0.19124603174603172,
-        "ndcg_at_10": 0.09332,
-        "precision_at_10": 0.074,
-        "recall_at_10": 0.04796
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/dbpedia.json",
-      "result_sha256": "cda67cc3a604df748c002165223286422cd4e4cc1c686421691708f07a0fcc38",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "dbpedia",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -1851,27 +1750,6 @@
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
         "hit_rate_at_10": 0.04,
-        "map_at_10": 0.01333,
-        "mrr_at_10": 0.013333333333333332,
-        "ndcg_at_10": 0.01974,
-        "precision_at_10": 0.004,
-        "recall_at_10": 0.04
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/fever.json",
-      "result_sha256": "2065b945b0fb4425790e76a02737f67d6850f5a92bc8f5746cd8510fa2e27398",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "fever",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.04,
         "map_at_10": 0.00583,
         "mrr_at_10": 0.005833333333333333,
         "ndcg_at_10": 0.01343,
@@ -2182,27 +2060,6 @@
       "task_version": 2,
       "view_id": "fiqa2018",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.08,
-        "map_at_10": 0.0098,
-        "mrr_at_10": 0.03,
-        "ndcg_at_10": 0.01919,
-        "precision_at_10": 0.008,
-        "recall_at_10": 0.02733
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/fiqa2018.json",
-      "result_sha256": "ff0499b4732990584bfbef6145256436c8a9d2caa68deee989742f78950fd8c3",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "fiqa2018",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -2522,27 +2379,6 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
-        "hit_rate_at_10": 0.2,
-        "map_at_10": 0.03111,
-        "mrr_at_10": 0.0565,
-        "ndcg_at_10": 0.05871,
-        "precision_at_10": 0.022,
-        "recall_at_10": 0.11
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/hotpotqa.json",
-      "result_sha256": "b58c07fb5ff26b4ed93e799ac8a9c19ed0479c484c34df9455c6a9c78d96f696",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "hotpotqa",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
         "hit_rate_at_10": 0.12,
         "map_at_10": 0.02567,
         "mrr_at_10": 0.051333333333333335,
@@ -2858,27 +2694,6 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
-        "hit_rate_at_10": 0.24,
-        "map_at_10": 0.10819,
-        "mrr_at_10": 0.1081904761904762,
-        "ndcg_at_10": 0.13942,
-        "precision_at_10": 0.024,
-        "recall_at_10": 0.24
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/msmarco.json",
-      "result_sha256": "4c04d9ecc929e417482d7b81cb05dcea82ed6b9c6d323cdb675f64a0f7a3cee1",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "msmarco",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
         "hit_rate_at_10": 0.16,
         "map_at_10": 0.07222,
         "mrr_at_10": 0.07222222222222223,
@@ -3190,27 +3005,6 @@
       "task_version": 2,
       "view_id": "nfcorpus",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.1,
-        "map_at_10": 0.00082,
-        "mrr_at_10": 0.05333333333333333,
-        "ndcg_at_10": 0.0302,
-        "precision_at_10": 0.028,
-        "recall_at_10": 0.00144
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/nfcorpus.json",
-      "result_sha256": "6b7b6a2c663bda96144bb021002b93fcb264a8481308d5a630625b29f0d76243",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "nfcorpus",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -3531,27 +3325,6 @@
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
         "hit_rate_at_10": 0.06,
-        "map_at_10": 0.035,
-        "mrr_at_10": 0.035,
-        "ndcg_at_10": 0.04123,
-        "precision_at_10": 0.006,
-        "recall_at_10": 0.06
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/nq.json",
-      "result_sha256": "b5944da547d21e388cab594f8da6ae7fa8e966d59f05390a3990ccedbaea0077",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "nq",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.06,
         "map_at_10": 0.01175,
         "mrr_at_10": 0.011746031746031744,
         "ndcg_at_10": 0.02269,
@@ -3862,27 +3635,6 @@
       "task_version": 2,
       "view_id": "quoraretrieval",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.62,
-        "map_at_10": 0.45225,
-        "mrr_at_10": 0.47985714285714287,
-        "ndcg_at_10": 0.4866,
-        "precision_at_10": 0.068,
-        "recall_at_10": 0.558
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/quoraretrieval.json",
-      "result_sha256": "279adeed7a0cbe0eb1b5db7cb7f7ff0fd7363a69a9a43bdb4a3daf32b49e799c",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "quoraretrieval",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -4202,27 +3954,6 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
-        "hit_rate_at_10": 0.08,
-        "map_at_10": 0.00657,
-        "mrr_at_10": 0.032857142857142856,
-        "ndcg_at_10": 0.01485,
-        "precision_at_10": 0.008,
-        "recall_at_10": 0.016
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/scidocs.json",
-      "result_sha256": "9c6c5ca25d5ce476f816dcd8486e35ac1279b99fe793dff4542e1bce7edc336e",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "scidocs",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
         "hit_rate_at_10": 0.04,
         "map_at_10": 0.006,
         "mrr_at_10": 0.023333333333333334,
@@ -4534,27 +4265,6 @@
       "task_version": 2,
       "view_id": "scifact",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
-        "hit_rate_at_10": 0.08,
-        "map_at_10": 0.03433,
-        "mrr_at_10": 0.037333333333333336,
-        "ndcg_at_10": 0.04276,
-        "precision_at_10": 0.008,
-        "recall_at_10": 0.065
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/scifact.json",
-      "result_sha256": "c5e97b037e2885cf210de20d73ea068c68e8a1280321a0533421e9a2b49d159e",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "scifact",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
@@ -4874,27 +4584,6 @@
     {
       "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
       "metrics": {
-        "hit_rate_at_10": 0.30612,
-        "map_at_10": 0.00755,
-        "mrr_at_10": 0.10209750566893423,
-        "ndcg_at_10": 0.04187,
-        "precision_at_10": 0.04082,
-        "recall_at_10": 0.02176
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nanobeir-ne-v2/results/touche2020.json",
-      "result_sha256": "360750ad97b99d5b1c375a4ba13cf489d0df9009130a651eb7d6f7c64ece747d",
-      "status": "verified",
-      "task_id": "nanobeir-ne",
-      "task_version": 2,
-      "view_id": "touche2020",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
-      "metrics": {
         "hit_rate_at_10": 0.38776,
         "map_at_10": 0.01224,
         "mrr_at_10": 0.14843699384515713,
@@ -5184,25 +4873,6 @@
       "task_version": 2,
       "view_id": "hard-negatives",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
-      "metrics": {
-        "hit_rate_at_1": 0.24,
-        "hit_rate_at_3": 0.7075,
-        "mrr_at_5": 0.5047916666666666,
-        "ndcg_at_5": 0.6278727902543308
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/nepali-hard-negatives-v2/results/hard-negatives.json",
-      "result_sha256": "34a3fef164220a1b150522779623a78f0c3fc62c126bcc9d6441e7ea94cd8589",
-      "status": "verified",
-      "task_id": "nepali-hard-negatives",
-      "task_version": 2,
-      "view_id": "hard-negatives",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
@@ -5514,27 +5184,6 @@
     {
       "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
       "metrics": {
-        "cosine_accuracy": 1.0,
-        "cosine_ap": 1.0,
-        "cosine_f1": 1.0,
-        "cosine_precision": 1.0,
-        "cosine_recall": 1.0,
-        "cosine_roc_auc": 1.0
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/paraphrase-nepali-v2/results/bilingual.json",
-      "result_sha256": "daa140b127bd26058044a7606a38b349dbe447cf34b76c6b4fa3e9faaeff5b40",
-      "status": "verified",
-      "task_id": "paraphrase-nepali",
-      "task_version": 2,
-      "view_id": "bilingual",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
-      "metrics": {
         "cosine_accuracy": 0.9117647058823529,
         "cosine_ap": 0.9215520494867095,
         "cosine_f1": 0.9473684210526315,
@@ -5806,23 +5455,6 @@
     {
       "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
       "metrics": {
-        "cosine_pearson": 0.12326538548481111,
-        "cosine_spearman": 0.12828331203744986
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/stsb-nepali-v2/results/en-ne.json",
-      "result_sha256": "b519a58ff01e1afdec003ee32400185a72dbb486d96c19299188b2da9dff767a",
-      "status": "verified",
-      "task_id": "stsb-nepali",
-      "task_version": 2,
-      "view_id": "en-ne",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
-      "metrics": {
         "cosine_pearson": 0.04134639267929532,
         "cosine_spearman": 0.03143958867494168
       },
@@ -6078,23 +5710,6 @@
     {
       "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
       "metrics": {
-        "cosine_pearson": 0.1314519937358765,
-        "cosine_spearman": 0.1358855869279478
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/stsb-nepali-v2/results/ne-en.json",
-      "result_sha256": "0e7c727fbbc09dd3a08c84131498b471b78faa68cf0f2af30f046d4cd8149b22",
-      "status": "verified",
-      "task_id": "stsb-nepali",
-      "task_version": 2,
-      "view_id": "ne-en",
-      "vocab_size": 42000
-    },
-    {
-      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
-      "metrics": {
         "cosine_pearson": 0.03156926878295181,
         "cosine_spearman": 0.021811495655729842
       },
@@ -6346,23 +5961,6 @@
       "task_version": 2,
       "view_id": "ne-ne",
       "vocab_size": 30522
-    },
-    {
-      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
-      "metrics": {
-        "cosine_pearson": 0.45235766402712557,
-        "cosine_spearman": 0.45274175220254753
-      },
-      "model_id": "sanolm-v1-base",
-      "model_revision": "c7d1a3bba92d38fe07b7df59892fbd54e7324a8e",
-      "parameter_count": 48775680,
-      "result_path": "results/verified/sanolm-v1-base/c7d1a3bba92d38fe07b7df59892fbd54e7324a8e/stsb-nepali-v2/results/ne-ne.json",
-      "result_sha256": "c530464fe35c77a97127f964477c5ccd57658d8e8e5e00e9023707c9aed75db2",
-      "status": "verified",
-      "task_id": "stsb-nepali",
-      "task_version": 2,
-      "view_id": "ne-ne",
-      "vocab_size": 42000
     },
     {
       "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
