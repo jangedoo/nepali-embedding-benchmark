@@ -8,7 +8,7 @@ version = "0.2.0"
 description = "NEB: a task-first Nepali embedding benchmark built on MTEB"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.15"
 authors = [{ name = "Sanjaya Subedi" }]
 dependencies = [
   "mteb==2.16.2",
