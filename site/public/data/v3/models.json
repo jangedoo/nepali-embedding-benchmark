@@ -2,6 +2,20 @@
   "models": [
     {
       "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T15:45:33.425912+00:00",
+      "is_latest": true,
+      "n_parameters": 237556224,
+      "name": "Yunika/sentence-transformer-nepali",
+      "repository": "Yunika/sentence-transformer-nepali",
+      "revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
         "BitextMining": "query: ",
         "Classification": "query: ",
         "PairClassification": "query: ",
@@ -10,7 +24,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T14:20:36.329659+00:00",
+      "evaluated_at": "2026-07-16T15:17:47.047323+00:00",
       "is_latest": true,
       "n_parameters": 117654272,
       "name": "intfloat/multilingual-e5-small",
@@ -24,7 +38,7 @@
         "query": ""
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T13:40:22.876413+00:00",
+      "evaluated_at": "2026-07-16T15:24:43.215681+00:00",
       "is_latest": true,
       "n_parameters": 22713216,
       "name": "jangedoo/all-miniLM-L6-v3-nepali",
@@ -38,7 +52,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T13:45:31.955658+00:00",
+      "evaluated_at": "2026-07-16T15:27:09.976914+00:00",
       "is_latest": true,
       "n_parameters": 22713216,
       "name": "jangedoo/all-miniLM-L6-v4-nepali",
@@ -58,6 +72,34 @@
       "name": "jangedoo/sanolm-v1",
       "repository": "jangedoo/sanolm-v1",
       "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T15:52:57.641114+00:00",
+      "is_latest": true,
+      "n_parameters": 237556224,
+      "name": "premmm/nepali-embedder-v1",
+      "repository": "premmm/nepali-embedder-v1",
+      "revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 1024,
+      "evaluated_at": "2026-07-16T16:01:42.140451+00:00",
+      "is_latest": true,
+      "n_parameters": 559890432,
+      "name": "universalml/Nepali_Embedding_Model",
+      "repository": "universalml/Nepali_Embedding_Model",
+      "revision": "b7a62f3a5c7967918f75f30f318d2eb6289b28d5",
       "status": "verified"
     }
   ],
