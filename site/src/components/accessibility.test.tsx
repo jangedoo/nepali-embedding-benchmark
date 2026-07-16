@@ -1,28 +1,21 @@
 // @vitest-environment jsdom
 
-import { render } from "@testing-library/react";
-import { axe } from "jest-axe";
+import "@testing-library/jest-dom/vitest";
 import React from "react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import CatalogExplorer from "./CatalogExplorer";
 
-import { Badge } from "./Badge";
+beforeEach(() => vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ schema_version: 3, counts: { tasks: 0, models: 0, results: 0 }, tasks: [], models: [], results: [] }) }))));
+expect.extend(toHaveNoViolations);
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
 
-describe("benchmark evidence", () => {
-  it("shows only the community evidence icon without accessibility violations", async () => {
-    const { container } = render(
-      <main>
-        <h1>Task ranking</h1>
-        <table>
-          <caption>Scores for one task view</caption>
-          <thead><tr><th>Model</th><th>Score</th></tr></thead>
-          <tbody><tr><th scope="row">Example</th><td><Badge status="verified" /><Badge status="community" /></td></tr></tbody>
-        </table>
-      </main>,
-    );
-    const report = await axe(container);
-    expect(report.violations).toHaveLength(0);
-    expect(container.querySelector("[aria-label='Verified result']")).toBeNull();
-    expect(container.querySelector("[aria-label='Community-contributed result']")).not.toBeNull();
-    expect(container.textContent).not.toContain("verified");
-  });
+it("has no obvious accessibility violations in an empty catalog", async () => {
+  const { container } = render(<CatalogExplorer mode="models" />);
+  await screen.findByText("No published model revisions yet.");
+  expect(await axe(container)).toHaveNoViolations();
 });

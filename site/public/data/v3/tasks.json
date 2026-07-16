@@ -1,0 +1,301 @@
+{
+  "schema_version": 3,
+  "tasks": [
+    {
+      "dataset": {
+        "name": "jangedoo/stsb_nepali",
+        "revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+        "url": "https://huggingface.co/datasets/jangedoo/stsb_nepali/tree/4bfcc74faa37875185b27a5dc64888f4711e833b"
+      },
+      "description": "STS-B in Nepali and both English–Nepali directions.",
+      "display_name": "STSBNepali",
+      "main_score": "cosine_spearman",
+      "name": "STSBNepali.v3",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "ne-ne"
+        },
+        {
+          "languages": [
+            "eng-Latn",
+            "nep-Deva"
+          ],
+          "name": "en-ne"
+        },
+        {
+          "languages": [
+            "nep-Deva",
+            "eng-Latn"
+          ],
+          "name": "ne-en"
+        }
+      ],
+      "type": "STS"
+    },
+    {
+      "dataset": {
+        "name": "jangedoo/NanoBEIR-ne",
+        "revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+        "url": "https://huggingface.co/datasets/jangedoo/NanoBEIR-ne/tree/dbe0a6befdfce448982392bd461ac5d16485e99e"
+      },
+      "description": "Thirteen separately reported Nepali NanoBEIR retrieval subsets.",
+      "display_name": "NanoBEIRNepaliRetrieval",
+      "main_score": "ndcg_at_10",
+      "name": "NanoBEIRNepaliRetrieval.v3",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "arguana"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "climatefever"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "dbpedia"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "fever"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "fiqa2018"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "hotpotqa"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "msmarco"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "nfcorpus"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "nq"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "quoraretrieval"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "scidocs"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "scifact"
+        },
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "touche2020"
+        }
+      ],
+      "type": "Retrieval"
+    },
+    {
+      "dataset": {
+        "name": "jangedoo/nepali-query-passage-hard-negatives-10k",
+        "revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+        "url": "https://huggingface.co/datasets/jangedoo/nepali-query-passage-hard-negatives-10k/tree/f92818df24ed4d95905ad928dbde18feb4aeb2fb"
+      },
+      "description": "Per-query reranking over one positive and isolated hard negatives.",
+      "display_name": "NepaliHardNegativesReranking",
+      "main_score": "hit_rate_at_1",
+      "name": "NepaliHardNegativesReranking.v3",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "hard-negatives"
+        }
+      ],
+      "type": "Reranking"
+    },
+    {
+      "dataset": {
+        "name": "jangedoo/paraphrase-nepali",
+        "revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+        "url": "https://huggingface.co/datasets/jangedoo/paraphrase-nepali/tree/b521e5ab755a301191c9118c6afc6889895f37bf"
+      },
+      "description": "Native pair classification for English–Nepali paraphrases.",
+      "display_name": "NepaliParaphraseClassification",
+      "main_score": "max_ap",
+      "name": "NepaliParaphraseClassification.v3",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "eng-Latn",
+            "nep-Deva"
+          ],
+          "name": "bilingual"
+        }
+      ],
+      "type": "PairClassification"
+    },
+    {
+      "dataset": {
+        "name": "jangedoo/en_ne_parallel_corpus",
+        "revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+        "url": "https://huggingface.co/datasets/jangedoo/en_ne_parallel_corpus/tree/e4c18f52adbb7dfa4a7aead58c69394b2f446ea6"
+      },
+      "description": "English→Nepali and Nepali→English bitext mining.",
+      "display_name": "EnglishNepaliBitextMining",
+      "main_score": "f1",
+      "name": "EnglishNepaliBitextMining.v3",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "eng-Latn",
+            "nep-Deva"
+          ],
+          "name": "en-ne"
+        },
+        {
+          "languages": [
+            "nep-Deva",
+            "eng-Latn"
+          ],
+          "name": "ne-en"
+        }
+      ],
+      "type": "BitextMining"
+    },
+    {
+      "dataset": {
+        "name": "mteb/nepali_news",
+        "revision": "1e5e6cd30972f05f0f21af38bd3a887714d41938",
+        "url": "https://huggingface.co/datasets/mteb/nepali_news/tree/1e5e6cd30972f05f0f21af38bd3a887714d41938"
+      },
+      "description": "A Nepali dataset for 7500 news articles This version corrects errors found in the original data. For details, see [pull request](https://github.com/embeddings-benchmark/mteb/pull/2900)",
+      "display_name": "NepaliNewsClassification",
+      "main_score": "accuracy",
+      "name": "NepaliNewsClassification.v2",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva"
+          ],
+          "name": "default"
+        }
+      ],
+      "type": "Classification"
+    },
+    {
+      "dataset": {
+        "name": "mteb/IndicGenBenchFloresBitextMining",
+        "revision": "07dcc23c08a2540ba37ebe1e487da9dc497cc15c",
+        "url": "https://huggingface.co/datasets/mteb/IndicGenBenchFloresBitextMining/tree/07dcc23c08a2540ba37ebe1e487da9dc497cc15c"
+      },
+      "description": "Flores-IN dataset is an extension of Flores dataset released as a part of the IndicGenBench by Google",
+      "display_name": "IndicGenBenchFloresBitextMining",
+      "main_score": "f1",
+      "name": "IndicGenBenchFloresBitextMining",
+      "splits": [
+        "validation",
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva",
+            "eng-Latn"
+          ],
+          "name": "nep-eng"
+        },
+        {
+          "languages": [
+            "eng-Latn",
+            "nep-Deva"
+          ],
+          "name": "eng-nep"
+        }
+      ],
+      "type": "BitextMining"
+    },
+    {
+      "dataset": {
+        "name": "mteb/NTREXBitextMining",
+        "revision": "66b8b27efc99658903127730575e9fa0cb9f075c",
+        "url": "https://huggingface.co/datasets/mteb/NTREXBitextMining/tree/66b8b27efc99658903127730575e9fa0cb9f075c"
+      },
+      "description": "NTREX is a News Test References dataset for Machine Translation Evaluation, covering translation from English into 128 languages. We select language pairs according to the M2M-100 language grouping strategy, resulting in 1916 directions.",
+      "display_name": "NTREXBitextMining",
+      "main_score": "f1",
+      "name": "NTREXBitextMining",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "eng-Latn",
+            "nep-Deva"
+          ],
+          "name": "eng_Latn-nep_Deva"
+        },
+        {
+          "languages": [
+            "nep-Deva",
+            "eng-Latn"
+          ],
+          "name": "nep_Deva-eng_Latn"
+        }
+      ],
+      "type": "BitextMining"
+    }
+  ]
+}

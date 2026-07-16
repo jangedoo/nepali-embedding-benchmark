@@ -4,16 +4,16 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nepali-embedding-benchmark"
-version = "0.2.0"
+version = "0.3.0"
 description = "NEB: a task-first Nepali embedding benchmark built on MTEB"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10,<3.15"
 authors = [{ name = "Sanjaya Subedi" }]
 dependencies = [
-  "mteb==2.16.2",
+  "mteb==2.18.3",
   "pydantic>=2.9,<3",
-  "PyYAML>=6.0,<7",
+  "pyyaml>=6,<7",
   "typer>=0.12,<1",
 ]
 
@@ -35,7 +35,7 @@ Repository = "https://github.com/jangedoo/nepali-embedding-benchmark"
 packages = ["src/neb"]
 
 [tool.hatch.build.targets.wheel.force-include]
-"registries" = "neb/registries"
+"registries/models" = "neb/registries/models"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,9 +1,0 @@
-id: qwen--qwen3-embedding-0.6b
-display_name: Qwen3-Embedding-0.6B
-hf_id: Qwen/Qwen3-Embedding-0.6B
-revision: 97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3
-trust_remote_code: false
-prompts: {}
-languages: []
-license: apache-2.0
-homepage: https://huggingface.co/Qwen/Qwen3-Embedding-0.6B

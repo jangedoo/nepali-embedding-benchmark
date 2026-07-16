@@ -1,0 +1,32 @@
+- hf_id: intfloat/multilingual-e5-small
+  revision: 614241f622f53c4eeff9890bdc4f31cfecc418b3
+  prompts: &e5_prompts
+    query: "query: "
+    document: "passage: "
+    STS: "query: "
+    Classification: "query: "
+    PairClassification: "query: "
+    BitextMining: "query: "
+
+- hf_id: jangedoo/multilingual-e5-small-pruned
+  revision: 696e4b64a2e33f6ffa036d24a666a16fd2280556
+  trust_remote_code: true
+  prompts: *e5_prompts
+
+- hf_id: jangedoo/multilingual-e5-small-ne-pruned
+  revision: 41f939dfa5deba829025dfff0dfa6e1ae7bbf580
+  trust_remote_code: true
+
+- hf_id: jangedoo/embeddinggemma-300m-pruned
+  revision: d24be95089e29dac2845a39d1decaf6cd8d88847
+  trust_remote_code: true
+
+- hf_id: jangedoo/embeddinggemma-300m-ne-pruned
+  revision: 4cc427f24b121ad66695ef2b45427ee6ea166907
+  trust_remote_code: true
+
+- hf_id: jangedoo/sanolm-v1
+  revision: cf6ab70bd1a95384477d2dcd1c7e28c378a024a0
+  prompts:
+    query: "query: "
+    document: "passage: "

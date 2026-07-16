@@ -1,269 +1,115 @@
 # NEB — Nepali Embedding Benchmark
 
-NEB helps you compare sentence-embedding models on Nepali and English–Nepali tasks. It provides a
-Python package, command-line interface, reproducible evaluation workflow, and static dashboard.
+NEB is a thin, task-first benchmark built on [MTEB 2.18.3](https://github.com/embeddings-benchmark/mteb/releases/tag/2.18.3). MTEB owns model loading, prompts, encoding, evaluation, metrics, caching, and `TaskResult` JSON. NEB supplies Nepali task adapters, fixed benchmark composition, evidence publication, static exports, and the dashboard.
 
-[Explore the published benchmark dashboard](https://jangedoo.github.io/nepali-embedding-benchmark/).
+NEB intentionally has no global score or overall model ranking. Compare models only inside a task, subset, split, and metric view. Partial task coverage is valid and remains visible.
 
-NEB is task-first: models are ranked within a specific task, subset, and metric. It does **not**
-combine unrelated scores into a global leaderboard.
+## Benchmark composition
 
-## What can I do with NEB?
+`neb.get_benchmark()` returns the MTEB benchmark `NEB(Nepali, v1)` with all benchmark aggregation disabled. It contains:
 
-- Explore model performance on Nepali similarity, retrieval, reranking, paraphrase, and bitext
-  tasks.
-- Run the same evaluations locally with immutable model and dataset revisions.
-- Compare two to five models without hiding missing results.
-- Consume versioned JSON or CSV data in another website or analysis.
-- Submit a public model or a reproducible community result.
+- `STSBNepali.v3`
+- `NanoBEIRNepaliRetrieval.v3`
+- `NepaliHardNegativesReranking.v3`
+- `NepaliParaphraseClassification.v3`
+- `EnglishNepaliBitextMining.v3`
+- `NepaliNewsClassification.v2`
+- `IndicGenBenchFloresBitextMining` (`nep-eng`, `eng-nep` only)
+- `NTREXBitextMining` (Nepali↔English only)
 
-NEB is built on MTEB 2.16.2 and Sentence Transformers.
+All dataset revisions are full Hugging Face commit SHAs. The five NEB-owned tasks use small pure transforms in `src/neb/adapters.py`; there is no task-manifest DSL.
 
-## Add and evaluate your own model
-
-You need Python 3.10 or newer, [`uv`](https://docs.astral.sh/uv/), and an internet connection for
-the first model or dataset download. Clone the repository and install its locked environment:
+## Install and verify
 
 ```bash
-git clone https://github.com/jangedoo/nepali-embedding-benchmark.git
-cd nepali-embedding-benchmark
 make sync
+make check
+make site-check
+make package
 ```
 
-Scaffold a registry entry for your public, ungated Sentence Transformers model or compatible plain
-Transformers text encoder:
+Pinned network contract tests are opt-in:
 
 ```bash
-uv run neb model scaffold owner/model
+make test-contracts
 ```
 
-The command prints the generated model ID and registry path. Inspect that YAML manifest, then
-validate all registries:
+## Evaluate a model
+
+By default NEB resolves the current Hugging Face Hub HEAD and records its exact 40-character
+commit SHA:
 
 ```bash
-uv run neb validate
-```
-
-Plain Transformers checkpoints must use the `feature-extraction` or `fill-mask` pipeline. Sentence
-Transformers loads these checkpoints with its automatic mean pooling.
-
-Use the printed model ID—not the Hugging Face ID—to evaluate every registered task. CUDA is
-recommended for larger or retrieval-heavy runs. CUDA evaluations load models in BF16 when the
-GPU supports it and FP16 otherwise:
-
-```bash
-uv run neb evaluate --model <generated-id> --device cuda --resume
-```
-
-Use `--dtype fp32`, `--dtype bf16`, or `--dtype fp16` to override automatic selection. If an
-evaluation still runs out of GPU memory, reduce the encoding batch size with `--batch-size`.
-
-To evaluate only part of the benchmark, repeat `--task` with one or more registered task IDs:
-
-```bash
-uv run neb evaluate \
-  --model <generated-id> \
-  --task stsb-nepali \
+neb run \
+  --model owner/model \
   --device cuda \
-  --resume
+  --batch-size 64 \
+  --task STSBNepali.v3
 ```
 
-Outputs are stored under `runs/`. `--resume` skips views that are already complete. Each task run
-contains MTEB-compatible result JSON, the exact model revision, runtime settings, effective
-prompts, dataset provenance, and result hashes.
+Pass `--revision 0123456789abcdef0123456789abcdef01234567` when a run must be pinned
+before resolution. `--task` is repeatable. Results resume with MTEB's `only-missing` behavior
+in `ResultCache(runs/)`. Optional `--dtype`, `--query-prompt`, and `--document-prompt` values
+are passed through the native model wrapper.
 
-Publish completed v2 runs as explicitly unverified community evidence:
+An existing local SentenceTransformer directory is also accepted:
 
 ```bash
-make publish-community MODEL=<generated-id>
+neb run --model ./checkpoints/my-model --device cuda --task STSBNepali.v3
 ```
 
-This copies the model's v2 runs into `results/community/` and regenerates the dashboard exports.
-Install dashboard dependencies once, then start the local dashboard to inspect the
-community-labeled results:
+NEB hashes the local directory contents into a deterministic `local-<sha256>` cache revision.
+Local results are useful for development and resume normally, but cannot be published as
+canonical evidence or exported to the dashboard. `--revision` and `--allow-remote-code` are not
+accepted for local paths.
 
-```bash
-make site-install
-make site-dev
-```
+Exact model behavior missing upstream is configured in `registries/models/*.yaml`, never in a
+Python preset map. Prompt keys follow MTEB directly: `query` and `document` select asymmetric
+roles, task types such as `STS` apply to symmetric task families, exact task names target one
+task, and compound keys such as `Retrieval-query` are most specific. Values are passed unchanged
+to the model loader. Native `passage` keys are not reinterpreted as `document`.
 
-Astro prints the local URL. To regenerate only the versioned files under
-`site/public/data/v2/`, run:
+`neb run` logs revision resolution, metadata and prompt sources, effective prompts, loader and
+runtime settings, and per-task MTEB prompt selection to stderr. Use `--log-level` to adjust the
+verbosity; the final machine-readable summary remains on stdout.
 
-```bash
-make export
-```
+Remote code is disabled by default. It can only be enabled with `--allow-remote-code` for an
+approved, exact `jangedoo/*` YAML override. CI never evaluates submitted weights or remote code.
 
-Scaffolding is revision-aware. Re-running it for the same Hugging Face ID and commit is an
-idempotent no-op. A different commit creates a revision-qualified model ID while preserving the
-old registration and results. If several revisions are registered, evaluation by Hugging Face ID
-is rejected as ambiguous; use one of the printed registry model IDs.
-
-Some reviewed `jangedoo/*` models contain custom model code and require an explicit
-`--allow-remote-code` evaluation flag. NEB never enables it implicitly.
-
-## Python API
-
-To inspect the benchmark from Python:
+The Python API exposes native MTEB objects:
 
 ```python
-from neb import get_models, get_tasks
+from neb import evaluate, get_benchmark, get_tasks, resolve_model
 
-for task in get_tasks():
-    print(task.id, [view.id for view in task.views])
-
-for model in get_models():
-    print(model.id, model.hf_id)
+benchmark = get_benchmark()       # mteb.Benchmark, aggregations=[]
+tasks = get_tasks()               # list[mteb.AbsTask]
+meta = resolve_model("owner/model")            # mteb.ModelMeta with resolved exact SHA
+result = evaluate(meta, tasks=[tasks[0]])        # mteb.ModelResult
 ```
 
-The equivalent evaluation API is:
+## Evidence lifecycle
 
-```python
-from neb import evaluate
-from neb.schemas import RuntimeSettings
-
-run_directories = evaluate(
-    "multilingual-e5-small",
-    tasks=["stsb-nepali"],
-    runtime=RuntimeSettings(device="cpu", batch_size=32, resume=True),
-)
-```
-
-## Understand the results
-
-Always compare scores from the same task view and metric. For example, an NDCG@10 retrieval score
-and a Spearman correlation score answer different questions and must not be averaged.
-
-NEB currently includes:
-
-| Task | Views | Primary metric |
-| --- | --- | --- |
-| STS-B Nepali | Nepali–Nepali, English–Nepali, Nepali–English | Cosine Spearman |
-| Nepali hard-negative reranking | One explicit-positive candidate set | Hit rate@1 |
-| NanoBEIR Nepali | 13 separately reported retrieval subsets | NDCG@10 |
-| Nepali paraphrase classification | One bilingual view | Cosine average precision |
-| English–Nepali parallel corpus | English→Nepali and Nepali→English | F1 |
-
-Community results carry a yellow evidence icon; verified results are intentionally unmarked:
-
-- **Verified** means a maintainer ran the pinned model and dataset in the pinned environment. It is
-  not a claim about training-data contamination.
-- **Community** means the submission passed schema, revision, range, and hash checks but was not
-  rerun by a maintainer.
-
-When both exist for the same model revision and task view, the dashboard shows the verified result
-by default. Missing results remain visible as missing coverage.
-
-## Use the dashboard locally
-
-Node.js 22.12 or newer is required only for dashboard development.
+Evaluation caches contain untouched MTEB task JSON, `model_meta.json`, `run_settings.jsonl`, and adjacent `.json.sha256` integrity files. Publish a cache or individual task file with:
 
 ```bash
-make site-install
-make site-dev
+neb results publish runs --status community
+neb results publish runs --status verified
 ```
 
-Open the local URL printed by Astro. The dashboard provides task rankings with all metrics visible
-by default, per-view metric selection, model search, coverage, and side-by-side comparison for two
-to five models. The comparison view shows selected metrics as compact per-model cells and provides
-global dataset and per-dataset metric filters, all selected by default. Model sizes are measured
-during evaluation and remain `unknown` until results are published.
+Canonical caches live below `results/community/` and `results/verified/`. Community evidence is explicitly unverified. Verified evidence takes precedence per model revision, task, split, and subset; it never relabels unrelated community coverage. Existing canonical task files may gain missing splits or subsets, but conflicting scores are rejected.
 
-To build the production site:
+Maintainer-verified evidence is CODEOWNERS-protected. Real scores require the maintainer's local GPU environment and must never be fabricated.
 
-```bash
-make site-build
-```
+## Static dashboard contract
 
-For a GitHub Pages project subpath:
-
-```bash
-make site-build BASE_PATH=/nepali-embedding-benchmark/
-```
-
-## Use the exported data
-
-Run `make export` to regenerate the public, versioned artifacts from canonical registries and
-results:
+Run `make export` after canonical evidence changes. This generates, but should never be hand-edited:
 
 ```text
-/data/v2/catalog.json
-/data/v2/models.json
-/data/v2/tasks.json
-/data/v2/results.json
-/data/v2/results.csv
+site/public/data/v3/catalog.json
+site/public/data/v3/models.json
+site/public/data/v3/tasks.json
+site/public/data/v3/results.json
+site/public/data/v3/results.csv
 ```
 
-These files are suitable for notebooks, plots, static websites, and Jekyll data visualizations.
-JSON contains one result per model/task/view with a metric map; CSV is long-form with one row per
-metric and an `is_primary` column.
-Generated files under `site/public/data/v2/` should not be edited by hand.
-
-## Common commands
-
-```bash
-make help            # List all development commands.
-make check           # Lint, test, and validate the Python project.
-make queue           # Show model/task pairs missing verified results.
-make publish-verified MODEL=all-minilm-l6-v2-nepali
-                      # Publish this model's runs and refresh dashboard data.
-make site-check      # Test, build, and audit the dashboard.
-make test-contracts  # Check live pinned Hugging Face dataset contracts.
-make package         # Build the Python source distribution and wheel.
-```
-
-The main CLI commands are:
-
-```text
-neb validate
-neb model scaffold <hugging-face-id>
-neb evaluate --model <id> [--task <id>] --resume
-neb queue
-neb results publish <run-directory> --status community|verified
-neb export
-```
-
-## Contribute
-
-Contributions are welcome. You can:
-
-- propose a public Sentence Transformers model or compatible plain Transformers text encoder;
-- submit community evaluation results;
-- add a pinned dataset and task definition;
-- improve adapters, tests, documentation, or the dashboard.
-
-Start with [CONTRIBUTING.md](CONTRIBUTING.md). It explains model requirements, result publication,
-verified-result policy, dataset versioning, and the remote-code boundary. Automated pull-request
-checks validate submissions without downloading submitted model weights.
-
-If you are using an AI coding agent in this repository, also read [AGENTS.md](AGENTS.md).
-
-## Reproducibility and scope
-
-- Every model and dataset is pinned to a full Hugging Face commit SHA.
-- Score-affecting task changes create a new task version.
-- Model-native prompts are used unless a manifest defines an override; effective prompts are
-  recorded in provenance.
-- Partial model coverage is allowed.
-- Unknown upstream metadata is shown as `unknown` rather than guessed.
-- NEB does not currently detect or filter training-data contamination.
-
-## Citation
-
-If you use NEB in research or evaluation, please cite:
-
-> Sanjaya Subedi. *NEB — Nepali Embedding Benchmark*. 2026.
-> https://github.com/jangedoo/nepali-embedding-benchmark
-
-```bibtex
-@software{subedi2026neb,
-  author = {Subedi, Sanjaya},
-  title = {NEB: Nepali Embedding Benchmark},
-  year = {2026},
-  url = {https://github.com/jangedoo/nepali-embedding-benchmark}
-}
-```
-
-## License
-
-NEB is licensed under Apache-2.0. Models and datasets retain their respective upstream licenses.
+The dashboard groups model revisions by Hugging Face repository, defaults to the most recently evaluated canonical revision, provides a global history toggle, links exact model and dataset revisions, and exposes full evidence details. Rankings are task-local and show the native main score before optional secondary metrics.

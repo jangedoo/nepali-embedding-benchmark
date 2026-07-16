@@ -1,0 +1,19 @@
+{
+  "models": [
+    {
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T07:30:39.825724+00:00",
+      "is_latest": true,
+      "n_parameters": 117653760,
+      "name": "jangedoo/sanolm-v1",
+      "repository": "jangedoo/sanolm-v1",
+      "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "status": "verified"
+    }
+  ],
+  "schema_version": 3
+}

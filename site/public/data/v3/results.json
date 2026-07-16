@@ -1,0 +1,109 @@
+{
+  "results": [
+    {
+      "dataset_name": "jangedoo/stsb_nepali",
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "evaluated_at": "2026-07-16T07:30:39.825724+00:00",
+      "languages": [
+        "eng-Latn",
+        "nep-Deva"
+      ],
+      "main_score": 0.672735,
+      "main_score_name": "cosine_spearman",
+      "metrics": {
+        "cosine_pearson": 0.68437,
+        "cosine_spearman": 0.672735,
+        "euclidean_pearson": 0.68102,
+        "euclidean_spearman": 0.672735,
+        "manhattan_pearson": 0.67839,
+        "manhattan_spearman": 0.669049,
+        "pearson": 0.68437,
+        "spearman": 0.672735
+      },
+      "model_name": "jangedoo/sanolm-v1",
+      "model_revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "mteb_version": "2.18.3",
+      "result_path": "results/verified/results/jangedoo__sanolm-v1/cf6ab70bd1a95384477d2dcd1c7e28c378a024a0/STSBNepali.v3.json",
+      "result_sha256": "2cacbdd7e07d4e8e96813c8467e5b457e138ba5cefff4415b89b334a14b499e5",
+      "split": "test",
+      "status": "verified",
+      "subset": "en-ne",
+      "task_name": "STSBNepali.v3",
+      "task_type": "STS"
+    },
+    {
+      "dataset_name": "jangedoo/stsb_nepali",
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "evaluated_at": "2026-07-16T07:30:39.825724+00:00",
+      "languages": [
+        "nep-Deva",
+        "eng-Latn"
+      ],
+      "main_score": 0.675742,
+      "main_score_name": "cosine_spearman",
+      "metrics": {
+        "cosine_pearson": 0.686607,
+        "cosine_spearman": 0.675742,
+        "euclidean_pearson": 0.683172,
+        "euclidean_spearman": 0.675742,
+        "manhattan_pearson": 0.682518,
+        "manhattan_spearman": 0.67443,
+        "pearson": 0.686607,
+        "spearman": 0.675742
+      },
+      "model_name": "jangedoo/sanolm-v1",
+      "model_revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "mteb_version": "2.18.3",
+      "result_path": "results/verified/results/jangedoo__sanolm-v1/cf6ab70bd1a95384477d2dcd1c7e28c378a024a0/STSBNepali.v3.json",
+      "result_sha256": "2cacbdd7e07d4e8e96813c8467e5b457e138ba5cefff4415b89b334a14b499e5",
+      "split": "test",
+      "status": "verified",
+      "subset": "ne-en",
+      "task_name": "STSBNepali.v3",
+      "task_type": "STS"
+    },
+    {
+      "dataset_name": "jangedoo/stsb_nepali",
+      "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "evaluated_at": "2026-07-16T07:30:39.825724+00:00",
+      "languages": [
+        "nep-Deva"
+      ],
+      "main_score": 0.796812,
+      "main_score_name": "cosine_spearman",
+      "metrics": {
+        "cosine_pearson": 0.795921,
+        "cosine_spearman": 0.796812,
+        "euclidean_pearson": 0.787026,
+        "euclidean_spearman": 0.796812,
+        "manhattan_pearson": 0.786619,
+        "manhattan_spearman": 0.796431,
+        "pearson": 0.795921,
+        "spearman": 0.796812
+      },
+      "model_name": "jangedoo/sanolm-v1",
+      "model_revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "mteb_version": "2.18.3",
+      "result_path": "results/verified/results/jangedoo__sanolm-v1/cf6ab70bd1a95384477d2dcd1c7e28c378a024a0/STSBNepali.v3.json",
+      "result_sha256": "2cacbdd7e07d4e8e96813c8467e5b457e138ba5cefff4415b89b334a14b499e5",
+      "split": "test",
+      "status": "verified",
+      "subset": "ne-ne",
+      "task_name": "STSBNepali.v3",
+      "task_type": "STS"
+    }
+  ],
+  "schema_version": 3
+}
