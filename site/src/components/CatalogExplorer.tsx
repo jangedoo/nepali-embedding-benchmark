@@ -8,6 +8,7 @@ const fmt = (value: number) => value.toFixed(4);
 const shortSha = (value: string) => value.slice(0, 8);
 const revisionUrl = (repository: string, revision: string) => `https://huggingface.co/${repository}/tree/${revision}`;
 const externalLinkProps = { target: "_blank", rel: "noreferrer" } as const;
+const metricCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 const dataBase = typeof __NEB_BASE__ === "undefined" ? "/" : __NEB_BASE__;
 
 export default function CatalogExplorer({ mode, compact = false }: { mode: Mode; compact?: boolean }) {
@@ -118,7 +119,7 @@ function TaskCatalog({ catalog, showOlder, historyControl, compact }: { catalog:
 
 function Ranking({ task, results, models, expanded }: { task: Task; results: Result[]; models: Model[]; expanded: boolean }) {
   const byKey = new Map(models.map((model) => [modelKey(model), model]));
-  const metrics = [...new Set(results.flatMap((result) => Object.keys(result.metrics)))];
+  const metrics = [...new Set(results.flatMap((result) => Object.keys(result.metrics)))].sort(metricCollator.compare);
   const visibleMetrics = expanded ? [task.main_score, ...metrics.filter((metric) => metric !== task.main_score)] : [task.main_score];
   const bestScores = Object.fromEntries(visibleMetrics.map((metric) => [metric, Math.max(...results.map((result) => result.metrics[metric]).filter((score) => score !== undefined))]));
   return <div className="table-wrap"><table className={`ranking-table${expanded ? " expanded-metrics" : ""}`}><thead><tr><th scope="col"><span className="sr-only">Rank</span>#</th><th scope="col">Model</th>{visibleMetrics.map((metric) => <th scope="col" className={metric === task.main_score ? "main-metric" : undefined} key={metric}>{metric}{metric === task.main_score && <span className="sr-only"> (main score)</span>}</th>)}</tr></thead>
@@ -295,7 +296,7 @@ function Comparison({ catalog, showOlder, historyControl, compact }: { catalog: 
 }
 
 function comparisonMetrics(catalog: Catalog, task: Task): string[] {
-  const metrics = [...new Set(catalog.results.filter((result) => result.task_name === task.name).flatMap((result) => Object.keys(result.metrics)))];
+  const metrics = [...new Set(catalog.results.filter((result) => result.task_name === task.name).flatMap((result) => Object.keys(result.metrics)))].sort(metricCollator.compare);
   return [task.main_score, ...metrics.filter((metric) => metric !== task.main_score)];
 }
 

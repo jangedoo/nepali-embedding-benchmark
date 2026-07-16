@@ -50,6 +50,23 @@ describe("CatalogExplorer", () => {
     expect(document.querySelectorAll(".ranking-table.expanded-metrics")).toHaveLength(2);
   });
 
+  it("sorts numbered metrics naturally while keeping the main score first", async () => {
+    const numericMetricsCatalog: Catalog = {
+      ...catalog,
+      results: catalog.results.map((result) => ({
+        ...result,
+        metrics: { ...result.metrics, mrr_at_1: .1, mrr_at_10: .3, mrr_at_2: .2 },
+      })),
+    };
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => numericMetricsCatalog })));
+    const { container } = render(<CatalogExplorer mode="tasks" />);
+
+    await screen.findByRole("heading", { name: "ne-ne" });
+    fireEvent.click(screen.getByRole("button", { name: "Show all metrics" }));
+    const headers = [...container.querySelector(".ranking-table")!.querySelectorAll("thead th")].map((header) => header.textContent?.trim());
+    expect(headers).toEqual(["Rank#", "Model", "cosine_spearman (main score)", "cosine_pearson", "mrr_at_1", "mrr_at_2", "mrr_at_10"]);
+  });
+
   it("distinguishes the main metric and the best score in every metric", async () => {
     render(<CatalogExplorer mode="tasks" />);
     await screen.findByRole("heading", { name: "ne-ne" });
