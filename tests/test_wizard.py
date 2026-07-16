@@ -24,6 +24,8 @@ class FakeUI:
         self.checkboxes = list(checkboxes)
         self.confirms = list(confirms)
         self.output: list[str] = []
+        self.text_defaults: dict[str, str] = {}
+        self.select_defaults: dict[str, Any] = {}
 
     def text(
         self,
@@ -33,6 +35,7 @@ class FakeUI:
         validate: Callable[[str], bool | str] | None = None,
         instruction: str | None = None,
     ) -> str:
+        self.text_defaults[message] = default
         value = self.texts.pop(0)
         if validate is not None:
             assert validate(value) is True
@@ -46,6 +49,7 @@ class FakeUI:
         default: Any = None,
         instruction: str | None = None,
     ) -> Any:
+        self.select_defaults[message] = default
         return self.selects.pop(0)
 
     def checkbox(
@@ -111,6 +115,9 @@ def test_collect_run_config_covers_task_and_runtime_options() -> None:
     assert config.document_prompt == "passage:"
     assert config.allow_remote_code is True
     assert config.log_level == "DEBUG"
+    assert ui.text_defaults["Batch size"] == "64"
+    assert ui.select_defaults["Execution device"] == "cuda"
+    assert ui.select_defaults["Model precision"] == "bf16"
     ui.assert_consumed()
 
 
@@ -120,8 +127,8 @@ def test_launch_wizard_runs_then_publishes_only_its_revision_and_exports(tmp_pat
     (root / "pyproject.toml").write_text("[project]\n", encoding="utf-8")
     cache = tmp_path / "runs"
     ui = FakeUI(
-        texts=["owner/model", "", "32", str(cache)],
-        selects=["choose", "cpu", None, "community"],
+        texts=["owner/model", "", "64", str(cache)],
+        selects=["choose", "cuda", "bf16", "community"],
         checkboxes=[["STSBNepali.v3"]],
         confirms=[False, True, False, True],
     )
@@ -144,9 +151,9 @@ def test_launch_wizard_runs_then_publishes_only_its_revision_and_exports(tmp_pat
         "owner/model",
         None,
         ["STSBNepali.v3"],
-        "cpu",
-        32,
-        None,
+        "cuda",
+        64,
+        "bf16",
         False,
         None,
         None,

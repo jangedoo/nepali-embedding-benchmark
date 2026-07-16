@@ -133,9 +133,9 @@ def run_command(
     task: Annotated[
         list[str] | None, typer.Option("--task", help="Repeat to select native task names")
     ] = None,
-    device: Annotated[str, typer.Option()] = "cpu",
-    batch_size: Annotated[int, typer.Option(min=1)] = 32,
-    dtype: Annotated[str | None, typer.Option(help="bf16, fp16, or fp32")] = None,
+    device: Annotated[str, typer.Option()] = "cuda",
+    batch_size: Annotated[int, typer.Option(min=1)] = 64,
+    dtype: Annotated[str | None, typer.Option(help="bf16, fp16, or fp32")] = "bf16",
     allow_remote_code: Annotated[
         bool,
         typer.Option("--allow-remote-code", help="Allow an approved exact jangedoo/* override"),

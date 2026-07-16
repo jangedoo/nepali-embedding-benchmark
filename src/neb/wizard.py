@@ -195,7 +195,7 @@ def _choose_device(ui: PromptUI) -> str:
             Choice("Apple Metal (MPS)", value="mps"),
             Choice("Other device…", value="custom"),
         ],
-        default="cpu",
+        default="cuda",
     )
     if selected != "custom":
         return str(selected)
@@ -243,7 +243,7 @@ def collect_run_config(ui: PromptUI, tasks: Sequence[Any]) -> RunConfig:
         revision = revision_value or None
 
     device = _choose_device(ui)
-    batch_size = int(ui.text("Batch size", default="32", validate=_positive_integer).strip())
+    batch_size = int(ui.text("Batch size", default="64", validate=_positive_integer).strip())
     dtype = ui.select(
         "Model precision",
         choices=[
@@ -252,7 +252,7 @@ def collect_run_config(ui: PromptUI, tasks: Sequence[Any]) -> RunConfig:
             Choice("float16", value="fp16"),
             Choice("float32", value="fp32"),
         ],
-        default=None,
+        default="bf16",
     )
     cache = Path(
         ui.text(

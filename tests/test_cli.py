@@ -22,6 +22,9 @@ def test_run_allows_omitted_revision_and_keeps_summary_on_stdout() -> None:
         )
     assert result.exit_code == 0
     assert evaluate.call_args.args[1] is None
+    assert evaluate.call_args.kwargs["device"] == "cuda"
+    assert evaluate.call_args.kwargs["batch_size"] == 64
+    assert evaluate.call_args.kwargs["dtype"] == "bf16"
     assert json.loads(result.stdout)["model_revision"] == "a" * 40
 
 
