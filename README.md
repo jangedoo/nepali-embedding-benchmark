@@ -1,25 +1,8 @@
 # NEB — Nepali Embedding Benchmark
 
-NEB is a thin, task-first benchmark built on [MTEB 2.18.3](https://github.com/embeddings-benchmark/mteb/releases/tag/2.18.3). MTEB owns model loading, prompts, encoding, evaluation, metrics, caching, and `TaskResult` JSON. NEB supplies Nepali task adapters, fixed benchmark composition, evidence publication, static exports, and the dashboard.
+NEB is a thin, task-first benchmark built on [MTEB](https://github.com/embeddings-benchmark/mteb/). NEB supplies Nepali task adapters, fixed benchmark composition, evidence publication, static exports, and the dashboard.
 
-NEB intentionally has no global score or overall model ranking. Compare models only inside a task, subset, split, and metric view. Partial task coverage is valid and remains visible.
-
-## Benchmark composition
-
-`neb.get_benchmark()` returns the MTEB benchmark `NEB(Nepali, v1)` with all benchmark aggregation disabled. It contains:
-
-- `STSBNepali.v3`
-- `NanoBEIRNepaliRetrieval.v4`
-- `NepaliHardNegativesRetrieval.v4`
-- `NepaliEcommerceRetrieval.v1`
-- `SanoIRGeneralRetrieval.v1` (15 domain subsets)
-- `NepaliParaphraseClassification.v3`
-- `EnglishNepaliBitextMining.v3`
-- `NepaliNewsClassification.v2`
-- `IndicGenBenchFloresBitextMining` (`nep-eng`, `eng-nep` only)
-- `NTREXBitextMining` (Nepali↔English only)
-
-All dataset revisions are full Hugging Face commit SHAs. The seven NEB-owned tasks use small pure transforms in `src/neb/adapters.py`; there is no task-manifest DSL. Retrieval tasks report only NDCG, MAP, MRR, recall, and hit rate at their configured cutoffs.
+You can find the leaderboard at [Nepali Embedding Benchmark](https://jangedoo.github.io/nepali-embedding-benchmark/)
 
 ## Install and verify
 
@@ -49,6 +32,9 @@ neb
 ```
 
 Use the explicit subcommands below for scripts, CI, and reproducible command history.
+
+Both interfaces default to CUDA, batch size 64, and bfloat16. Override these settings explicitly
+when evaluating on CPU, Apple Metal, or hardware without bfloat16 support.
 
 By default NEB resolves the current Hugging Face Hub HEAD and records its exact 40-character
 commit SHA:
@@ -121,12 +107,7 @@ cannot be relabeled with different evaluation settings:
 neb results publish runs --status verified --overwrite
 ```
 
-Maintainer-verified evidence is CODEOWNERS-protected. Real scores require the maintainer's local GPU environment and must never be fabricated.
-
-Superseded `NanoBEIRNepaliRetrieval.v3` and `NepaliHardNegativesReranking.v3` caches remain
-validation-supported as historical evidence, but are not active benchmark tasks or dashboard
-rows. Their scores are not relabeled under the new retrieval protocols; the v4 tasks require
-fresh evaluation.
+Maintainer-verified evidence is CODEOWNERS-protected.
 
 ## Static dashboard contract
 
