@@ -2,6 +2,24 @@
   "models": [
     {
       "effective_prompts": {
+        "BitextMining": "query: ",
+        "Classification": "query: ",
+        "PairClassification": "query: ",
+        "STS": "query: ",
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T14:20:36.329659+00:00",
+      "is_latest": true,
+      "n_parameters": 117654272,
+      "name": "intfloat/multilingual-e5-small",
+      "repository": "intfloat/multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
         "document": "",
         "query": ""
       },
@@ -34,7 +52,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T13:30:37.130670+00:00",
+      "evaluated_at": "2026-07-16T15:08:29.301389+00:00",
       "is_latest": true,
       "n_parameters": 117653760,
       "name": "jangedoo/sanolm-v1",

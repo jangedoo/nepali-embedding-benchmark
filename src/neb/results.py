@@ -12,7 +12,7 @@ from mteb.results import TaskResult
 
 from neb.evaluation import MTEB_VERSION, sha256_file, write_checksum
 from neb.schemas import EvidenceRecord, VerificationStatus
-from neb.tasks import get_tasks
+from neb.tasks import get_result_tasks
 
 
 def _checksum_path(path: Path) -> Path:
@@ -39,7 +39,7 @@ def _load_json(path: Path) -> Any:
 
 
 def _tasks_by_name() -> dict[str, Any]:
-    return {task.metadata.name: task for task in get_tasks()}
+    return {task.metadata.name: task for task in get_result_tasks()}
 
 
 def _validate_model_meta(path: Path) -> dict[str, Any]:

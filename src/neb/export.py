@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -12,7 +13,7 @@ from neb.tasks import get_tasks
 
 
 def _display_name(name: str) -> str:
-    return name.removesuffix(".v3").replace(".v2", "").replace("_", " ")
+    return re.sub(r"\.v\d+$", "", name).replace("_", " ")
 
 
 def _task_payload(task: Any) -> dict[str, Any]:
@@ -44,7 +45,8 @@ def export_static(root: Path, output: Path | None = None) -> list[Path]:
     destination = output or root / "site/public/data/v3"
     destination.mkdir(parents=True, exist_ok=True)
     tasks = [_task_payload(task) for task in get_tasks()]
-    records = discover_results(root)
+    active_task_names = {task["name"] for task in tasks}
+    records = [record for record in discover_results(root) if record.task_name in active_task_names]
     results = [record.model_dump(mode="json", exclude={"model_metadata"}) for record in records]
 
     models: dict[tuple[str, str], dict[str, Any]] = {}
@@ -119,7 +121,7 @@ def export_static(root: Path, output: Path | None = None) -> list[Path]:
         "result_sha256",
     ]
     with csv_path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for record in records:
             base = record.model_dump(

@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import importlib.metadata
 import logging
+import re
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
@@ -40,7 +41,7 @@ def _select_tasks(names: Sequence[str] | None) -> list[mteb.AbsTask]:
     if not names:
         return tasks
     by_name = {task.metadata.name: task for task in tasks}
-    aliases = {task.metadata.name.removesuffix(".v3"): task for task in tasks}
+    aliases = {re.sub(r"\.v\d+$", "", task.metadata.name): task for task in tasks}
     selected = []
     for name in names:
         task = by_name.get(name) or aliases.get(name)

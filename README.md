@@ -9,15 +9,17 @@ NEB intentionally has no global score or overall model ranking. Compare models o
 `neb.get_benchmark()` returns the MTEB benchmark `NEB(Nepali, v1)` with all benchmark aggregation disabled. It contains:
 
 - `STSBNepali.v3`
-- `NanoBEIRNepaliRetrieval.v3`
-- `NepaliHardNegativesReranking.v3`
+- `NanoBEIRNepaliRetrieval.v4`
+- `NepaliHardNegativesRetrieval.v4`
+- `NepaliEcommerceRetrieval.v1`
+- `SanoIRGeneralRetrieval.v1` (15 domain subsets)
 - `NepaliParaphraseClassification.v3`
 - `EnglishNepaliBitextMining.v3`
 - `NepaliNewsClassification.v2`
 - `IndicGenBenchFloresBitextMining` (`nep-eng`, `eng-nep` only)
 - `NTREXBitextMining` (Nepali↔English only)
 
-All dataset revisions are full Hugging Face commit SHAs. The five NEB-owned tasks use small pure transforms in `src/neb/adapters.py`; there is no task-manifest DSL.
+All dataset revisions are full Hugging Face commit SHAs. The seven NEB-owned tasks use small pure transforms in `src/neb/adapters.py`; there is no task-manifest DSL. Retrieval tasks report only NDCG, MAP, MRR, recall, and hit rate at their configured cutoffs.
 
 ## Install and verify
 
@@ -108,6 +110,11 @@ neb results publish runs --status verified --overwrite
 ```
 
 Maintainer-verified evidence is CODEOWNERS-protected. Real scores require the maintainer's local GPU environment and must never be fabricated.
+
+Superseded `NanoBEIRNepaliRetrieval.v3` and `NepaliHardNegativesReranking.v3` caches remain
+validation-supported as historical evidence, but are not active benchmark tasks or dashboard
+rows. Their scores are not relabeled under the new retrieval protocols; the v4 tasks require
+fresh evaluation.
 
 ## Static dashboard contract
 

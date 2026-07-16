@@ -13,7 +13,7 @@ def test_empty_v3_export_has_tasks_and_no_fabricated_scores(tmp_path: Path) -> N
     paths = export_static(tmp_path, tmp_path / "data")
     catalog = json.loads((tmp_path / "data/catalog.json").read_text(encoding="utf-8"))
     assert catalog["schema_version"] == 3
-    assert catalog["counts"] == {"tasks": 8, "models": 0, "results": 0}
+    assert catalog["counts"] == {"tasks": 10, "models": 0, "results": 0}
     assert len(paths) == 5
 
 

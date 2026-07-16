@@ -44,6 +44,6 @@
     "experiment_kwargs": null,
     "output_dtypes": null,
     "extra_requirements_groups": null,
-    "loader": "SentenceTransformerEncoderWrapper",
+    "loader": "_load_sentence_transformer",
     "is_cross_encoder": false
 }

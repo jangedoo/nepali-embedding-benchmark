@@ -1,9 +1,11 @@
 import pytest
 
 from neb.adapters import (
+    normalize_hard_negative_retrieval_rows,
     normalize_hard_negative_rows,
     normalize_nanobeir,
     normalize_parallel_direction,
+    normalize_row_retrieval,
     normalize_sts_rows,
 )
 
@@ -41,6 +43,31 @@ def test_hard_negative_candidates_are_isolated_per_query() -> None:
     )
     assert set(values["top_ranked"]["q0"]).isdisjoint(values["top_ranked"]["q1"])
     assert values["relevant_docs"]["q0"] == {"q0:positive": 1}
+
+
+def test_hard_negatives_are_pooled_for_retrieval() -> None:
+    values = normalize_hard_negative_retrieval_rows(
+        [
+            {"query": "q1", "positive": "p1", "hard_negative_passages": ["n1"]},
+            {"query": "q2", "positive": "p2", "hard_negative_passages": ["n2", "n3"]},
+        ]
+    )
+    assert values["top_ranked"] is None
+    assert {row["text"] for row in values["corpus"]} == {"p1", "n1", "p2", "n2", "n3"}
+
+
+def test_row_retrieval_merges_normalized_duplicate_queries_and_documents() -> None:
+    values = normalize_row_retrieval(
+        [
+            {"query": " Same query! ", "positive": "p1", "negative": "shared"},
+            {"query": "same query", "positive": "p2", "negative": "shared"},
+        ],
+        positive_column="positive",
+        negative_columns=("negative",),
+    )
+    assert len(values["queries"]) == 1
+    assert len(values["corpus"]) == 3
+    assert len(values["relevant_docs"]["q0"]) == 2
 
 
 def test_hard_negative_positive_leakage_is_rejected() -> None:

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+import unicodedata
 from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from typing import Any, Literal
@@ -115,6 +117,96 @@ def normalize_hard_negative_rows(
         "relevant_docs": relevant_docs,
         "top_ranked": top_ranked,
     }
+
+
+def _query_key(value: str) -> str:
+    """Match duplicate queries without changing the text sent to a model."""
+    normalized = unicodedata.normalize("NFKC", value).casefold()
+    return " ".join(re.sub(r"[^\w\s]", " ", normalized).split())
+
+
+def normalize_row_retrieval(
+    rows: Iterable[Mapping[str, Any]],
+    *,
+    positive_column: str,
+    negative_columns: tuple[str, ...] = (),
+    negative_list_column: str | None = None,
+) -> dict[str, Any]:
+    """Pool row-wise positives and negatives into one retrieval collection.
+
+    Exact document duplicates share an id. Normalized duplicate queries also
+    share an id and accumulate every associated positive relevance judgment.
+    """
+    corpus: list[dict[str, str]] = []
+    queries: list[dict[str, str]] = []
+    relevant_docs: dict[str, dict[str, int]] = {}
+    document_ids: dict[str, str] = {}
+    query_ids: dict[str, str] = {}
+
+    def document_id(text: str) -> str:
+        if text not in document_ids:
+            identifier = f"d{len(document_ids)}"
+            document_ids[text] = identifier
+            corpus.append({"id": identifier, "title": "", "text": text})
+        return document_ids[text]
+
+    if negative_columns and negative_list_column:
+        raise ValueError("use scalar or list-valued negative columns, not both")
+    required = {"query", positive_column, *negative_columns}
+    if negative_list_column:
+        required.add(negative_list_column)
+    for index, row in enumerate(rows):
+        if not required <= row.keys():
+            missing = ", ".join(sorted(required - row.keys()))
+            raise ValueError(f"retrieval row {index} is missing required columns: {missing}")
+        query = str(row["query"]).strip()
+        positive = str(row[positive_column]).strip()
+        if not query or not positive:
+            raise ValueError(f"retrieval row {index} has an empty query or positive")
+
+        key = _query_key(query)
+        if not key:
+            raise ValueError(f"retrieval row {index} has no normalized query text")
+        query_id = query_ids.get(key)
+        if query_id is None:
+            query_id = f"q{len(query_ids)}"
+            query_ids[key] = query_id
+            queries.append({"id": query_id, "text": query})
+            relevant_docs[query_id] = {}
+        relevant_docs[query_id][document_id(positive)] = 1
+
+        negatives = [(column, row[column]) for column in negative_columns]
+        if negative_list_column:
+            negatives.extend(
+                (negative_list_column, value) for value in (row[negative_list_column] or [])
+            )
+        if negative_list_column and not negatives:
+            raise ValueError(f"retrieval row {index} has no candidates")
+        for column, value in negatives:
+            negative = str(value).strip()
+            if not negative:
+                raise ValueError(f"retrieval row {index} has an empty {column}")
+            document_id(negative)
+
+    if not queries:
+        raise ValueError("retrieval collection has no rows")
+    return {
+        "corpus": corpus,
+        "queries": queries,
+        "relevant_docs": relevant_docs,
+        "top_ranked": None,
+    }
+
+
+def normalize_hard_negative_retrieval_rows(
+    rows: Iterable[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Pool list-valued hard negatives for full-corpus retrieval."""
+    return normalize_row_retrieval(
+        rows,
+        positive_column="positive",
+        negative_list_column="hard_negative_passages",
+    )
 
 
 def normalize_parallel_direction(
