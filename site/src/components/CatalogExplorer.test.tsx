@@ -28,6 +28,7 @@ expect.extend(toHaveNoViolations);
 beforeEach(() => vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => catalog }))));
 afterEach(() => {
   cleanup();
+  window.history.replaceState({}, "", "/");
   vi.unstubAllGlobals();
 });
 
@@ -82,6 +83,73 @@ describe("CatalogExplorer", () => {
     expect(evidence).toHaveTextContent("2.18.3");
     expect(evidence).toHaveTextContent("Effective prompts");
     expect(screen.getAllByRole("link", { name: "owner/model" })[0]).toHaveAttribute("href", expect.stringContaining("b".repeat(40)));
+    expect([...container.querySelectorAll<HTMLAnchorElement>('a[href^="http"]')].every((link) => link.target === "_blank" && link.rel === "noreferrer")).toBe(true);
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("prioritizes model specifications without a prominent latest-revision label", async () => {
+    render(<CatalogExplorer mode="models" />);
+
+    await screen.findByRole("heading", { name: "Models" });
+    expect(screen.queryByText("Published native MTEB evidence")).not.toBeInTheDocument();
+    expect(screen.queryByText("Latest canonical revision")).not.toBeInTheDocument();
+    expect(screen.getByText("Parameters")).toBeInTheDocument();
+    expect(screen.getByText("Embedding dimension")).toBeInTheDocument();
+    expect(screen.getByText("Coverage")).toBeInTheDocument();
+    expect(screen.getByText("2 / 2 task views")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText("Show older revisions"));
+    expect(screen.getByText("Historical revision")).toBeInTheDocument();
+  });
+
+  it("builds an accessible side-by-side comparison with explicit missing evidence", async () => {
+    const partialCatalog: Catalog = {
+      ...catalog,
+      results: catalog.results.filter((result) => !(result.model_revision === "a".repeat(40) && result.subset === "ne-en")),
+    };
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => partialCatalog })));
+    const { container } = render(<CatalogExplorer mode="compare" />);
+
+    await screen.findByRole("heading", { name: "Compare models" });
+    expect(screen.getByText("Choose a task, then compare up to five model revisions across every subset and split.")).toBeInTheDocument();
+    expect(screen.queryByText(/without constructing/i)).not.toBeInTheDocument();
+    expect(screen.getByText("Choose at least two model revisions")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText("Show older revisions"));
+    fireEvent.click(screen.getByRole("checkbox", { name: /owner\/model aaaaaaaa/ }));
+    fireEvent.click(screen.getByRole("checkbox", { name: /owner\/model bbbbbbbb/ }));
+
+    expect(await screen.findByRole("rowheader", { name: /ne-ne/ })).toBeInTheDocument();
+    expect(container.querySelector<HTMLDetailsElement>(".comparison-editor")?.open).toBe(true);
+    expect(screen.getByRole("rowheader", { name: /ne-en/ })).toBeInTheDocument();
+    expect(screen.getAllByRole("columnheader")).toHaveLength(3);
+    expect(screen.getByText("Missing result")).toBeInTheDocument();
+    expect(container.querySelectorAll(".metric-winner")).toHaveLength(1);
+    expect(screen.getAllByRole("img", { name: "Maintainer-verified result" })).toHaveLength(2);
+    expect(screen.getByRole("img", { name: "Community-contributed result" })).toBeInTheDocument();
+
+    fireEvent.click(container.querySelector(".metric-select summary")!);
+    fireEvent.click(screen.getByRole("checkbox", { name: "cosine_pearson" }));
+    expect(container.querySelectorAll("[data-metric='cosine_pearson']")).toHaveLength(3);
+
+    fireEvent.click(screen.getByRole("button", { name: /Result details for owner\/model bbbbbbbb on ne-ne test/ }));
+    expect(screen.getByRole("region", { name: "Result details for owner/model" })).toHaveTextContent("Maintainer verified");
+    expect(new URLSearchParams(window.location.search).get("models")).toBe(`owner/model@${"a".repeat(40)},owner/model@${"b".repeat(40)}`);
+    expect(new URLSearchParams(window.location.search).get("metrics")).toBe("cosine_pearson");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("restores a linked comparison and ignores unavailable metrics", async () => {
+    const oldKey = `owner/model@${"a".repeat(40)}`;
+    const newKey = `owner/model@${"b".repeat(40)}`;
+    const params = new URLSearchParams({ task: "STSBNepali.v3", models: `${oldKey},${newKey}`, metrics: "cosine_pearson,not_a_metric" });
+    window.history.replaceState({}, "", `/compare/?${params}`);
+    const { container } = render(<CatalogExplorer mode="compare" />);
+
+    expect(await screen.findByRole("rowheader", { name: /ne-ne/ })).toBeInTheDocument();
+    expect(container.querySelectorAll(".selected-model")).toHaveLength(2);
+    expect(screen.getByText("historical")).toBeInTheDocument();
+    expect(container.querySelectorAll("[data-metric='cosine_pearson']")).toHaveLength(4);
+    expect(new URLSearchParams(window.location.search).get("metrics")).toBe("cosine_pearson");
   });
 });

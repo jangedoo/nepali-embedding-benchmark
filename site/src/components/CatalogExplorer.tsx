@@ -7,6 +7,7 @@ type Mode = "tasks" | "models" | "compare";
 const fmt = (value: number) => value.toFixed(4);
 const shortSha = (value: string) => value.slice(0, 8);
 const revisionUrl = (repository: string, revision: string) => `https://huggingface.co/${repository}/tree/${revision}`;
+const externalLinkProps = { target: "_blank", rel: "noreferrer" } as const;
 const dataBase = typeof __NEB_BASE__ === "undefined" ? "/" : __NEB_BASE__;
 
 export default function CatalogExplorer({ mode, compact = false }: { mode: Mode; compact?: boolean }) {
@@ -96,7 +97,7 @@ function TaskCatalog({ catalog, showOlder, historyControl, compact }: { catalog:
       {historyControl}
     </section>
     <section className="panel task-results">
-      <div className="section-head"><div><h2>{activeTask.display_name}</h2><p>{activeTask.description}</p></div><a href={activeTask.dataset.url}>dataset {shortSha(activeTask.dataset.revision)}</a></div>
+      <div className="section-head"><div><h2>{activeTask.display_name}</h2><p>{activeTask.description}</p></div><a href={activeTask.dataset.url} {...externalLinkProps}>dataset {shortSha(activeTask.dataset.revision)}</a></div>
       <div className="task-summary" aria-label="Task summary">
         <span><strong>{populatedSubsetCount}</strong> / {activeTask.subsets.length} subsets with results</span>
         <span><strong>{modelCount}</strong> model {modelCount === 1 ? "revision" : "revisions"}</span>
@@ -131,7 +132,7 @@ function RankingRow({ result, rank: position, model, metrics, mainScore, bestSco
   return <>
     <tr>
       <td className="rank-cell">{position}</td>
-      <th scope="row"><div className="model-cell"><a href={revisionUrl(result.model_name, result.model_revision)}>{result.model_name}</a><div className="model-meta"><code>{shortSha(result.model_revision)}</code><span title="Number of model parameters">{model ? formatCount(model.n_parameters) : "unknown"} params</span>{model && !model.is_latest && <span>older revision</span>}<button type="button" className="evidence-toggle" aria-expanded={open} aria-controls={panelId} aria-label={`Result details for ${result.model_name} ${shortSha(result.model_revision)}`} onClick={() => setOpen(!open)}>{open ? "Hide details" : "Details"}</button></div></div></th>
+      <th scope="row"><div className="model-cell"><a href={revisionUrl(result.model_name, result.model_revision)} {...externalLinkProps}>{result.model_name}</a><div className="model-meta"><code>{shortSha(result.model_revision)}</code><span title="Number of model parameters">{model ? formatCount(model.n_parameters) : "unknown"} params</span>{model && !model.is_latest && <span>older revision</span>}<button type="button" className="evidence-toggle" aria-expanded={open} aria-controls={panelId} aria-label={`Result details for ${result.model_name} ${shortSha(result.model_revision)}`} onClick={() => setOpen(!open)}>{open ? "Hide details" : "Details"}</button></div></div></th>
       {metrics.map((metric) => {
         const score = result.metrics[metric];
         const best = score !== undefined && score === bestScores[metric];
@@ -148,8 +149,8 @@ function EvidencePanel({ id, result }: { id: string; result: Result }) {
   return <section id={id} className="evidence-panel" aria-label={`Result details for ${result.model_name}`}>
     <div className="evidence-panel-head"><strong>Result details</strong><span className={`status-label ${result.status}`}>{result.status === "verified" ? "Maintainer verified" : "Community · unverified"}</span></div>
     <dl>
-      <div><dt>Model revision</dt><dd><a href={revisionUrl(result.model_name, result.model_revision)}><code>{result.model_revision}</code></a></dd></div>
-      <div><dt>Dataset revision</dt><dd><a href={`https://huggingface.co/datasets/${result.dataset_name}/tree/${result.dataset_revision}`}><code>{result.dataset_revision}</code></a></dd></div>
+      <div><dt>Model revision</dt><dd><a href={revisionUrl(result.model_name, result.model_revision)} {...externalLinkProps}><code>{result.model_revision}</code></a></dd></div>
+      <div><dt>Dataset revision</dt><dd><a href={`https://huggingface.co/datasets/${result.dataset_name}/tree/${result.dataset_revision}`} {...externalLinkProps}><code>{result.dataset_revision}</code></a></dd></div>
       <div><dt>MTEB version</dt><dd>{result.mteb_version}</dd></div>
       <div><dt>Evaluated</dt><dd>{result.evaluated_at || "unknown"}</dd></div>
       <div><dt>Effective prompts</dt><dd>{prompts.length ? <span className="prompt-list">{prompts.map(([kind, prompt]) => <span key={kind}><strong>{kind}</strong> <code>{prompt}</code></span>)}</span> : "none"}</dd></div>
@@ -167,14 +168,172 @@ function ModelCatalog({ catalog, showOlder, historyControl }: { catalog: Catalog
     grouped.set(model.repository, revisions);
     return grouped;
   }, new Map<string, Model[]>());
-  return <><section className="hero"><p className="eyebrow">Published native MTEB evidence</p><h1>Models</h1></section><section className="panel controls"><label>Search models<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} /></label>{historyControl}</section><section className="panel"><div className="card-grid">{[...groups].map(([repository, revisions]) => <article className="model-card" key={repository}><h2><a href={`https://huggingface.co/${repository}`}>{repository}</a></h2>{revisions.map((model) => { const count = coverage(catalog, model); return <section key={model.revision}><h3>{model.is_latest ? "Latest canonical revision" : "Historical revision"} <a href={revisionUrl(repository, model.revision)}><code>{shortSha(model.revision)}</code></a></h3><p>Parameters: {formatCount(model.n_parameters)}<br />Embedding dimension: {formatCount(model.embed_dim)}</p><p>Coverage: {count.complete} / {count.total} task views</p>{count.complete === 0 && <p className="empty">Awaiting results</p>}</section>; })}</article>)}</div>{models.length === 0 && <p className="empty">No published model revisions yet.</p>}</section></>;
+  return <><section className="hero"><h1>Models</h1></section><section className="panel controls"><label>Search models<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} /></label>{historyControl}</section><section className="panel"><div className="card-grid">{[...groups].map(([repository, revisions]) => <article className="model-card" key={repository}><h2><a href={`https://huggingface.co/${repository}`} {...externalLinkProps}>{repository}</a></h2>{revisions.map((model) => {
+    const count = coverage(catalog, model);
+    return <section className="model-revision" key={model.revision}>
+      <div className="model-revision-line"><a href={revisionUrl(repository, model.revision)} aria-label={`${repository} revision ${shortSha(model.revision)}`} {...externalLinkProps}><code>{shortSha(model.revision)}</code></a>{!model.is_latest && <span>Historical revision</span>}</div>
+      <dl className="model-stats">
+        <div><dt>Parameters</dt><dd>{formatCount(model.n_parameters)}</dd></div>
+        <div><dt>Embedding dimension</dt><dd>{formatCount(model.embed_dim)}</dd></div>
+        <div className="coverage-stat"><dt>Coverage</dt><dd>{count.complete} / {count.total} task views</dd></div>
+      </dl>
+      {count.complete === 0 && <p className="empty">Awaiting results</p>}
+    </section>;
+  })}</article>)}</div>{models.length === 0 && <p className="empty">No published model revisions yet.</p>}</section></>;
 }
 
 function Comparison({ catalog, showOlder, historyControl, compact }: { catalog: Catalog; showOlder: boolean; historyControl: React.ReactNode; compact: boolean }) {
-  const models = visibleModels(catalog.models, showOlder);
-  const [selected, setSelected] = useState<string[]>([]);
-  const [taskName, setTaskName] = useState(catalog.tasks[0]?.name || "");
+  const validModelKeys = new Set(catalog.models.map(modelKey));
+  const requestedTask = initialQuery("task");
+  const initialTask = catalog.tasks.find((item) => item.name === requestedTask) || catalog.tasks[0];
+  const requestedModels = [...new Set(initialQuery("models").split(",").filter((key) => validModelKeys.has(key)))].slice(0, 5);
+  const requestedMetrics = initialQuery("metrics").split(",").filter(Boolean);
+  const [selected, setSelected] = useState<string[]>(requestedModels);
+  const [taskName, setTaskName] = useState(initialTask?.name || "");
+  const [selectedMetrics, setSelectedMetrics] = useState<string[]>(() => {
+    if (!initialTask) return [];
+    const available = comparisonMetrics(catalog, initialTask);
+    return [initialTask.main_score, ...available.filter((metric) => metric !== initialTask.main_score && requestedMetrics.includes(metric))];
+  });
+  const [search, setSearch] = useState("");
+  const pickerRef = React.useRef<HTMLDetailsElement>(null);
   const task = catalog.tasks.find((item) => item.name === taskName);
-  const rows = useMemo(() => catalog.results.filter((result) => result.task_name === taskName && selected.includes(`${result.model_name}@${result.model_revision}`)), [catalog, taskName, selected]);
-  return <><section className={compact ? "" : "hero"}><h1>Task-local comparison</h1><p>Compare revisions without constructing an overall score.</p></section><section className="panel controls">{historyControl}<label>Task<select value={taskName} onChange={(event) => setTaskName(event.target.value)}>{catalog.tasks.map((item) => <option key={item.name} value={item.name}>{item.display_name}</option>)}</select></label></section><section className="panel"><fieldset><legend>Choose up to five model revisions</legend><div className="checks">{models.map((model) => { const key = modelKey(model); return <label key={key}><input type="checkbox" checked={selected.includes(key)} disabled={!selected.includes(key) && selected.length >= 5} onChange={() => setSelected(selected.includes(key) ? selected.filter((item) => item !== key) : [...selected, key])} /> {model.name} <code>{shortSha(model.revision)}</code></label>; })}</div></fieldset>{selected.length < 2 ? <p className="empty">Select at least two model revisions.</p> : task && task.subsets.map((subset) => task.splits.map((split) => { const view = rank(rows.filter((result) => result.subset === subset.name && result.split === split)); return <section key={`${subset.name}/${split}`}><h2>{subset.name} · {split} · {task.main_score}</h2>{view.length ? <ul>{view.map((result) => <li key={resultKey(result)}>{result.model_name} <code>{shortSha(result.model_revision)}</code>: {fmt(result.main_score)}</li>)}</ul> : <p className="empty">Missing results for selected revisions.</p>}</section>; }))}</section></>;
+  const availableMetrics = task ? comparisonMetrics(catalog, task) : [];
+  const candidateModels = visibleModels(catalog.models, showOlder).filter((model) => `${model.name} ${model.revision}`.toLowerCase().includes(search.toLowerCase()));
+  const selectedModels = selected.map((key) => catalog.models.find((model) => modelKey(model) === key)).filter((model): model is Model => Boolean(model));
+  const rows = useMemo(() => catalog.results.filter((result) => result.task_name === taskName && selected.includes(resultKey(result))), [catalog, taskName, selected]);
+
+  useEffect(() => {
+    if (pickerRef.current) pickerRef.current.open = true;
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !task) return;
+    const params = new URLSearchParams(window.location.search);
+    params.set("task", task.name);
+    if (selected.length) params.set("models", selected.join(","));
+    else params.delete("models");
+    const secondaryMetrics = selectedMetrics.filter((metric) => metric !== task.main_score);
+    if (secondaryMetrics.length) params.set("metrics", secondaryMetrics.join(","));
+    else params.delete("metrics");
+    const query = params.toString();
+    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+    if (`${window.location.pathname}${window.location.search}${window.location.hash}` !== nextUrl) window.history.replaceState({}, "", nextUrl);
+  }, [task, selected, selectedMetrics]);
+
+  function selectTask(name: string) {
+    const nextTask = catalog.tasks.find((item) => item.name === name);
+    setTaskName(name);
+    setSelectedMetrics(nextTask ? [nextTask.main_score] : []);
+  }
+
+  function toggleModel(key: string) {
+    if (selected.includes(key)) {
+      setSelected(selected.filter((item) => item !== key));
+      return;
+    }
+    if (selected.length >= 5) return;
+    setSelected([...selected, key]);
+  }
+
+  function toggleMetric(metric: string) {
+    if (!task || metric === task.main_score) return;
+    setSelectedMetrics(selectedMetrics.includes(metric)
+      ? selectedMetrics.filter((item) => item !== metric)
+      : availableMetrics.filter((item) => selectedMetrics.includes(item) || item === metric));
+  }
+
+  if (!task) return <p className="empty">No benchmark tasks are available.</p>;
+  const viewCount = task.subsets.length * task.splits.length;
+
+  return <div className="comparison-page">
+    {!compact && <section className="hero comparison-hero"><p className="eyebrow">Side-by-side task results</p><h1>Compare models</h1><p>Choose a task, then compare up to five model revisions across every subset and split.</p></section>}
+    <section className="panel comparison-panel" aria-label="Model comparison">
+      <div className="comparison-toolbar">
+        <label>Task<select value={taskName} onChange={(event) => selectTask(event.target.value)}>{catalog.tasks.map((item) => <option key={item.name} value={item.name}>{item.display_name}</option>)}</select></label>
+        <div className="metric-select view-picker">
+          <span className="control-label">Metrics</span>
+          <details>
+            <summary>{selectedMetrics.length === 1 ? "Main score only" : `${selectedMetrics.length} metrics`}</summary>
+            <fieldset>
+              <legend className="sr-only">Choose comparison metrics</legend>
+              <div className="view-picker-actions"><button type="button" onClick={() => setSelectedMetrics([task.main_score])}>Main score only</button></div>
+              <div className="view-options">{availableMetrics.map((metric) => <label key={metric}><input type="checkbox" checked={selectedMetrics.includes(metric)} disabled={metric === task.main_score} onChange={() => toggleMetric(metric)} /> {metric}{metric === task.main_score ? " (main)" : ""}</label>)}</div>
+            </fieldset>
+          </details>
+        </div>
+        {historyControl}
+      </div>
+
+      <details className="comparison-editor" ref={pickerRef}>
+        <summary><span>Choose model revisions</span><span className="comparison-summary">{selected.length}/5 selected</span></summary>
+        <div className="comparison-model-picker">
+          <label className="model-search">Find a model<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Repository or revision" /></label>
+          <fieldset>
+            <legend className="sr-only">Choose up to five model revisions</legend>
+            <div className="model-choice-grid">{candidateModels.map((model) => {
+              const key = modelKey(model);
+              const complete = new Set(catalog.results.filter((result) => result.task_name === task.name && resultKey(result) === key).map((result) => `${result.subset}/${result.split}`)).size;
+              return <label className={`model-choice${selected.includes(key) ? " selected" : ""}`} key={key}>
+                <input type="checkbox" checked={selected.includes(key)} disabled={!selected.includes(key) && selected.length >= 5} onChange={() => toggleModel(key)} />
+                <span><strong>{model.name}</strong><span className="model-choice-meta"><code>{shortSha(model.revision)}</code><span>{formatCount(model.n_parameters)} params</span><span>{complete}/{viewCount} results</span>{!model.is_latest && <span>historical</span>}</span></span>
+              </label>;
+            })}</div>
+          </fieldset>
+          {candidateModels.length === 0 && <p className="empty">No model revision matches “{search}”.</p>}
+          {selected.length >= 5 && <p className="selection-limit" role="status">Five revisions selected. Remove one to choose another.</p>}
+        </div>
+      </details>
+
+      {selectedModels.length > 0 && <div className="selected-models" aria-label="Selected model revisions">{selectedModels.map((model) => <span className="selected-model" key={modelKey(model)}><span><strong>{model.name}</strong> <code>{shortSha(model.revision)}</code>{!model.is_latest && <small>historical</small>}</span><button type="button" aria-label={`Remove ${model.name} ${shortSha(model.revision)}`} onClick={() => toggleModel(modelKey(model))}>×</button></span>)}</div>}
+
+      {selected.length < 2
+        ? <div className="comparison-empty"><strong>{selected.length === 0 ? "Choose at least two model revisions" : "Choose one more model revision"}</strong><p>The comparison will appear here with one row per subset and split.</p></div>
+        : <ComparisonTable task={task} results={rows} models={selectedModels} metrics={selectedMetrics} />}
+    </section>
+  </div>;
+}
+
+function comparisonMetrics(catalog: Catalog, task: Task): string[] {
+  const metrics = [...new Set(catalog.results.filter((result) => result.task_name === task.name).flatMap((result) => Object.keys(result.metrics)))];
+  return [task.main_score, ...metrics.filter((metric) => metric !== task.main_score)];
+}
+
+function ComparisonTable({ task, results, models, metrics }: { task: Task; results: Result[]; models: Model[]; metrics: string[] }) {
+  return <div className="comparison-table-wrap"><table className="comparison-table">
+    <caption className="sr-only">{task.display_name} scores by subset, split, and model revision</caption>
+    <thead><tr><th scope="col">Subset / split</th>{models.map((model) => <th scope="col" key={modelKey(model)}><div className="comparison-model-header"><a href={revisionUrl(model.repository, model.revision)} {...externalLinkProps}>{model.name}</a><code>{shortSha(model.revision)}</code><span>{formatCount(model.n_parameters)} params · {formatCount(model.embed_dim)} dimensions</span>{!model.is_latest && <span>Historical revision</span>}</div></th>)}</tr></thead>
+    <tbody>{task.subsets.flatMap((subset) => task.splits.map((split) => <ComparisonRow key={`${subset.name}/${split}`} task={task} subset={subset} split={split} metrics={metrics} models={models} results={results.filter((result) => result.subset === subset.name && result.split === split)} />))}</tbody>
+  </table></div>;
+}
+
+function ComparisonRow({ task, subset, split, metrics, models, results }: { task: Task; subset: Task["subsets"][number]; split: string; metrics: string[]; models: Model[]; results: Result[] }) {
+  const [openResult, setOpenResult] = useState<string | null>(null);
+  const detailsId = `comparison-evidence-${React.useId().replaceAll(":", "")}`;
+  const bestScores = Object.fromEntries(metrics.map((metric) => {
+    const scores = results.map((result) => result.metrics[metric]).filter((score) => score !== undefined);
+    return [metric, scores.length >= 2 ? Math.max(...scores) : undefined];
+  }));
+  const detailedResult = results.find((result) => resultKey(result) === openResult);
+  return <>
+    <tr className="comparison-view-row">
+      <th scope="row"><strong>{subset.name}</strong><span>{split}</span><small>{subset.languages.join(" · ")}</small></th>
+      {models.map((model) => {
+        const key = modelKey(model);
+        const result = results.find((item) => resultKey(item) === key);
+        if (!result) return <td className="missing-result" key={key}><span>Missing result</span></td>;
+        const detailsOpen = openResult === key;
+        return <td key={key}><div className="comparison-result">{metrics.map((metric) => {
+          const score = result.metrics[metric];
+          const primary = metric === task.main_score;
+          const best = score !== undefined && score === bestScores[metric];
+          return <div className={`comparison-metric${primary ? " primary-metric" : " secondary-metric"}${best ? " metric-winner" : ""}`} key={metric} data-metric={metric}>
+            <span className="comparison-metric-name">{metric}{primary && <span className="sr-only"> (main score)</span>}</span>
+            <strong>{best && <span className="sr-only">Best score: </span>}{score === undefined ? "—" : fmt(score)}</strong>
+          </div>;
+        })}<div className="comparison-result-meta"><Badge status={result.status} /><button type="button" className="evidence-toggle" aria-expanded={detailsOpen} aria-controls={detailsId} aria-label={`Result details for ${result.model_name} ${shortSha(result.model_revision)} on ${subset.name} ${split}`} onClick={() => setOpenResult(detailsOpen ? null : key)}>{detailsOpen ? "Hide details" : "Details"}</button></div></div></td>;
+      })}
+    </tr>
+    {detailedResult && <tr className="evidence-row comparison-evidence-row"><td colSpan={models.length + 1}><EvidencePanel id={detailsId} result={detailedResult} /></td></tr>}
+  </>;
 }
