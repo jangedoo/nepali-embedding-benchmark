@@ -1,0 +1,61 @@
+{
+    "loader_kwargs": {
+        "model_prompts": {
+            "query": "task: search result | query: ",
+            "document": "title: none | text: ",
+            "BitextMining": "task: search result | query: ",
+            "Clustering": "task: clustering | query: ",
+            "Classification": "task: classification | query: ",
+            "InstructionRetrieval": "task: code retrieval | query: ",
+            "MultilabelClassification": "task: classification | query: ",
+            "PairClassification": "task: sentence similarity | query: ",
+            "Reranking": "task: search result | query: ",
+            "Retrieval": "task: search result | query: ",
+            "Retrieval-query": "task: search result | query: ",
+            "Retrieval-document": "title: none | text: ",
+            "STS": "task: sentence similarity | query: ",
+            "Summarization": "task: summarization | query: "
+        },
+        "model_kwargs": {
+            "torch_dtype": "bfloat16"
+        },
+        "device": "cuda"
+    },
+    "name": "google/embeddinggemma-300m",
+    "revision": "57c266a740f537b4dc058e1b0cda161fd15afa75",
+    "release_date": "2025-09-04",
+    "languages": null,
+    "n_parameters": 302863104,
+    "n_active_parameters_override": null,
+    "n_embedding_parameters": 201326592,
+    "memory_usage_mb": 1155,
+    "max_tokens": 2048,
+    "embed_dim": 768,
+    "license": "gemma",
+    "open_weights": null,
+    "public_training_code": null,
+    "public_training_data": null,
+    "framework": [
+        "Sentence Transformers",
+        "safetensors"
+    ],
+    "reference": "https://huggingface.co/google/embeddinggemma-300m",
+    "similarity_fn_name": "cosine",
+    "use_instructions": null,
+    "training_datasets": null,
+    "adapted_from": null,
+    "superseded_by": null,
+    "modalities": [
+        "text"
+    ],
+    "model_type": [
+        "dense"
+    ],
+    "citation": null,
+    "contacts": null,
+    "experiment_kwargs": null,
+    "output_dtypes": null,
+    "extra_requirements_groups": null,
+    "loader": "_load_sentence_transformer",
+    "is_cross_encoder": false
+}

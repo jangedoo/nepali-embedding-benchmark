@@ -1,142 +1,145 @@
-from __future__ import annotations
-
 import json
-import shutil
+import math
 from pathlib import Path
 
 import pytest
+from conftest import make_sts_cache
 
-from neb.evaluation import EvaluationRunner, sha256_file
-from neb.registry import load_models, load_tasks
-from neb.results import discover_model_metadata, discover_results, publish_run, validate_run
-from neb.schemas import RunProvenance, RuntimeSettings, VerificationStatus
-
-SOURCE_ROOT = Path(__file__).parents[1]
+from neb.evaluation import write_checksum
+from neb.results import discover_results, publish_results, validate_task_result
+from neb.schemas import VerificationStatus
 
 
-def make_root(tmp_path: Path) -> Path:
-    shutil.copytree(SOURCE_ROOT / "registries", tmp_path / "registries")
-    return tmp_path
+def test_native_result_validation_and_checksum(tmp_path: Path) -> None:
+    path = make_sts_cache(tmp_path / "runs")
+    _, _, records = validate_task_result(path)
+    assert records[0].main_score_name == "cosine_spearman"
+    assert records[0].effective_prompts == {"query": "query: "}
+    path.write_text("{}", encoding="utf-8")
+    with pytest.raises(ValueError, match="TaskResult|checksum"):
+        validate_task_result(path)
 
 
-def make_run(
-    root: Path,
-    *,
-    model_id: str = "all-minilm-l6-v2-nepali",
-    task_id: str = "stsb-nepali",
-    directory: str = "incoming",
-    parameter_count: int = 10_000,
-    vocab_size: int = 1_000,
-) -> Path:
-    model = next(item for item in load_models(root) if item.id == model_id)
-    task = next(item for item in load_tasks(root) if item.id == task_id)
-    run = root / directory
-    result_dir = run / "results"
-    result_dir.mkdir(parents=True)
-    hashes: dict[str, str] = {}
-    for index, view in enumerate(task.views):
-        path = result_dir / f"{view.id}.json"
-        metrics = {metric: 0.5 + index / 10 for metric in view.metrics}
-        payload = EvaluationRunner._mteb_result(model, task, view, metrics)
-        path.write_text(json.dumps(payload), encoding="utf-8")
-        hashes[f"results/{view.id}.json"] = sha256_file(path)
-    provenance = RunProvenance(
-        run_id="test-run",
-        status="community",
-        model_id=model.id,
-        model_hf_id=model.hf_id,
-        model_revision=model.revision,
-        task_id=task.id,
-        task_version=task.version,
-        dataset_revision=task.dataset.revision,
-        neb_version="0.2.0",
-        sentence_transformers_version="4.0.0",
-        parameter_count=parameter_count,
-        vocab_size=vocab_size,
-        runtime=RuntimeSettings(),
-        result_hashes=hashes,
+def test_publication_scans_a_native_cache_without_reading_model_metadata_as_a_task(
+    tmp_path: Path,
+) -> None:
+    cache = tmp_path / "runs"
+    make_sts_cache(cache)
+    published = publish_results(cache, VerificationStatus.community, tmp_path / "repo")
+    assert [path.name for path in published] == ["STSBNepali.v3.json"]
+
+
+def test_validation_rejects_missing_prompts_and_settings(tmp_path: Path) -> None:
+    path = make_sts_cache(tmp_path / "runs")
+    meta_path = path.parent / "model_meta.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["loader_kwargs"].pop("model_prompts")
+    meta_path.write_text(json.dumps(meta), encoding="utf-8")
+    with pytest.raises(ValueError, match="effective prompts"):
+        validate_task_result(path)
+
+
+def test_publication_rejects_local_model_results(tmp_path: Path) -> None:
+    path = make_sts_cache(tmp_path / "runs")
+    meta_path = path.parent / "model_meta.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["name"] = "local/my-model"
+    meta["revision"] = "local-" + "a" * 64
+    meta_path.write_text(json.dumps(meta), encoding="utf-8")
+    with pytest.raises(ValueError, match="local model results cannot be published"):
+        publish_results(path, VerificationStatus.community, tmp_path / "repo")
+
+
+def test_publication_rejects_conflicts_but_allows_partial_additions(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    first = make_sts_cache(tmp_path / "first", score=0.5, subset="ne-ne")
+    publish_results(first, VerificationStatus.community, root)
+    second = make_sts_cache(tmp_path / "second", score=0.6, subset="en-ne")
+    publish_results(second, VerificationStatus.community, root)
+    assert {record.subset for record in discover_results(root)} == {"ne-ne", "en-ne"}
+    conflict = make_sts_cache(tmp_path / "conflict", score=0.9, subset="ne-ne")
+    with pytest.raises(ValueError, match="conflicting"):
+        publish_results(conflict, VerificationStatus.community, root)
+
+
+def test_publication_treats_matching_nan_metrics_as_equal(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    first = make_sts_cache(tmp_path / "first")
+    repeated = make_sts_cache(tmp_path / "repeated")
+    for path in (first, repeated):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["scores"]["test"][0]["undefined_auxiliary_metric"] = math.nan
+        path.write_text(json.dumps(data), encoding="utf-8")
+        write_checksum(path)
+
+    publish_results(first, VerificationStatus.verified, root)
+    publish_results(repeated, VerificationStatus.verified, root)
+
+
+def test_publication_overwrite_replaces_scores_metadata_and_run_settings(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "repo"
+    first = make_sts_cache(tmp_path / "first", score=0.5, batch_size=2)
+    publish_results(first, VerificationStatus.verified, root)
+    replacement = make_sts_cache(
+        tmp_path / "replacement",
+        score=0.9,
+        loader_kwargs={
+            "model_prompts": {"query": "search: "},
+            "model_kwargs": {"torch_dtype": "float16"},
+        },
+        batch_size=8,
     )
-    (run / "provenance.json").write_text(provenance.model_dump_json(), encoding="utf-8")
-    (run / "model_meta.json").write_text(model.model_dump_json(), encoding="utf-8")
-    (run / "run_settings.jsonl").write_text(RuntimeSettings().model_dump_json() + "\n")
-    return run
+
+    published = publish_results(replacement, VerificationStatus.verified, root, overwrite=True)
+
+    _, meta, records = validate_task_result(published[0], status=VerificationStatus.verified)
+    assert records[0].main_score == 0.9
+    assert records[0].effective_prompts == {"query": "search: "}
+    assert meta["loader_kwargs"]["model_kwargs"]["torch_dtype"] == "float16"
+    settings = [
+        json.loads(line)
+        for line in (published[0].parent / "run_settings.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert len(settings) == 1
+    assert settings[0]["encode_kwargs"]["batch_size"] == 8
 
 
-def test_hash_mismatch_is_rejected(tmp_path: Path) -> None:
-    root = make_root(tmp_path)
-    run = make_run(root)
-    (run / "results/ne-ne.json").write_text("{}", encoding="utf-8")
-    with pytest.raises(ValueError, match="hash mismatch"):
-        validate_run(run, root)
+def test_metadata_overwrite_requires_complete_existing_coverage(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    publish_results(
+        make_sts_cache(tmp_path / "first", subset="ne-ne"),
+        VerificationStatus.verified,
+        root,
+    )
+    publish_results(
+        make_sts_cache(tmp_path / "second", subset="en-ne"),
+        VerificationStatus.verified,
+        root,
+    )
+    partial = make_sts_cache(
+        tmp_path / "partial",
+        subset="ne-ne",
+        loader_kwargs={"model_prompts": {"query": "search: "}},
+    )
+
+    with pytest.raises(ValueError, match="requires source coverage"):
+        publish_results(partial, VerificationStatus.verified, root, overwrite=True)
 
 
-def test_verified_result_takes_precedence(tmp_path: Path) -> None:
-    root = make_root(tmp_path)
-    run = make_run(root)
-    publish_run(run, VerificationStatus.community, root)
-    publish_run(run, VerificationStatus.verified, root)
+def test_verified_precedence_is_per_subset(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    community = make_sts_cache(tmp_path / "community", score=0.2, subset="ne-ne")
+    verified = make_sts_cache(tmp_path / "verified", score=0.8, subset="ne-ne")
+    other = make_sts_cache(tmp_path / "other", score=0.4, subset="en-ne")
+    publish_results(community, VerificationStatus.community, root)
+    publish_results(other, VerificationStatus.community, root)
+    publish_results(verified, VerificationStatus.verified, root)
     records = discover_results(root)
-    assert len(records) == 3
-    assert {record.status for record in records} == {VerificationStatus.verified}
-    assert all(
-        record.metrics
-        == {
-            "cosine_spearman": record.metrics["cosine_spearman"],
-            "cosine_pearson": record.metrics["cosine_pearson"],
-        }
-        for record in records
-    )
-    with pytest.raises(FileExistsError):
-        publish_run(run, VerificationStatus.community, root)
-    existing = publish_run(
-        run,
-        VerificationStatus.community,
-        root,
-        skip_existing=True,
-    )
-    assert existing.is_dir()
-
-
-def test_missing_required_metric_is_rejected(tmp_path: Path) -> None:
-    root = make_root(tmp_path)
-    run = make_run(root)
-    path = run / "results/ne-ne.json"
-    payload = json.loads(path.read_text())
-    del payload["scores"]["test"][0]["cosine_pearson"]
-    path.write_text(json.dumps(payload))
-    provenance = RunProvenance.model_validate_json((run / "provenance.json").read_text())
-    provenance.result_hashes["results/ne-ne.json"] = sha256_file(path)
-    (run / "provenance.json").write_text(provenance.model_dump_json())
-    with pytest.raises(ValueError, match="missing required metrics"):
-        validate_run(run, root)
-
-
-def test_verified_model_metadata_takes_precedence(tmp_path: Path) -> None:
-    root = make_root(tmp_path)
-    community = make_run(root, parameter_count=10_000, vocab_size=1_000)
-    publish_run(community, VerificationStatus.community, root)
-    verified = make_run(
-        root,
-        task_id="nepali-hard-negatives",
-        directory="verified-incoming",
-        parameter_count=20_000,
-        vocab_size=2_000,
-    )
-    publish_run(verified, VerificationStatus.verified, root)
-    model = next(item for item in load_models(root) if item.id == "all-minilm-l6-v2-nepali")
-    assert discover_model_metadata(root)[(model.id, model.revision)] == (20_000, 2_000)
-
-
-def test_conflicting_model_metadata_for_same_status_is_rejected(tmp_path: Path) -> None:
-    root = make_root(tmp_path)
-    first = make_run(root)
-    publish_run(first, VerificationStatus.community, root)
-    second = make_run(
-        root,
-        task_id="nepali-hard-negatives",
-        directory="second-incoming",
-        parameter_count=20_000,
-    )
-    publish_run(second, VerificationStatus.community, root)
-    with pytest.raises(ValueError, match="conflicting model metadata"):
-        discover_model_metadata(root)
+    selected = {record.subset: record for record in records}
+    assert selected["ne-ne"].status == VerificationStatus.verified
+    assert selected["ne-ne"].main_score == 0.8
+    assert selected["en-ne"].status == VerificationStatus.community

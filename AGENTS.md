@@ -5,13 +5,11 @@ task-first design: never introduce a global score or an overall model ranking.
 
 ## Repository map
 
-- `src/neb/`: Python package, CLI, schemas, adapters, evaluation, and result lifecycle.
-- `registries/tasks/`: versioned task manifests with immutable dataset revisions.
-- `registries/models/`: model manifests with immutable model revisions.
-- `results/verified/`: maintainer-verified canonical results; CODEOWNERS-protected.
-- `results/community/`: schema-checked, explicitly unverified community results.
+- `src/neb/`: native MTEB task classes, adapters, CLI, evaluation, and result lifecycle.
+- `results/verified/`: maintainer-verified native MTEB caches; CODEOWNERS-protected.
+- `results/community/`: schema-checked, explicitly unverified native MTEB caches.
 - `site/`: Astro and React dashboard.
-- `site/public/data/v2/`: generated exports; regenerate with `make export`.
+- `site/public/data/v3/`: generated exports; regenerate with `make export`.
 - `tests/`: Python unit and opt-in network contract tests.
 
 ## Development commands
@@ -38,7 +36,7 @@ make test-contracts
 - Do not increment a task version for metadata-only changes.
 - Keep unusual dataset transformations small, pure, reviewed, and unit-tested in
   `src/neb/adapters.py`.
-- Preserve MTEB-compatible per-task result JSON and SHA-256 provenance.
+- Preserve native MTEB per-task result JSON and adjacent SHA-256 checksums.
 - Verified results take precedence over community results, but community evidence must never be
   relabeled as verified.
 - `trust_remote_code` is restricted to exact pinned `jangedoo/*` revisions and requires the
@@ -50,8 +48,8 @@ make test-contracts
 
 ## Editing and generated files
 
-- Edit registry YAML, canonical results, Python source, and dashboard source directly.
-- Do not hand-edit files under `site/public/data/v2/`; run `make export` after source-data changes.
+- Edit native task classes, canonical results, Python source, and dashboard source directly.
+- Do not hand-edit files under `site/public/data/v3/`; run `make export` after source-data changes.
 - Do not commit `runs/`, `site/dist/`, `site/node_modules/`, caches, or virtual environments.
 - Keep Python dependencies locked in `uv.lock` and dashboard dependencies locked in
   `site/package-lock.json`.
@@ -60,7 +58,7 @@ make test-contracts
 
 ## Testing expectations
 
-- Registry/schema changes require validation tests.
+- Task metadata and export-schema changes require validation tests.
 - Adapter changes require fixture-based transformation tests.
 - Result lifecycle changes require malformed input, hash, revision, duplicate, and precedence
   coverage.

@@ -1,47 +1,53 @@
 export type Status = "verified" | "community";
 
-export interface View {
-  id: string;
-  split: string;
-  languages: string[];
-  metrics: string[];
-  primary_metric: string;
-}
-
+export interface TaskSubset { name: string; languages: string[]; }
 export interface Task {
-  id: string;
-  version: number;
+  name: string;
   display_name: string;
   description: string;
-  dataset: { id: string; revision: string; url?: string };
-  adapter: string;
-  views: View[];
+  type: string;
+  main_score: string;
+  dataset: { name: string; revision: string; url: string };
+  splits: string[];
+  subsets: TaskSubset[];
 }
 
 export interface Model {
-  id: string;
-  display_name: string;
-  hf_id: string;
+  name: string;
+  repository: string;
   revision: string;
-  languages: string[];
-  homepage?: string;
-  parameter_count: number | "unknown";
-  vocab_size: number | "unknown";
+  evaluated_at: string | null;
+  status: Status;
+  effective_prompts: Record<string, string>;
+  n_parameters: number | "unknown";
+  embed_dim: number | "unknown";
+  is_latest: boolean;
 }
 
 export interface Result {
-  model_id: string;
-  task_id: string;
-  view_id: string;
-  metrics: Record<string, number>;
-  status: Status;
+  model_name: string;
   model_revision: string;
+  task_name: string;
+  task_type: string;
+  split: string;
+  subset: string;
+  languages: string[];
+  metrics: Record<string, number>;
+  main_score_name: string;
+  main_score: number;
+  dataset_name: string;
   dataset_revision: string;
-  parameter_count: number;
-  vocab_size: number;
+  mteb_version: string;
+  status: Status;
+  result_path: string;
+  result_sha256: string;
+  effective_prompts: Record<string, string>;
+  evaluated_at: string | null;
 }
 
 export interface Catalog {
+  schema_version: 3;
+  counts: { tasks: number; models: number; results: number };
   tasks: Task[];
   models: Model[];
   results: Result[];

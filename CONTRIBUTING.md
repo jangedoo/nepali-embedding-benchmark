@@ -1,37 +1,20 @@
 # Contributing
 
-## Add a model
+NEB is task-first: do not add a global score, benchmark aggregate, or overall model ranking.
 
-Run `neb model scaffold owner/model`, inspect the pinned manifest, then open a pull request. A
-community model must be public, ungated, loadable by `SentenceTransformer`, and must not require
-remote code. The scaffold accepts Sentence Transformers models and plain Transformers checkpoints
-tagged for `feature-extraction` or `fill-mask`. For plain checkpoints, Sentence Transformers adds
-its automatic mean-pooling layer. Merging a model adds it to the pending queue; CI never downloads
-submitted weights.
+Run `make check`, `make site-check`, and `make package` before handoff. Network dataset contracts are opt-in with `make test-contracts`; model evaluation remains a maintainer GPU workflow.
 
-## Submit a community result
+Task changes belong in native MTEB task classes under `src/neb/tasks.py`. Keep dataset transformations pure and fixture-tested in `src/neb/adapters.py`, pin every dataset revision to a full 40-character SHA, and bump the task name version for score-affecting changes.
 
-Evaluate an existing pinned manifest, keep the generated MTEB JSON and provenance intact, then run
-`neb results publish <run-directory> --status community`. Submit only that new canonical result
-directory. CI verifies schemas, metric ranges, model/dataset revisions, duplicate submissions, and
-SHA-256 hashes. Community evidence is always labeled `community`.
+Do not edit native MTEB task JSON or `site/public/data/v3/` by hand. Publish evaluated caches with `neb results publish`, then regenerate exports using `make export`. Community submissions remain explicitly unverified; only maintainers may publish verified evidence.
 
-## Maintainer evaluation
+Models are addressed directly by public Hugging Face repository. An omitted revision resolves to
+the current Hub commit; reproducible submissions still record an exact 40-character SHA. Add an
+exact entry under `registries/models/` only when a revision needs prompt overrides or approved
+`jangedoo/*` remote code. Keep these files behavioral rather than using them as a model catalog.
+Never load submitted model weights or remote code in pull-request CI.
 
-Use the lockfile environment and a local GPU, run `neb queue`, then evaluate missing pairs with
-`--resume`. Inspect the effective prompts and hardware provenance before publishing with
-`--status verified` in a separate result pull request. CODEOWNERS review is required for the
-verified tree. Gated bases are excluded. Owner-only remote code may be run locally with the explicit
-flag, but it is never run in pull-request CI.
-
-## Add or change a dataset
-
-Standard STS, retrieval, reranking, pair-classification, and bitext datasets need a YAML task
-manifest and contract fixtures. Unusual transformations require a small, pure adapter in
-`src/neb/adapters.py`, focused unit tests, and review. Pin the full dataset commit. A change to the
-dataset, transformation, evaluation split, or metric increments `TaskSpec.version`; metadata-only
-changes do not. Missing dataset-card metadata is represented as `unknown` and does not block a task.
-
-NEB has no contamination declaration or detection system. Do not present verified execution as a
-contamination audit.
-
+Model prompt keys use MTEB's native role, task-type, task-name, and compound-key conventions.
+Do not rename `passage` to `document`; a model or override must provide the correct `document`
+key. Local model directories may be evaluated for development but their fingerprinted results
+cannot be published.

@@ -1,0 +1,89 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "task_name": "EnglishNepaliBitextMining.v3",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "precision": 0.992063,
+        "recall": 0.994709,
+        "f1": 0.992945,
+        "accuracy": 0.994709,
+        "main_score": 0.992945,
+        "hf_subset": "en-ne",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "precision": 0.992063,
+        "recall": 0.994709,
+        "f1": 0.992945,
+        "accuracy": 0.994709,
+        "main_score": 0.992945,
+        "hf_subset": "ne-en",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 2.0944082730275113,
+  "kg_co2_emissions": null,
+  "date": 1784217668.201703,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.7018796220072545,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 1.7301376709947363,
+      "end": 1.8002888030023314,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.8192243360099383,
+      "end": 1.8855891859857365,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Scoring",
+      "start": 1.8859787799883634,
+      "end": 1.8877003290108405,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.9201748159830458,
+      "end": 1.9863044329977129,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Encoding",
+      "start": 2.0044819180038758,
+      "end": 2.0762090279895347,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.0766255519993138,
+      "end": 2.078712076006923,
+      "split": "test",
+      "subset": "ne-en"
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-{"device":"cuda","batch_size":32,"dtype":"bfloat16","encode_kwargs":{},"resume":false}

@@ -4,10 +4,9 @@ SHELL := /bin/bash
 PYTHON ?= uv run
 SITE_DIR := site
 BASE_PATH ?= /
-EXPORT_DIR ?= $(SITE_DIR)/public/data/v2
-RESULT_SCHEMA_VERSION := 2
+EXPORT_DIR ?= $(SITE_DIR)/public/data/v3
 
-.PHONY: help sync validate test test-contracts lint format check export queue publish \
+.PHONY: help sync validate test test-contracts lint format check export publish \
 	publish-verified publish-community package site-install site-test site-build site-check \
 	site-dev audit clean
 
@@ -39,36 +38,23 @@ check: lint test validate ## Run the fast Python verification suite
 export: ## Regenerate versioned dashboard JSON and CSV artifacts
 	$(PYTHON) neb export --output $(EXPORT_DIR)
 
-queue: ## List model/task pairs missing verified results
-	$(PYTHON) neb queue
-
-publish: ## Publish all task runs for MODEL with STATUS, then refresh exports
-	@if [[ ! "$(MODEL)" =~ ^[a-z0-9][a-z0-9._-]*$$ ]]; then \
-		echo "Usage: make publish-verified MODEL=<registry-model-id>"; \
+publish: ## Publish a native MTEB cache/file from SOURCE with STATUS, then export
+	@if [[ -z "$(SOURCE)" ]]; then \
+		echo "Usage: make publish-verified SOURCE=runs"; \
 		exit 2; \
 	fi
 	@if [[ "$(STATUS)" != "verified" && "$(STATUS)" != "community" ]]; then \
 		echo "STATUS must be 'verified' or 'community'"; \
 		exit 2; \
 	fi
-	@mapfile -t run_dirs < <(find runs -mindepth 2 -maxdepth 2 -type d \
-		-path "runs/$(MODEL)-*/*-v$(RESULT_SCHEMA_VERSION)" | sort); \
-	if (( $${#run_dirs[@]} == 0 )); then \
-		echo "No v$(RESULT_SCHEMA_VERSION) task runs found for model '$(MODEL)'"; \
-		exit 1; \
-	fi; \
-	for run_dir in "$${run_dirs[@]}"; do \
-		echo "Publishing $$run_dir as $(STATUS)"; \
-		$(PYTHON) neb results publish "$$run_dir" --status "$(STATUS)" \
-			--skip-existing || exit $$?; \
-	done
+	$(PYTHON) neb results publish "$(SOURCE)" --status "$(STATUS)" $(if $(filter 1 true yes,$(OVERWRITE)),--overwrite,)
 	@$(MAKE) --no-print-directory export
 
-publish-verified: ## Publish all runs for MODEL as maintainer-verified
-	@$(MAKE) --no-print-directory publish MODEL="$(MODEL)" STATUS=verified
+publish-verified: ## Publish SOURCE as maintainer-verified native MTEB evidence
+	@$(MAKE) --no-print-directory publish SOURCE="$(SOURCE)" STATUS=verified
 
-publish-community: ## Publish all runs for MODEL as community-unverified
-	@$(MAKE) --no-print-directory publish MODEL="$(MODEL)" STATUS=community
+publish-community: ## Publish SOURCE as community-unverified native MTEB evidence
+	@$(MAKE) --no-print-directory publish SOURCE="$(SOURCE)" STATUS=community
 
 package: ## Build Python source and wheel distributions
 	uv build

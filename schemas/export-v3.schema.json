@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nepali-embedding-benchmark.github.io/schemas/export-v3.schema.json",
+  "title": "NEB static catalog v3",
+  "type": "object",
+  "required": ["schema_version", "counts", "tasks", "models", "results"],
+  "properties": {
+    "schema_version": { "const": 3 },
+    "counts": {
+      "type": "object",
+      "required": ["tasks", "models", "results"],
+      "properties": {
+        "tasks": { "type": "integer", "minimum": 0 },
+        "models": { "type": "integer", "minimum": 0 },
+        "results": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "tasks": { "type": "array", "items": { "$ref": "#/$defs/task" } },
+    "models": { "type": "array", "items": { "$ref": "#/$defs/model" } },
+    "results": { "type": "array", "items": { "$ref": "#/$defs/result" } }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "status": { "enum": ["verified", "community"] },
+    "prompts": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "task": {
+      "type": "object",
+      "required": ["name", "display_name", "description", "type", "main_score", "dataset", "splits", "subsets"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "display_name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "type": { "type": "string", "minLength": 1 },
+        "main_score": { "type": "string", "minLength": 1 },
+        "dataset": {
+          "type": "object",
+          "required": ["name", "revision", "url"],
+          "properties": {
+            "name": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+            "revision": { "$ref": "#/$defs/sha" },
+            "url": { "type": "string", "format": "uri" }
+          },
+          "additionalProperties": false
+        },
+        "splits": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "subsets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "languages"],
+            "properties": {
+              "name": { "type": "string" },
+              "languages": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "required": ["name", "repository", "revision", "evaluated_at", "status", "effective_prompts", "n_parameters", "embed_dim", "is_latest"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "repository": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "revision": { "$ref": "#/$defs/sha" },
+        "evaluated_at": { "type": ["string", "null"], "format": "date-time" },
+        "status": { "$ref": "#/$defs/status" },
+        "effective_prompts": { "$ref": "#/$defs/prompts" },
+        "n_parameters": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "const": "unknown" }] },
+        "embed_dim": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "const": "unknown" }] },
+        "is_latest": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["model_name", "model_revision", "task_name", "task_type", "split", "subset", "languages", "metrics", "main_score_name", "main_score", "dataset_name", "dataset_revision", "mteb_version", "status", "result_path", "result_sha256", "effective_prompts", "evaluated_at"],
+      "properties": {
+        "model_name": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "model_revision": { "$ref": "#/$defs/sha" },
+        "task_name": { "type": "string", "minLength": 1 },
+        "task_type": { "type": "string", "minLength": 1 },
+        "split": { "type": "string", "minLength": 1 },
+        "subset": { "type": "string" },
+        "languages": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "metrics": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "number" }
+        },
+        "main_score_name": { "type": "string", "minLength": 1 },
+        "main_score": { "type": "number" },
+        "dataset_name": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "dataset_revision": { "$ref": "#/$defs/sha" },
+        "mteb_version": { "const": "2.18.3" },
+        "status": { "$ref": "#/$defs/status" },
+        "result_path": { "type": "string", "minLength": 1 },
+        "result_sha256": { "$ref": "#/$defs/sha256" },
+        "effective_prompts": { "$ref": "#/$defs/prompts" },
+        "evaluated_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

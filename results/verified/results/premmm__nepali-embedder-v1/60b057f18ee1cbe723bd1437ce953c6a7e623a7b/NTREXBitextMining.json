@@ -1,0 +1,68 @@
+{
+  "dataset_revision": "66b8b27efc99658903127730575e9fa0cb9f075c",
+  "task_name": "NTREXBitextMining",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "precision": 0.703452,
+        "recall": 0.77967,
+        "f1": 0.725497,
+        "accuracy": 0.77967,
+        "main_score": 0.725497,
+        "hf_subset": "eng_Latn-nep_Deva",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "precision": 0.820052,
+        "recall": 0.868803,
+        "f1": 0.83503,
+        "accuracy": 0.868803,
+        "main_score": 0.83503,
+        "hf_subset": "nep_Deva-eng_Latn",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 5.627067527995678,
+  "kg_co2_emissions": null,
+  "date": 1784217177.641114,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.686216158006573,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 4.009176072984701,
+      "end": 4.485261447989615,
+      "split": "test",
+      "subset": "parallel"
+    },
+    {
+      "name": "Encoding",
+      "start": 4.984147459996166,
+      "end": 5.4704419200134,
+      "split": "test",
+      "subset": "parallel"
+    },
+    {
+      "name": "Scoring",
+      "start": 5.470931964984629,
+      "end": 5.565953787998296,
+      "split": "test",
+      "subset": "parallel"
+    }
+  ]
+}

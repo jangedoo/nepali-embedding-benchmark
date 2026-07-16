@@ -1,21 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { coverage, formatCount, rank } from "./catalog";
-import type { Catalog } from "./types";
+import { modelKey, rank, visibleModels } from "./catalog";
+import type { Model, Result } from "./types";
+
+const models: Model[] = [
+  { name: "owner/model", repository: "owner/model", revision: "a".repeat(40), evaluated_at: "2025-01-01", status: "verified", effective_prompts: {}, n_parameters: 10, embed_dim: 4, is_latest: false },
+  { name: "owner/model", repository: "owner/model", revision: "b".repeat(40), evaluated_at: "2026-01-01", status: "verified", effective_prompts: {}, n_parameters: 10, embed_dim: 4, is_latest: true },
+];
+
+function result(score: number, revision: string): Result {
+  return { model_name: "owner/model", model_revision: revision, task_name: "task", task_type: "STS", split: "test", subset: "ne-ne", languages: ["nep-Deva"], metrics: { cosine_spearman: score }, main_score_name: "cosine_spearman", main_score: score, dataset_name: "owner/data", dataset_revision: "d".repeat(40), mteb_version: "2.18.3", status: "verified", result_path: "result.json", result_sha256: "f".repeat(64), effective_prompts: {}, evaluated_at: null };
+}
 
 describe("catalog helpers", () => {
-  it("orders only the supplied task scores", () => {
-    expect(rank([
-      { model_id: "a", task_id: "x", view_id: "v", metrics: { f1: .2 }, status: "verified", model_revision: "r", dataset_revision: "d", parameter_count: 10, vocab_size: 5 },
-      { model_id: "b", task_id: "x", view_id: "v", metrics: { f1: .8 }, status: "community", model_revision: "r", dataset_revision: "d", parameter_count: 20, vocab_size: 5 },
-    ], "f1")[0].model_id).toBe("b");
+  it("defaults to latest canonical revisions", () => {
+    expect(visibleModels(models, false).map(modelKey)).toEqual([`owner/model@${"b".repeat(40)}`]);
+    expect(visibleModels(models, true)).toHaveLength(2);
   });
 
-  it("reports partial coverage", () => {
-    const catalog = { tasks: [{ id: "x", version: 2, display_name: "X", description: "", dataset: { id: "o/d", revision: "r" }, adapter: "sts", views: [{ id: "v", split: "test", languages: ["ne"], metrics: ["f1"], primary_metric: "f1" }] }], models: [], results: [] } as Catalog;
-    expect(coverage(catalog, "missing")).toEqual({ complete: 0, total: 1 });
-  });
-
-  it("formats missing model metadata", () => {
-    expect(formatCount("unknown")).toBe("unknown");
+  it("ranks only the supplied task view by its main score", () => {
+    expect(rank([result(.2, "a".repeat(40)), result(.8, "b".repeat(40))])[0].main_score).toBe(.8);
   });
 });

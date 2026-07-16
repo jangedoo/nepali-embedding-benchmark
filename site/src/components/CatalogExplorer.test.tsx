@@ -1,170 +1,87 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
-import { axe } from "jest-axe";
+import "@testing-library/jest-dom/vitest";
 import React from "react";
-import { afterEach, describe, expect, it, vi } from "vitest";
-
-import type { Catalog } from "../lib/types";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import CatalogExplorer from "./CatalogExplorer";
+import type { Catalog } from "../lib/types";
 
 const catalog: Catalog = {
-  tasks: [{
-    id: "task",
-    version: 2,
-    display_name: "Example task",
-    description: "Example description",
-    dataset: { id: "owner/dataset", revision: "1234567890abcdef", url: "https://example.com" },
-    adapter: "example",
-    views: [
-      { id: "first", split: "test", languages: ["ne"], metrics: ["f1", "precision"], primary_metric: "f1" },
-      { id: "second", split: "test", languages: ["ne"], metrics: ["f1", "precision"], primary_metric: "f1" },
-    ],
-  }, {
-    id: "task-two",
-    version: 2,
-    display_name: "Second dataset",
-    description: "Dataset without selected-model results",
-    dataset: { id: "owner/second-dataset", revision: "1234567890abcdef", url: "https://example.com/second" },
-    adapter: "example",
-    views: [{ id: "only", split: "test", languages: ["ne"], metrics: ["accuracy"], primary_metric: "accuracy" }],
-  }],
+  schema_version: 3,
+  counts: { tasks: 1, models: 2, results: 4 },
+  tasks: [{ name: "STSBNepali.v3", display_name: "STS-B Nepali", description: "Similarity", type: "STS", main_score: "cosine_spearman", dataset: { name: "owner/data", revision: "d".repeat(40), url: `https://huggingface.co/datasets/owner/data/tree/${"d".repeat(40)}` }, splits: ["test"], subsets: [{ name: "ne-ne", languages: ["nep-Deva"] }, { name: "ne-en", languages: ["nep-Deva", "eng-Latn"] }] }],
   models: [
-    { id: "model", display_name: "Example model", hf_id: "owner/model", revision: "abcdef", languages: ["ne"], parameter_count: 10_000_000, vocab_size: 30_000 },
-    { id: "model-two", display_name: "Second model", hf_id: "owner/model-two", revision: "abcdef", languages: ["ne"], parameter_count: 20_000_000, vocab_size: 40_000 },
+    { name: "owner/model", repository: "owner/model", revision: "a".repeat(40), evaluated_at: "2025-01-01", status: "community", effective_prompts: {}, n_parameters: 10, embed_dim: 4, is_latest: false },
+    { name: "owner/model", repository: "owner/model", revision: "b".repeat(40), evaluated_at: "2026-01-01", status: "verified", effective_prompts: { query: "query: " }, n_parameters: 10, embed_dim: 4, is_latest: true },
   ],
   results: [
-    { model_id: "model", task_id: "task", view_id: "first", metrics: { f1: 0.8, precision: 0.95 }, status: "verified", model_revision: "abcdef", dataset_revision: "123456", parameter_count: 10_000_000, vocab_size: 30_000 },
-    { model_id: "model", task_id: "task", view_id: "second", metrics: { f1: 0.7, precision: 0.5 }, status: "community", model_revision: "abcdef", dataset_revision: "123456", parameter_count: 10_000_000, vocab_size: 30_000 },
-    { model_id: "model-two", task_id: "task", view_id: "first", metrics: { f1: 0.9, precision: 0.7 }, status: "verified", model_revision: "abcdef", dataset_revision: "123456", parameter_count: 20_000_000, vocab_size: 40_000 },
-    { model_id: "model-two", task_id: "task", view_id: "second", metrics: { f1: 0.6, precision: 0.8 }, status: "verified", model_revision: "abcdef", dataset_revision: "123456", parameter_count: 20_000_000, vocab_size: 40_000 },
+    { model_name: "owner/model", model_revision: "a".repeat(40), task_name: "STSBNepali.v3", task_type: "STS", split: "test", subset: "ne-ne", languages: ["nep-Deva"], metrics: { cosine_spearman: .5, cosine_pearson: .4 }, main_score_name: "cosine_spearman", main_score: .5, dataset_name: "owner/data", dataset_revision: "d".repeat(40), mteb_version: "2.18.3", status: "community", result_path: "old.json", result_sha256: "e".repeat(64), effective_prompts: {}, evaluated_at: "2025-01-01" },
+    { model_name: "owner/model", model_revision: "b".repeat(40), task_name: "STSBNepali.v3", task_type: "STS", split: "test", subset: "ne-ne", languages: ["nep-Deva"], metrics: { cosine_spearman: .8, cosine_pearson: .7 }, main_score_name: "cosine_spearman", main_score: .8, dataset_name: "owner/data", dataset_revision: "d".repeat(40), mteb_version: "2.18.3", status: "verified", result_path: "new.json", result_sha256: "f".repeat(64), effective_prompts: { query: "query: " }, evaluated_at: "2026-01-01" },
+    { model_name: "owner/model", model_revision: "a".repeat(40), task_name: "STSBNepali.v3", task_type: "STS", split: "test", subset: "ne-en", languages: ["nep-Deva", "eng-Latn"], metrics: { cosine_spearman: .4, cosine_pearson: .3 }, main_score_name: "cosine_spearman", main_score: .4, dataset_name: "owner/data", dataset_revision: "d".repeat(40), mteb_version: "2.18.3", status: "community", result_path: "old.json", result_sha256: "e".repeat(64), effective_prompts: {}, evaluated_at: "2025-01-01" },
+    { model_name: "owner/model", model_revision: "b".repeat(40), task_name: "STSBNepali.v3", task_type: "STS", split: "test", subset: "ne-en", languages: ["nep-Deva", "eng-Latn"], metrics: { cosine_spearman: .7, cosine_pearson: .6 }, main_score_name: "cosine_spearman", main_score: .7, dataset_name: "owner/data", dataset_revision: "d".repeat(40), mteb_version: "2.18.3", status: "verified", result_path: "new.json", result_sha256: "f".repeat(64), effective_prompts: { query: "query: " }, evaluated_at: "2026-01-01" },
   ],
 };
 
+expect.extend(toHaveNoViolations);
+beforeEach(() => vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => catalog }))));
 afterEach(() => {
   cleanup();
-  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
-describe("task views", () => {
-  it("closes the views picker when clicking outside", async () => {
-    vi.stubGlobal("__NEB_BASE__", "/");
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
-    const { container } = render(<CatalogExplorer mode="tasks" />);
-
-    await screen.findByRole("heading", { name: "first" });
-    const picker = container.querySelector<HTMLDetailsElement>(".view-picker details")!;
-    const summary = screen.getByText("All views");
-
-    fireEvent.click(summary);
-    expect(picker.open).toBe(true);
-
-    fireEvent.click(screen.getByRole("checkbox", { name: "first" }));
-    expect(picker.open).toBe(true);
-
-    fireEvent.click(document.body);
-    expect(picker.open).toBe(false);
+describe("CatalogExplorer", () => {
+  it("shows latest revisions by default and exposes history globally", async () => {
+    render(<CatalogExplorer mode="tasks" />);
+    await screen.findByText("0.8000");
+    expect(screen.queryByText("0.5000")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText("Show older revisions"));
+    expect(await screen.findByText("0.5000")).toBeInTheDocument();
   });
 
-  it("shows all views and metrics by default and supports multi-selection", async () => {
-    vi.stubGlobal("__NEB_BASE__", "/");
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
-    const { container } = render(<CatalogExplorer mode="tasks" />);
+  it("starts with the main score and expands native metrics", async () => {
+    render(<CatalogExplorer mode="tasks" />);
+    await screen.findByRole("heading", { name: "ne-ne" });
+    expect(screen.queryByText("cosine_pearson")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Show all metrics" }));
+    expect(screen.getAllByRole("columnheader", { name: "cosine_pearson" })).toHaveLength(2);
+    expect(document.querySelectorAll(".ranking-table.expanded-metrics")).toHaveLength(2);
+  });
 
-    await screen.findByRole("heading", { name: "first" });
-    expect(screen.getByRole("heading", { name: "second" })).not.toBeNull();
-    expect(screen.getByText("All views")).not.toBeNull();
-    expect((screen.getByRole("checkbox", { name: "first" }) as HTMLInputElement).checked).toBe(true);
-    expect((screen.getByRole("checkbox", { name: "second" }) as HTMLInputElement).checked).toBe(true);
-    expect(screen.getAllByRole("columnheader", { name: /f1/ })).toHaveLength(2);
-    expect(screen.getAllByRole("columnheader", { name: "precision" })).toHaveLength(2);
-    expect(screen.queryByRole("columnheader", { name: "Parameters" })).toBeNull();
-    expect(screen.queryByRole("columnheader", { name: "Vocabulary" })).toBeNull();
-    expect(screen.getAllByRole("checkbox", { name: "precision" }).every((checkbox) => (checkbox as HTMLInputElement).checked)).toBe(true);
-    expect(container.querySelector(".pareto-chart")).toBeNull();
-    expect(screen.queryByLabelText("Verified result")).toBeNull();
-    expect(screen.getAllByLabelText("Community-contributed result")).toHaveLength(1);
+  it("distinguishes the main metric and the best score in every metric", async () => {
+    render(<CatalogExplorer mode="tasks" />);
+    await screen.findByRole("heading", { name: "ne-ne" });
+    fireEvent.click(screen.getByLabelText("Show older revisions"));
+    fireEvent.click(screen.getByRole("button", { name: "Show all metrics" }));
+    expect(document.querySelectorAll("thead .main-metric")).toHaveLength(2);
+    expect(document.querySelectorAll("td.main-metric")).toHaveLength(4);
+    expect(document.querySelectorAll("td.best-score")).toHaveLength(4);
+    expect(screen.getByText("0.8000").closest("td")).toHaveClass("main-metric", "best-score");
+  });
 
-    const detailsTrigger = screen.getAllByLabelText("Model details for Example model")[0];
-    const popoverId = detailsTrigger.getAttribute("popovertarget")!;
-    const popover = container.querySelector<HTMLElement>(`#${popoverId}`)!;
-    expect(popover.getAttribute("popover")).toBe("auto");
-    const modelLink = popover.querySelector<HTMLAnchorElement>("a")!;
-    expect(modelLink.getAttribute("href")).toBe("https://huggingface.co/owner/model");
-    expect(popover.textContent).toContain("Parameters: 10M");
-    expect(popover.textContent).toContain("Vocabulary: 30K");
-
-    fireEvent.click(screen.getAllByRole("checkbox", { name: "precision" })[0]);
-    expect(screen.getAllByRole("columnheader", { name: "precision" })).toHaveLength(1);
-
+  it("shows all subsets by default and supports filtering them together", async () => {
+    render(<CatalogExplorer mode="tasks" />);
+    await screen.findByRole("heading", { name: "ne-ne" });
+    expect(screen.getByRole("heading", { name: "ne-en" })).toBeInTheDocument();
+    expect(screen.getByText("All 2 subsets")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Clear" }));
-    await waitFor(() => expect(screen.queryByRole("heading", { name: "first" })).toBeNull());
-    expect(screen.getByText("Select at least one view.")).not.toBeNull();
-
-    fireEvent.click(screen.getByRole("checkbox", { name: "first" }));
-    expect(await screen.findByRole("heading", { name: "first" })).not.toBeNull();
-    expect(screen.queryByRole("heading", { name: "second" })).toBeNull();
-    expect(screen.getByText("1 of 2 views")).not.toBeNull();
+    expect(screen.getByText("Select at least one subset.")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("checkbox", { name: "ne-en" }));
+    expect(screen.getByRole("heading", { name: "ne-en" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "ne-ne" })).not.toBeInTheDocument();
   });
-});
 
-describe("model comparison", () => {
-  it("groups views, keeps selections visible, and defaults metric filters", async () => {
-    window.history.replaceState({}, "", "/compare/?models=model,model-two");
-    vi.stubGlobal("__NEB_BASE__", "/");
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => catalog }));
-    const { container } = render(<CatalogExplorer mode="compare" />);
-
-    await screen.findByRole("rowheader", { name: "first" });
-    expect(screen.getByRole("rowheader", { name: "second" })).not.toBeNull();
-    expect(screen.getByRole("rowheader", { name: "only" })).not.toBeNull();
-    expect(container.querySelectorAll(".dataset-heading")).toHaveLength(2);
-    expect(container.querySelector(".dataset-heading")?.textContent).toBe("Example task");
-    expect(screen.queryByText("task/first")).toBeNull();
-    expect(screen.getByText("3 metrics")).not.toBeNull();
-    expect((container.querySelector(".comparison-editor") as HTMLDetailsElement).open).toBe(false);
-    expect(screen.getByRole("group", { name: "Choose models (2/5)" })).not.toBeNull();
-    expect(screen.getByRole("group", { name: "Datasets (2/2)" })).not.toBeNull();
-
-    const modelHeaders = screen.getAllByRole("columnheader").slice(1);
-    expect(modelHeaders.map((header) => header.textContent)).toEqual(["Example model?Parameters: 10MVocabulary: 30Kowner/model", "Second model?Parameters: 20MVocabulary: 40Kowner/model-two"]);
-    expect(modelHeaders.every((header) => header.querySelector(".model-name"))).toBe(true);
-    expect(screen.getAllByLabelText(/Model details for/)).toHaveLength(2);
-    expect(container.querySelectorAll("[data-metric='f1']")).toHaveLength(4);
-    expect(container.querySelectorAll("[data-metric='precision']")).toHaveLength(4);
-    expect(container.querySelectorAll(".primary-winner")).toHaveLength(2);
-    expect(container.querySelectorAll(".secondary-winner")).toHaveLength(2);
-    expect(container.querySelectorAll(".secondary-metric").length).toBeGreaterThan(0);
-    expect(container.querySelectorAll(".missing")).toHaveLength(2);
-    expect(screen.getAllByText("Missing result")).toHaveLength(2);
-    expect(screen.queryByLabelText("Verified result")).toBeNull();
-    expect(screen.getAllByLabelText("Community-contributed result")).toHaveLength(1);
-
-    const firstRow = screen.getByRole("rowheader", { name: "first" }).closest("tr")!;
-    expect(within(firstRow).queryByRole("combobox")).toBeNull();
-    expect(container.querySelector(".comparison-table-wrap")).not.toBeNull();
-
-    fireEvent.click(screen.getByText("Edit metrics"));
-    expect((container.querySelector(".comparison-editor") as HTMLDetailsElement).open).toBe(true);
-    expect(screen.getAllByRole("checkbox").every((checkbox) => (checkbox as HTMLInputElement).checked)).toBe(true);
-    const primary = screen.getByRole("checkbox", { name: "f1 for Example task" });
-    const accuracy = screen.getByRole("checkbox", { name: "accuracy for Second dataset" });
-    expect((primary as HTMLInputElement).disabled).toBe(true);
-    expect((accuracy as HTMLInputElement).disabled).toBe(true);
-
-    const precision = screen.getByRole("checkbox", { name: "precision for Example task" });
-    expect((precision as HTMLInputElement).checked).toBe(true);
-    fireEvent.click(precision);
-    expect(container.querySelectorAll("[data-metric='precision']")).toHaveLength(0);
-    expect(container.querySelectorAll("[data-metric='f1']")).toHaveLength(4);
-    expect(screen.getByText("2 metrics")).not.toBeNull();
-
-    fireEvent.click(screen.getByRole("checkbox", { name: "Second dataset" }));
-    expect(screen.queryByRole("rowheader", { name: "only" })).toBeNull();
-    expect(container.querySelectorAll(".dataset-heading")).toHaveLength(1);
-    expect(screen.getByText("1 metric")).not.toBeNull();
-
-    const report = await axe(container);
-    expect(report.violations).toHaveLength(0);
+  it("shows compact model size and provides formatted inline evidence", async () => {
+    const { container } = render(<CatalogExplorer mode="tasks" />);
+    const details = (await screen.findAllByLabelText(/Result details/))[0];
+    expect(screen.getAllByTitle("Number of model parameters")[0]).toHaveTextContent("10 params");
+    fireEvent.click(details);
+    const evidence = screen.getByRole("region", { name: "Result details for owner/model" });
+    expect(evidence).toHaveTextContent("MTEB version");
+    expect(evidence).toHaveTextContent("2.18.3");
+    expect(evidence).toHaveTextContent("Effective prompts");
+    expect(screen.getAllByRole("link", { name: "owner/model" })[0]).toHaveAttribute("href", expect.stringContaining("b".repeat(40)));
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

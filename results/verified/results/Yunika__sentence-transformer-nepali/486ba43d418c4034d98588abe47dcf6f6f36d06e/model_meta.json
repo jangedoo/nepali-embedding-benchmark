@@ -1,0 +1,50 @@
+{
+    "loader_kwargs": {
+        "model_prompts": {
+            "query": "",
+            "document": ""
+        },
+        "model_kwargs": {
+            "torch_dtype": "bfloat16"
+        },
+        "device": "cuda"
+    },
+    "name": "Yunika/sentence-transformer-nepali",
+    "revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+    "release_date": "2024-04-17",
+    "languages": null,
+    "n_parameters": 237556224,
+    "n_active_parameters_override": null,
+    "n_embedding_parameters": 151514880,
+    "memory_usage_mb": 906,
+    "max_tokens": 512,
+    "embed_dim": 768,
+    "license": null,
+    "open_weights": null,
+    "public_training_code": null,
+    "public_training_data": null,
+    "framework": [
+        "Sentence Transformers",
+        "Transformers",
+        "safetensors"
+    ],
+    "reference": "https://huggingface.co/Yunika/sentence-transformer-nepali",
+    "similarity_fn_name": "cosine",
+    "use_instructions": null,
+    "training_datasets": null,
+    "adapted_from": null,
+    "superseded_by": null,
+    "modalities": [
+        "text"
+    ],
+    "model_type": [
+        "dense"
+    ],
+    "citation": null,
+    "contacts": null,
+    "experiment_kwargs": null,
+    "output_dtypes": null,
+    "extra_requirements_groups": null,
+    "loader": "_load_sentence_transformer",
+    "is_cross_encoder": false
+}

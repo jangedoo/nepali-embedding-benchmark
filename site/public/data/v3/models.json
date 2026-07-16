@@ -1,0 +1,147 @@
+{
+  "models": [
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T15:45:33.425912+00:00",
+      "is_latest": true,
+      "n_parameters": 237556224,
+      "name": "Yunika/sentence-transformer-nepali",
+      "repository": "Yunika/sentence-transformer-nepali",
+      "revision": "486ba43d418c4034d98588abe47dcf6f6f36d06e",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "BitextMining": "task: search result | query: ",
+        "Classification": "task: classification | query: ",
+        "Clustering": "task: clustering | query: ",
+        "InstructionRetrieval": "task: code retrieval | query: ",
+        "MultilabelClassification": "task: classification | query: ",
+        "PairClassification": "task: sentence similarity | query: ",
+        "Reranking": "task: search result | query: ",
+        "Retrieval": "task: search result | query: ",
+        "Retrieval-document": "title: none | text: ",
+        "Retrieval-query": "task: search result | query: ",
+        "STS": "task: sentence similarity | query: ",
+        "Summarization": "task: summarization | query: ",
+        "document": "title: none | text: ",
+        "query": "task: search result | query: "
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T16:18:08.450988+00:00",
+      "is_latest": true,
+      "n_parameters": 302863104,
+      "name": "google/embeddinggemma-300m",
+      "repository": "google/embeddinggemma-300m",
+      "revision": "57c266a740f537b4dc058e1b0cda161fd15afa75",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "BitextMining": "query: ",
+        "Classification": "query: ",
+        "PairClassification": "query: ",
+        "STS": "query: ",
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T15:17:47.047323+00:00",
+      "is_latest": true,
+      "n_parameters": 117654272,
+      "name": "intfloat/multilingual-e5-small",
+      "repository": "intfloat/multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T15:24:43.215681+00:00",
+      "is_latest": true,
+      "n_parameters": 22713216,
+      "name": "jangedoo/all-miniLM-L6-v3-nepali",
+      "repository": "jangedoo/all-miniLM-L6-v3-nepali",
+      "revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T15:27:09.976914+00:00",
+      "is_latest": true,
+      "n_parameters": 22713216,
+      "name": "jangedoo/all-miniLM-L6-v4-nepali",
+      "repository": "jangedoo/all-miniLM-L6-v4-nepali",
+      "revision": "70a6f888f960bcd2cd75d42781e68122ad7a1442",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-16T15:08:29.301389+00:00",
+      "is_latest": true,
+      "n_parameters": 117653760,
+      "name": "jangedoo/sanolm-v1",
+      "repository": "jangedoo/sanolm-v1",
+      "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T16:27:44.136556+00:00",
+      "is_latest": true,
+      "n_parameters": 136731648,
+      "name": "nomic-ai/nomic-embed-text-v1.5",
+      "repository": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T15:52:57.641114+00:00",
+      "is_latest": true,
+      "n_parameters": 237556224,
+      "name": "premmm/nepali-embedder-v1",
+      "repository": "premmm/nepali-embedder-v1",
+      "revision": "60b057f18ee1cbe723bd1437ce953c6a7e623a7b",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 1024,
+      "evaluated_at": "2026-07-16T16:01:42.140451+00:00",
+      "is_latest": true,
+      "n_parameters": 559890432,
+      "name": "universalml/Nepali_Embedding_Model",
+      "repository": "universalml/Nepali_Embedding_Model",
+      "revision": "b7a62f3a5c7967918f75f30f318d2eb6289b28d5",
+      "status": "verified"
+    }
+  ],
+  "schema_version": 3
+}

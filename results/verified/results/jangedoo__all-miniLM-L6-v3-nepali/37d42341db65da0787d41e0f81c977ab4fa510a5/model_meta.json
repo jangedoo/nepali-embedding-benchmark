@@ -1,0 +1,46 @@
+{
+    "loader_kwargs": {
+        "model_prompts": {
+            "query": "",
+            "document": ""
+        },
+        "device": "cuda"
+    },
+    "name": "jangedoo/all-miniLM-L6-v3-nepali",
+    "revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+    "release_date": "2025-07-13",
+    "languages": null,
+    "n_parameters": 22713216,
+    "n_active_parameters_override": null,
+    "n_embedding_parameters": 11720448,
+    "memory_usage_mb": 87,
+    "max_tokens": 512,
+    "embed_dim": 384,
+    "license": null,
+    "open_weights": null,
+    "public_training_code": null,
+    "public_training_data": null,
+    "framework": [
+        "Sentence Transformers",
+        "safetensors"
+    ],
+    "reference": "https://huggingface.co/jangedoo/all-miniLM-L6-v3-nepali",
+    "similarity_fn_name": "cosine",
+    "use_instructions": null,
+    "training_datasets": null,
+    "adapted_from": "jangedoo/all-MiniLM-L6-v2-nepali",
+    "superseded_by": null,
+    "modalities": [
+        "text"
+    ],
+    "model_type": [
+        "dense"
+    ],
+    "citation": null,
+    "contacts": null,
+    "experiment_kwargs": null,
+    "output_dtypes": null,
+    "extra_requirements_groups": null,
+    "loader": "_load_sentence_transformer",
+    "is_cross_encoder": false
+}
