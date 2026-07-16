@@ -38,6 +38,18 @@ make test-contracts
 
 ## Evaluate a model
 
+Run `neb` in an interactive terminal to open the guided workflow. It walks through active task
+and dataset selection, model and revision, device, batch size, precision, cache and prompt
+settings, then shows the complete plan before evaluation starts. Afterward, an NEB checkout can
+publish just that model revision as community or maintainer-verified evidence and regenerate the
+dashboard export.
+
+```bash
+neb
+```
+
+Use the explicit subcommands below for scripts, CI, and reproducible command history.
+
 By default NEB resolves the current Hugging Face Hub HEAD and records its exact 40-character
 commit SHA:
 

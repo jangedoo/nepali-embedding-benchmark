@@ -35,6 +35,13 @@ def test_run_rejects_invalid_log_level_before_evaluation() -> None:
     assert not evaluate.called
 
 
+def test_bare_command_requires_a_terminal_in_noninteractive_use() -> None:
+    result = CliRunner().invoke(app, [])
+    assert result.exit_code != 0
+    assert "guided workflow requires an interactive terminal" in result.output
+    assert "neb run --help" in result.output
+
+
 def test_results_publish_forwards_overwrite() -> None:
     with patch("neb.results.publish_results", return_value=[]) as publish:
         result = CliRunner().invoke(

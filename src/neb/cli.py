@@ -4,14 +4,19 @@ from __future__ import annotations
 
 import json
 import logging
+import sys
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Any
 
 import typer
 
 from neb.schemas import VerificationStatus
 
-app = typer.Typer(no_args_is_help=True, help="Nepali Embedding Benchmark")
+app = typer.Typer(
+    invoke_without_command=True,
+    no_args_is_help=False,
+    help="Nepali Embedding Benchmark",
+)
 results_app = typer.Typer(no_args_is_help=True, help="Native MTEB evidence commands")
 app.add_typer(results_app, name="results")
 
@@ -22,6 +27,27 @@ def project_root(start: Path | None = None) -> Path:
         if (candidate / "pyproject.toml").is_file() and (candidate / "src/neb").is_dir():
             return candidate
     return cursor
+
+
+@app.callback()
+def main(ctx: typer.Context) -> None:
+    """Launch the guided workflow when no subcommand is supplied."""
+    if ctx.invoked_subcommand is not None:
+        return
+    if not sys.stdin.isatty() or not sys.stdout.isatty():
+        typer.echo(
+            "the guided workflow requires an interactive terminal; "
+            "use 'neb run --help' for the scriptable CLI",
+            err=True,
+        )
+        raise typer.Exit(code=2)
+
+    from neb.wizard import WizardCancelled, launch_wizard
+
+    try:
+        launch_wizard(project_root(), run_evaluation=_run)
+    except WizardCancelled:
+        typer.echo("\nCancelled.")
 
 
 @app.command("validate")
@@ -52,7 +78,9 @@ def _run(
     document_prompt: str | None,
     cache: Path,
     log_level: str,
-) -> None:
+    *,
+    json_summary: bool = True,
+) -> Any:
     numeric_level = getattr(logging, log_level.upper(), None)
     if not isinstance(numeric_level, int):
         raise typer.BadParameter("log level must be DEBUG, INFO, WARNING, ERROR, or CRITICAL")
@@ -76,17 +104,19 @@ def _run(
         query_prompt=query_prompt,
         document_prompt=document_prompt,
     )
-    typer.echo(
-        json.dumps(
-            {
-                "model_name": result.model_name,
-                "model_revision": result.model_revision,
-                "tasks": result.task_names,
-                "cache": str(cache),
-            },
-            indent=2,
+    if json_summary:
+        typer.echo(
+            json.dumps(
+                {
+                    "model_name": result.model_name,
+                    "model_revision": result.model_revision,
+                    "tasks": result.task_names,
+                    "cache": str(cache),
+                },
+                indent=2,
+            )
         )
-    )
+    return result
 
 
 @app.command("run")
