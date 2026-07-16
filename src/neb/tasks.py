@@ -13,7 +13,6 @@ from mteb.abstasks.text.bitext_mining import AbsTaskBitextMining
 
 from neb.adapters import (
     normalize_hard_negative_retrieval_rows,
-    normalize_hard_negative_rows,
     normalize_nanobeir,
     normalize_parallel_direction,
     normalize_row_retrieval,
@@ -69,6 +68,7 @@ RETRIEVAL_METRIC_PREFIXES = (
     "recall_at_",
     "hit_rate_at_",
 )
+RETRIEVAL_K_VALUES = (1, 3, 10, 50)
 
 
 def _metadata(
@@ -142,6 +142,9 @@ class STSBNepaliV3(AbsTaskSTS):
 class _NEBRetrievalTask(AbsTaskRetrieval):
     """Retrieval task reporting only NEB's selected metric families."""
 
+    k_values = RETRIEVAL_K_VALUES
+    _top_k = max(RETRIEVAL_K_VALUES)
+
     def _evaluate_subset(self, *args: Any, **kwargs: Any) -> dict[str, Any]:
         scores = super()._evaluate_subset(*args, **kwargs)
         return {
@@ -154,8 +157,8 @@ class _NEBRetrievalTask(AbsTaskRetrieval):
 class NanoBEIRNepaliRetrievalV3(AbsTaskRetrieval):
     """Legacy v3 protocol retained only to validate existing evidence."""
 
-    k_values = (1, 3, 5, 10, 20, 100, 1000)
-    _top_k = 1000
+    k_values = RETRIEVAL_K_VALUES
+    _top_k = max(RETRIEVAL_K_VALUES)
     metadata = _metadata(
         name="NanoBEIRNepaliRetrieval.v3",
         path="jangedoo/NanoBEIR-ne",
@@ -198,11 +201,9 @@ class NanoBEIRNepaliRetrievalV3(AbsTaskRetrieval):
         self.data_loaded = True
 
 
-class NanoBEIRNepaliRetrievalV4(_NEBRetrievalTask):
-    k_values = (1, 3, 5, 10, 20, 100, 1000)
-    _top_k = 1000
+class NanoBEIRNepaliRetrievalV5(_NEBRetrievalTask):
     metadata = _metadata(
-        name="NanoBEIRNepaliRetrieval.v4",
+        name="NanoBEIRNepaliRetrieval.v5",
         path="jangedoo/NanoBEIR-ne",
         revision=NANOBEIR_REVISION,
         description="Thirteen separately reported Nepali NanoBEIR retrieval subsets.",
@@ -243,46 +244,9 @@ class NanoBEIRNepaliRetrievalV4(_NEBRetrievalTask):
         self.data_loaded = True
 
 
-class NepaliHardNegativesRerankingV3(AbsTaskRetrieval):
-    """Legacy reranking protocol retained only to validate existing evidence."""
-
-    k_values = (1, 3, 5)
-    _top_k = 5
+class NepaliHardNegativesRetrievalV5(_NEBRetrievalTask):
     metadata = _metadata(
-        name="NepaliHardNegativesReranking.v3",
-        path="jangedoo/nepali-query-passage-hard-negatives-10k",
-        revision=HARD_NEGATIVES_REVISION,
-        description="Per-query reranking over one positive and isolated hard negatives.",
-        task_type="Reranking",
-        eval_langs={"hard-negatives": ["nep-Deva"]},
-        main_score="hit_rate_at_1",
-        domains=["Web", "Written"],
-        prompt="Given a query, retrieve the matching passage.",
-    )
-
-    def load_data(self, num_proc: int | None = None, **kwargs: Any) -> None:
-        if self.data_loaded:
-            return
-        source = load_dataset(**self.metadata.dataset, split="test", num_proc=num_proc)
-        values = normalize_hard_negative_rows(source)
-        self.dataset = {
-            "hard-negatives": {
-                "test": RetrievalSplitData(
-                    corpus=Dataset.from_list(values["corpus"]),
-                    queries=Dataset.from_list(values["queries"]),
-                    relevant_docs=values["relevant_docs"],
-                    top_ranked=values["top_ranked"],
-                )
-            }
-        }
-        self.data_loaded = True
-
-
-class NepaliHardNegativesRetrievalV4(_NEBRetrievalTask):
-    k_values = (1, 3, 5, 10, 20, 100, 1000)
-    _top_k = 1000
-    metadata = _metadata(
-        name="NepaliHardNegativesRetrieval.v4",
+        name="NepaliHardNegativesRetrieval.v5",
         path="jangedoo/nepali-query-passage-hard-negatives-10k",
         revision=HARD_NEGATIVES_REVISION,
         description="Full-corpus retrieval over positives and pooled hard negatives.",
@@ -311,11 +275,9 @@ class NepaliHardNegativesRetrievalV4(_NEBRetrievalTask):
         self.data_loaded = True
 
 
-class NepaliEcommerceRetrievalV1(_NEBRetrievalTask):
-    k_values = (1, 3, 5, 10, 20, 100, 1000)
-    _top_k = 1000
+class NepaliEcommerceRetrievalV2(_NEBRetrievalTask):
     metadata = _metadata(
-        name="NepaliEcommerceRetrieval.v1",
+        name="NepaliEcommerceRetrieval.v2",
         path="jangedoo/nepali-ecommerce-retrieval",
         revision=ECOMMERCE_REVISION,
         description="Cross-lingual e-commerce retrieval with pooled supplied negatives.",
@@ -348,11 +310,9 @@ class NepaliEcommerceRetrievalV1(_NEBRetrievalTask):
         self.data_loaded = True
 
 
-class SanoIRGeneralRetrievalV1(_NEBRetrievalTask):
-    k_values = (1, 3, 5, 10, 20, 100, 1000)
-    _top_k = 1000
+class SanoIRGeneralRetrievalV2(_NEBRetrievalTask):
     metadata = _metadata(
-        name="SanoIRGeneralRetrieval.v1",
+        name="SanoIRGeneralRetrieval.v2",
         path="jangedoo/sanoir-general",
         revision=SANOIR_REVISION,
         description="Domain-local retrieval across fifteen Nepali and mixed-language domains.",
@@ -453,10 +413,10 @@ def get_tasks() -> list[mteb.AbsTask]:
     """Return the fixed NEB task composition; no membership floats with MTEB."""
     return [
         STSBNepaliV3(),
-        NanoBEIRNepaliRetrievalV4(),
-        NepaliHardNegativesRetrievalV4(),
-        NepaliEcommerceRetrievalV1(),
-        SanoIRGeneralRetrievalV1(),
+        NanoBEIRNepaliRetrievalV5(),
+        NepaliHardNegativesRetrievalV5(),
+        NepaliEcommerceRetrievalV2(),
+        SanoIRGeneralRetrievalV2(),
         NepaliParaphraseClassificationV3(),
         EnglishNepaliBitextMiningV3(),
         mteb.get_task("NepaliNewsClassification.v2"),
@@ -470,7 +430,7 @@ def get_tasks() -> list[mteb.AbsTask]:
 
 def get_result_tasks() -> list[mteb.AbsTask]:
     """Return active tasks plus legacy protocols needed for evidence validation."""
-    return [*get_tasks(), NanoBEIRNepaliRetrievalV3(), NepaliHardNegativesRerankingV3()]
+    return [*get_tasks(), NanoBEIRNepaliRetrievalV3()]
 
 
 def get_benchmark() -> mteb.Benchmark:

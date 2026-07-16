@@ -106,20 +106,6 @@
         "query": ""
       },
       "embed_dim": 768,
-      "evaluated_at": "2026-07-16T16:27:44.136556+00:00",
-      "is_latest": true,
-      "n_parameters": 136731648,
-      "name": "nomic-ai/nomic-embed-text-v1.5",
-      "repository": "nomic-ai/nomic-embed-text-v1.5",
-      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
-      "status": "verified"
-    },
-    {
-      "effective_prompts": {
-        "document": "",
-        "query": ""
-      },
-      "embed_dim": 768,
       "evaluated_at": "2026-07-16T15:52:57.641114+00:00",
       "is_latest": true,
       "n_parameters": 237556224,

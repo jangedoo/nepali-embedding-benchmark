@@ -13,7 +13,7 @@ from neb.models import (
     load_model_overrides,
     resolve_model,
 )
-from neb.tasks import NanoBEIRNepaliRetrievalV4, STSBNepaliV3
+from neb.tasks import NanoBEIRNepaliRetrievalV5, STSBNepaliV3
 
 
 def empty_meta(name: str, revision: str) -> ModelMeta:
@@ -61,13 +61,13 @@ def test_custom_neb_task_prompt_keys_are_valid() -> None:
     assert _filter_prompts(
         {
             "STSBNepali.v3": "similarity: ",
-            "NanoBEIRNepaliRetrieval.v4-query": "search: ",
+            "NanoBEIRNepaliRetrieval.v5-query": "search: ",
         },
         source="fixture",
         strict=True,
     ) == {
         "STSBNepali.v3": "similarity: ",
-        "NanoBEIRNepaliRetrieval.v4-query": "search: ",
+        "NanoBEIRNepaliRetrieval.v5-query": "search: ",
     }
 
 
@@ -79,7 +79,7 @@ def test_exact_yaml_override_uses_task_types_for_symmetric_e5_tasks() -> None:
     assert (
         get_prompt_name(
             override.prompts,
-            NanoBEIRNepaliRetrievalV4.metadata,
+            NanoBEIRNepaliRetrievalV5.metadata,
             PromptType.document,
         )
         == "document"

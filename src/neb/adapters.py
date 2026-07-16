@@ -78,47 +78,6 @@ def normalize_nanobeir(
     }
 
 
-def normalize_hard_negative_rows(
-    rows: Iterable[Mapping[str, Any]],
-) -> dict[str, Any]:
-    """Create isolated per-query reranking candidate pools.
-
-    Document ids include the query index, preventing candidates from one query
-    leaking into another query's ``top_ranked`` pool.
-    """
-    corpus: list[dict[str, str]] = []
-    queries: list[dict[str, str]] = []
-    relevant_docs: dict[str, dict[str, int]] = {}
-    top_ranked: dict[str, list[str]] = {}
-    for index, row in enumerate(rows):
-        if not {"query", "positive", "hard_negative_passages"} <= row.keys():
-            raise ValueError(f"hard-negative row {index} is missing required columns")
-        query_id = f"q{index}"
-        positive = str(row["positive"])
-        negatives = [str(value) for value in (row["hard_negative_passages"] or [])]
-        if positive in negatives:
-            raise ValueError(f"hard-negative row {index} repeats its positive")
-        if not negatives:
-            raise ValueError(f"hard-negative row {index} has no candidates")
-
-        positive_id = f"{query_id}:positive"
-        candidate_ids = [positive_id]
-        corpus.append({"id": positive_id, "title": "", "text": positive})
-        for candidate_index, text in enumerate(negatives):
-            document_id = f"{query_id}:negative:{candidate_index}"
-            candidate_ids.append(document_id)
-            corpus.append({"id": document_id, "title": "", "text": text})
-        queries.append({"id": query_id, "text": str(row["query"])})
-        relevant_docs[query_id] = {positive_id: 1}
-        top_ranked[query_id] = candidate_ids
-    return {
-        "corpus": corpus,
-        "queries": queries,
-        "relevant_docs": relevant_docs,
-        "top_ranked": top_ranked,
-    }
-
-
 def _query_key(value: str) -> str:
     """Match duplicate queries without changing the text sent to a model."""
     normalized = unicodedata.normalize("NFKC", value).casefold()

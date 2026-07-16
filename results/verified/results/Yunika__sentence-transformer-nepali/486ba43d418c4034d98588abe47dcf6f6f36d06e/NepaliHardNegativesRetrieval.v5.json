@@ -1,0 +1,58 @@
+{
+  "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+  "task_name": "NepaliHardNegativesRetrieval.v5",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.3875,
+        "ndcg_at_3": 0.52616,
+        "ndcg_at_10": 0.59359,
+        "map_at_1": 0.3875,
+        "map_at_3": 0.49125,
+        "map_at_10": 0.52304,
+        "recall_at_1": 0.3875,
+        "recall_at_3": 0.6275,
+        "recall_at_10": 0.8175,
+        "mrr_at_1": 0.3875,
+        "mrr_at_3": 0.49125,
+        "mrr_at_10": 0.523038,
+        "hit_rate_at_1": 0.3875,
+        "hit_rate_at_3": 0.6275,
+        "hit_rate_at_10": 0.8175,
+        "main_score": 0.59359,
+        "hf_subset": "hard-negatives",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 3.1863174719910603,
+  "kg_co2_emissions": null,
+  "date": 1784216688.717314,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.6424241740023717,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 1.6517585100082215,
+      "end": 2.791109543002676,
+      "split": "test",
+      "subset": "hard-negatives"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.7912648250057828,
+      "end": 3.1719057290174533,
+      "split": "test",
+      "subset": "hard-negatives"
+    }
+  ]
+}

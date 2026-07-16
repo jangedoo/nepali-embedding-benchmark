@@ -47,7 +47,7 @@
       "description": "Thirteen separately reported Nepali NanoBEIR retrieval subsets.",
       "display_name": "NanoBEIRNepaliRetrieval",
       "main_score": "ndcg_at_10",
-      "name": "NanoBEIRNepaliRetrieval.v4",
+      "name": "NanoBEIRNepaliRetrieval.v5",
       "splits": [
         "test"
       ],
@@ -142,7 +142,7 @@
       "description": "Full-corpus retrieval over positives and pooled hard negatives.",
       "display_name": "NepaliHardNegativesRetrieval",
       "main_score": "ndcg_at_10",
-      "name": "NepaliHardNegativesRetrieval.v4",
+      "name": "NepaliHardNegativesRetrieval.v5",
       "splits": [
         "test"
       ],
@@ -165,7 +165,7 @@
       "description": "Cross-lingual e-commerce retrieval with pooled supplied negatives.",
       "display_name": "NepaliEcommerceRetrieval",
       "main_score": "ndcg_at_10",
-      "name": "NepaliEcommerceRetrieval.v1",
+      "name": "NepaliEcommerceRetrieval.v2",
       "splits": [
         "test"
       ],
@@ -190,7 +190,7 @@
       "description": "Domain-local retrieval across fifteen Nepali and mixed-language domains.",
       "display_name": "SanoIRGeneralRetrieval",
       "main_score": "ndcg_at_10",
-      "name": "SanoIRGeneralRetrieval.v1",
+      "name": "SanoIRGeneralRetrieval.v2",
       "splits": [
         "test"
       ],

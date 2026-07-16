@@ -1,0 +1,606 @@
+{
+  "dataset_revision": "7e53250964a040dbad2aa11d95855548a7c6717e",
+  "task_name": "SanoIRGeneralRetrieval.v2",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.1273,
+        "ndcg_at_10": 0.1895,
+        "map_at_1": 0.0,
+        "map_at_3": 0.09659,
+        "map_at_10": 0.1245,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.21591,
+        "recall_at_10": 0.39773,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.096591,
+        "mrr_at_10": 0.124504,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.21591,
+        "hit_rate_at_10": 0.39773,
+        "main_score": 0.1895,
+        "hf_subset": "agriculture",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.18089,
+        "ndcg_at_10": 0.31836,
+        "map_at_1": 0.0,
+        "map_at_3": 0.13415,
+        "map_at_10": 0.1986,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.31707,
+        "recall_at_10": 0.70732,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.134146,
+        "mrr_at_10": 0.198597,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.31707,
+        "hit_rate_at_10": 0.70732,
+        "main_score": 0.31836,
+        "hf_subset": "climate-and-environment",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.32093,
+        "ndcg_at_10": 0.40961,
+        "map_at_1": 0.0,
+        "map_at_3": 0.24658,
+        "map_at_10": 0.28905,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.53425,
+        "recall_at_10": 0.78082,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.246575,
+        "mrr_at_10": 0.289052,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.53425,
+        "hit_rate_at_10": 0.78082,
+        "main_score": 0.40961,
+        "hf_subset": "community-discussion",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.18095,
+        "ndcg_at_10": 0.31555,
+        "map_at_1": 0.0,
+        "map_at_3": 0.13333,
+        "map_at_10": 0.1966,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.32,
+        "recall_at_10": 0.7,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.133333,
+        "mrr_at_10": 0.196603,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.32,
+        "hit_rate_at_10": 0.7,
+        "main_score": 0.31555,
+        "hf_subset": "education",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.24163,
+        "ndcg_at_10": 0.33092,
+        "map_at_1": 0.0,
+        "map_at_3": 0.18468,
+        "map_at_10": 0.22859,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.40541,
+        "recall_at_10": 0.64865,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.184685,
+        "mrr_at_10": 0.228593,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.40541,
+        "hit_rate_at_10": 0.64865,
+        "main_score": 0.33092,
+        "hf_subset": "energy-and-infrastructure",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.25865,
+        "ndcg_at_10": 0.32357,
+        "map_at_1": 0.0,
+        "map_at_3": 0.19697,
+        "map_at_10": 0.22788,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.43636,
+        "recall_at_10": 0.61818,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.19697,
+        "mrr_at_10": 0.227879,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.43636,
+        "hit_rate_at_10": 0.61818,
+        "main_score": 0.32357,
+        "hf_subset": "health-and-nutrition",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.35325,
+        "ndcg_at_10": 0.45547,
+        "map_at_1": 0.0,
+        "map_at_3": 0.27174,
+        "map_at_10": 0.32092,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.58696,
+        "recall_at_10": 0.86957,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.271739,
+        "mrr_at_10": 0.32092,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.58696,
+        "hit_rate_at_10": 0.86957,
+        "main_score": 0.45547,
+        "hf_subset": "history-and-culture",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.43143,
+        "ndcg_at_10": 0.50604,
+        "map_at_1": 0.0,
+        "map_at_3": 0.33025,
+        "map_at_10": 0.37083,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.72222,
+        "recall_at_10": 0.90741,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.330247,
+        "mrr_at_10": 0.370833,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.72222,
+        "hit_rate_at_10": 0.90741,
+        "main_score": 0.50604,
+        "hf_subset": "law-and-policy",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.1569,
+        "ndcg_at_10": 0.24541,
+        "map_at_1": 0.0,
+        "map_at_3": 0.11798,
+        "map_at_10": 0.15768,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.26966,
+        "recall_at_10": 0.52809,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.117978,
+        "mrr_at_10": 0.157678,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.26966,
+        "hit_rate_at_10": 0.52809,
+        "main_score": 0.24541,
+        "hf_subset": "nepal-civic-services",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.26457,
+        "ndcg_at_10": 0.32307,
+        "map_at_1": 0.0,
+        "map_at_3": 0.20068,
+        "map_at_10": 0.22857,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.44898,
+        "recall_at_10": 0.61224,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.20068,
+        "mrr_at_10": 0.228571,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.44898,
+        "hit_rate_at_10": 0.61224,
+        "main_score": 0.32307,
+        "hf_subset": "personal-finance",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.42168,
+        "ndcg_at_10": 0.50471,
+        "map_at_1": 0.0,
+        "map_at_3": 0.32129,
+        "map_at_10": 0.36161,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.71084,
+        "recall_at_10": 0.93976,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.321285,
+        "mrr_at_10": 0.361608,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.71084,
+        "hit_rate_at_10": 0.93976,
+        "main_score": 0.50471,
+        "hf_subset": "products-and-services",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.26666,
+        "ndcg_at_10": 0.38134,
+        "map_at_1": 0.0,
+        "map_at_3": 0.2,
+        "map_at_10": 0.25911,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.46,
+        "recall_at_10": 0.76,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.2,
+        "mrr_at_10": 0.259111,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.46,
+        "hit_rate_at_10": 0.76,
+        "main_score": 0.38134,
+        "hf_subset": "science-and-research",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.42856,
+        "ndcg_at_10": 0.50847,
+        "map_at_1": 0.0,
+        "map_at_3": 0.32624,
+        "map_at_10": 0.3664,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.7234,
+        "recall_at_10": 0.93617,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.326241,
+        "mrr_at_10": 0.366396,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.7234,
+        "hit_rate_at_10": 0.93617,
+        "main_score": 0.50847,
+        "hf_subset": "technology",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.20763,
+        "ndcg_at_10": 0.26338,
+        "map_at_1": 0.0,
+        "map_at_3": 0.15801,
+        "map_at_10": 0.18735,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.35065,
+        "recall_at_10": 0.49351,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.158009,
+        "mrr_at_10": 0.187353,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.35065,
+        "hit_rate_at_10": 0.49351,
+        "main_score": 0.26338,
+        "hf_subset": "travel-and-geography",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.0,
+        "ndcg_at_3": 0.20581,
+        "ndcg_at_10": 0.28566,
+        "map_at_1": 0.0,
+        "map_at_3": 0.15705,
+        "map_at_10": 0.19744,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.34615,
+        "recall_at_10": 0.55769,
+        "mrr_at_1": 0.0,
+        "mrr_at_3": 0.157051,
+        "mrr_at_10": 0.197436,
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_3": 0.34615,
+        "hit_rate_at_10": 0.55769,
+        "main_score": 0.28566,
+        "hf_subset": "work-and-livelihoods",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 7.150193659006618,
+  "kg_co2_emissions": null,
+  "date": 1784215067.047323,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 2.3620672590041067,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 2.3658334619831294,
+      "end": 2.6791271140100434,
+      "split": "test",
+      "subset": "agriculture"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.67924743500771,
+      "end": 2.7740298860007897,
+      "split": "test",
+      "subset": "agriculture"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 2.784695637994446,
+      "end": 2.930957064992981,
+      "split": "test",
+      "subset": "climate-and-environment"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.931052586005535,
+      "end": 2.9996186080097686,
+      "split": "test",
+      "subset": "climate-and-environment"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 3.010634073987603,
+      "end": 3.274381491006352,
+      "split": "test",
+      "subset": "community-discussion"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.274503171996912,
+      "end": 3.3583226180053316,
+      "split": "test",
+      "subset": "community-discussion"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 3.369346672989195,
+      "end": 3.5609723379893694,
+      "split": "test",
+      "subset": "education"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.561080679006409,
+      "end": 3.6324685029976536,
+      "split": "test",
+      "subset": "education"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 3.6431339450064115,
+      "end": 3.788314139994327,
+      "split": "test",
+      "subset": "energy-and-infrastructure"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.7883844309835695,
+      "end": 3.8547305070096627,
+      "split": "test",
+      "subset": "energy-and-infrastructure"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 3.8657174319960177,
+      "end": 4.087060466001276,
+      "split": "test",
+      "subset": "health-and-nutrition"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.087175656983163,
+      "end": 4.1673439310106914,
+      "split": "test",
+      "subset": "health-and-nutrition"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 4.178472637984669,
+      "end": 4.346416902990313,
+      "split": "test",
+      "subset": "history-and-culture"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.3465271439927164,
+      "end": 4.417327100993134,
+      "split": "test",
+      "subset": "history-and-culture"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 4.429104576003738,
+      "end": 4.656695979996584,
+      "split": "test",
+      "subset": "law-and-policy"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.656769371009432,
+      "end": 4.731598663987825,
+      "split": "test",
+      "subset": "law-and-policy"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 4.743806993006729,
+      "end": 5.041286955005489,
+      "split": "test",
+      "subset": "nepal-civic-services"
+    },
+    {
+      "name": "Scoring",
+      "start": 5.041424677008763,
+      "end": 5.1341989939974155,
+      "split": "test",
+      "subset": "nepal-civic-services"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 5.146471493993886,
+      "end": 5.336247958010063,
+      "split": "test",
+      "subset": "personal-finance"
+    },
+    {
+      "name": "Scoring",
+      "start": 5.336380639986601,
+      "end": 5.4198378209839575,
+      "split": "test",
+      "subset": "personal-finance"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 5.432232681981986,
+      "end": 5.761963531986112,
+      "split": "test",
+      "subset": "products-and-services"
+    },
+    {
+      "name": "Scoring",
+      "start": 5.762084843008779,
+      "end": 5.851583952986402,
+      "split": "test",
+      "subset": "products-and-services"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 5.8646776730020065,
+      "end": 6.06422385800397,
+      "split": "test",
+      "subset": "science-and-research"
+    },
+    {
+      "name": "Scoring",
+      "start": 6.0643318989896215,
+      "end": 6.133287934993859,
+      "split": "test",
+      "subset": "science-and-research"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 6.145599215000402,
+      "end": 6.348863302991958,
+      "split": "test",
+      "subset": "technology"
+    },
+    {
+      "name": "Scoring",
+      "start": 6.348973404004937,
+      "end": 6.417627276998246,
+      "split": "test",
+      "subset": "technology"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 6.4308615179907065,
+      "end": 6.750750084989704,
+      "split": "test",
+      "subset": "travel-and-geography"
+    },
+    {
+      "name": "Scoring",
+      "start": 6.750867486000061,
+      "end": 6.835674982983619,
+      "split": "test",
+      "subset": "travel-and-geography"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 6.848227855982259,
+      "end": 7.061800241004676,
+      "split": "test",
+      "subset": "work-and-livelihoods"
+    },
+    {
+      "name": "Scoring",
+      "start": 7.061947832989972,
+      "end": 7.140160693990765,
+      "split": "test",
+      "subset": "work-and-livelihoods"
+    }
+  ]
+}

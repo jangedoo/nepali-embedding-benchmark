@@ -2,7 +2,13 @@ from unittest.mock import patch
 
 from mteb.abstasks import AbsTaskRetrieval
 
-from neb.tasks import NanoBEIRNepaliRetrievalV4, get_benchmark, get_result_tasks, get_tasks
+from neb.tasks import (
+    RETRIEVAL_K_VALUES,
+    NanoBEIRNepaliRetrievalV5,
+    get_benchmark,
+    get_result_tasks,
+    get_tasks,
+)
 
 
 def test_benchmark_composition_has_no_aggregation() -> None:
@@ -16,10 +22,10 @@ def test_custom_versions_and_dataset_revisions_are_exact() -> None:
     tasks = get_tasks()
     assert [task.metadata.name for task in tasks[:7]] == [
         "STSBNepali.v3",
-        "NanoBEIRNepaliRetrieval.v4",
-        "NepaliHardNegativesRetrieval.v4",
-        "NepaliEcommerceRetrieval.v1",
-        "SanoIRGeneralRetrieval.v1",
+        "NanoBEIRNepaliRetrieval.v5",
+        "NepaliHardNegativesRetrieval.v5",
+        "NepaliEcommerceRetrieval.v2",
+        "SanoIRGeneralRetrieval.v2",
         "NepaliParaphraseClassification.v3",
         "EnglishNepaliBitextMining.v3",
     ]
@@ -59,7 +65,7 @@ def test_retrieval_tasks_only_return_selected_metric_families() -> None:
         "nauc_ndcg_at_10_max": 0.1,
     }
     with patch.object(AbsTaskRetrieval, "_evaluate_subset", return_value=raw):
-        scores = NanoBEIRNepaliRetrievalV4()._evaluate_subset()
+        scores = NanoBEIRNepaliRetrievalV5()._evaluate_subset()
     assert set(scores) == {
         "ndcg_at_10",
         "map_at_10",
@@ -69,12 +75,16 @@ def test_retrieval_tasks_only_return_selected_metric_families() -> None:
     }
 
 
-def test_legacy_protocols_validate_evidence_without_remaining_active() -> None:
+def test_retrieval_tasks_use_only_selected_cutoffs() -> None:
+    retrieval_tasks = [task for task in get_result_tasks() if task.metadata.type == "Retrieval"]
+    assert retrieval_tasks
+    assert all(task.k_values == RETRIEVAL_K_VALUES for task in retrieval_tasks)
+    assert all(task._top_k == 50 for task in retrieval_tasks)
+
+
+def test_legacy_protocol_validates_evidence_without_remaining_active() -> None:
     active = {task.metadata.name for task in get_tasks()}
     result_tasks = {task.metadata.name for task in get_result_tasks()}
     assert "NanoBEIRNepaliRetrieval.v3" not in active
-    assert "NepaliHardNegativesReranking.v3" not in active
-    assert {
-        "NanoBEIRNepaliRetrieval.v3",
-        "NepaliHardNegativesReranking.v3",
-    } <= result_tasks
+    assert "NanoBEIRNepaliRetrieval.v3" in result_tasks
+    assert all("Reranking" not in name for name in result_tasks)

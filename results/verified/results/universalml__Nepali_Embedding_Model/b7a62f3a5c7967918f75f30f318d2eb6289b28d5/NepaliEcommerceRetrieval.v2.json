@@ -1,0 +1,60 @@
+{
+  "dataset_revision": "4b7dd8188039018701baa94eb56a1a63d0ab16d5",
+  "task_name": "NepaliEcommerceRetrieval.v2",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.34824,
+        "ndcg_at_3": 0.47378,
+        "ndcg_at_10": 0.5455,
+        "map_at_1": 0.34824,
+        "map_at_3": 0.44314,
+        "map_at_10": 0.47733,
+        "recall_at_1": 0.34824,
+        "recall_at_3": 0.56235,
+        "recall_at_10": 0.76235,
+        "mrr_at_1": 0.348235,
+        "mrr_at_3": 0.443137,
+        "mrr_at_10": 0.477329,
+        "hit_rate_at_1": 0.34824,
+        "hit_rate_at_3": 0.56235,
+        "hit_rate_at_10": 0.76235,
+        "main_score": 0.5455,
+        "hf_subset": "ecommerce",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 4.149778522027191,
+  "kg_co2_emissions": null,
+  "date": 1784217654.995991,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.3687436940090265,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 1.3785202849830966,
+      "end": 3.7314861390041187,
+      "split": "test",
+      "subset": "ecommerce"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.7316568509850185,
+      "end": 4.134770731994649,
+      "split": "test",
+      "subset": "ecommerce"
+    }
+  ]
+}

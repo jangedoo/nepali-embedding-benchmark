@@ -4,10 +4,12 @@ from pathlib import Path
 
 import pytest
 from conftest import make_sts_cache
+from mteb.results import TaskResult
 
-from neb.evaluation import write_checksum
+from neb.evaluation import MTEB_VERSION, write_checksum
 from neb.results import discover_results, publish_results, validate_task_result
 from neb.schemas import VerificationStatus
+from neb.tasks import HARD_NEGATIVES_REVISION
 
 
 def test_native_result_validation_and_checksum(tmp_path: Path) -> None:
@@ -36,6 +38,45 @@ def test_validation_rejects_missing_prompts_and_settings(tmp_path: Path) -> None
     meta["loader_kwargs"].pop("model_prompts")
     meta_path.write_text(json.dumps(meta), encoding="utf-8")
     with pytest.raises(ValueError, match="effective prompts"):
+        validate_task_result(path)
+
+
+def test_validation_rejects_unsupported_retrieval_cutoffs(tmp_path: Path) -> None:
+    directory = make_sts_cache(tmp_path / "runs").parent
+    path = directory / "NepaliHardNegativesRetrieval.v5.json"
+    TaskResult(
+        dataset_revision=HARD_NEGATIVES_REVISION,
+        task_name="NepaliHardNegativesRetrieval.v5",
+        mteb_version=MTEB_VERSION,
+        scores={
+            "test": [
+                {
+                    "hf_subset": "hard-negatives",
+                    "languages": ["nep-Deva"],
+                    "mteb_version": MTEB_VERSION,
+                    "ndcg_at_10": 0.5,
+                    "ndcg_at_20": 0.6,
+                    "main_score": 0.5,
+                }
+            ]
+        },
+        evaluation_time=1.0,
+    ).to_disk(path)
+    with (directory / "run_settings.jsonl").open("a", encoding="utf-8") as stream:
+        stream.write(
+            json.dumps(
+                {
+                    "task": "NepaliHardNegativesRetrieval.v5",
+                    "split": "test",
+                    "subset": "hard-negatives",
+                    "version": {"mteb": MTEB_VERSION},
+                }
+            )
+            + "\n"
+        )
+    write_checksum(path)
+
+    with pytest.raises(ValueError, match="unsupported retrieval metric cutoffs.*ndcg_at_20"):
         validate_task_result(path)
 
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import shutil
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,8 @@ from mteb.results import TaskResult
 from neb.evaluation import MTEB_VERSION, sha256_file, write_checksum
 from neb.schemas import EvidenceRecord, VerificationStatus
 from neb.tasks import get_result_tasks
+
+METRIC_CUTOFF_PATTERN = re.compile(r"(?:^|_)at_(\d+)(?:_|$)")
 
 
 def _checksum_path(path: Path) -> Path:
@@ -147,6 +150,22 @@ def validate_task_result(
                 and not isinstance(value, bool)
                 and math.isfinite(value)
             }
+            allowed_cutoffs = set(getattr(task, "k_values", ()))
+            unsupported = (
+                sorted(
+                    name
+                    for name in metrics
+                    if (match := METRIC_CUTOFF_PATTERN.search(name))
+                    and int(match.group(1)) not in allowed_cutoffs
+                )
+                if task.metadata.type == "Retrieval"
+                else []
+            )
+            if unsupported:
+                raise ValueError(
+                    f"unsupported retrieval metric cutoffs for {result.task_name}: "
+                    + ", ".join(unsupported)
+                )
             if main_metric not in metrics:
                 raise ValueError(f"missing main metric {main_metric!r}")
             main_score = entry.get("main_score")

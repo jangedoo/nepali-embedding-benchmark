@@ -1,0 +1,502 @@
+{
+  "dataset_revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
+  "task_name": "NanoBEIRNepaliRetrieval.v5",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.2,
+        "ndcg_at_3": 0.39619,
+        "ndcg_at_10": 0.48953,
+        "map_at_1": 0.2,
+        "map_at_3": 0.34667,
+        "map_at_10": 0.39138,
+        "recall_at_1": 0.2,
+        "recall_at_3": 0.54,
+        "recall_at_10": 0.8,
+        "mrr_at_1": 0.2,
+        "mrr_at_3": 0.346667,
+        "mrr_at_10": 0.396381,
+        "hit_rate_at_1": 0.2,
+        "hit_rate_at_3": 0.54,
+        "hit_rate_at_10": 0.8,
+        "main_score": 0.48953,
+        "hf_subset": "arguana",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.26,
+        "ndcg_at_3": 0.21773,
+        "ndcg_at_10": 0.28981,
+        "map_at_1": 0.13833,
+        "map_at_3": 0.16639,
+        "map_at_10": 0.20125,
+        "recall_at_1": 0.13833,
+        "recall_at_3": 0.19833,
+        "recall_at_10": 0.36533,
+        "mrr_at_1": 0.26,
+        "mrr_at_3": 0.323333,
+        "mrr_at_10": 0.377667,
+        "hit_rate_at_1": 0.26,
+        "hit_rate_at_3": 0.4,
+        "hit_rate_at_10": 0.7,
+        "main_score": 0.28981,
+        "hf_subset": "climatefever",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.66,
+        "ndcg_at_3": 0.62123,
+        "ndcg_at_10": 0.56858,
+        "map_at_1": 0.09697,
+        "map_at_3": 0.15329,
+        "map_at_10": 0.25022,
+        "recall_at_1": 0.09697,
+        "recall_at_3": 0.16904,
+        "recall_at_10": 0.32754,
+        "mrr_at_1": 0.66,
+        "mrr_at_3": 0.77,
+        "mrr_at_10": 0.78519,
+        "hit_rate_at_1": 0.66,
+        "hit_rate_at_3": 0.88,
+        "hit_rate_at_10": 0.96,
+        "main_score": 0.56858,
+        "hf_subset": "dbpedia",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.74,
+        "ndcg_at_3": 0.82147,
+        "ndcg_at_10": 0.83993,
+        "map_at_1": 0.71667,
+        "map_at_3": 0.79167,
+        "map_at_10": 0.80117,
+        "recall_at_1": 0.71667,
+        "recall_at_3": 0.87667,
+        "recall_at_10": 0.92667,
+        "mrr_at_1": 0.74,
+        "mrr_at_3": 0.823333,
+        "mrr_at_10": 0.830833,
+        "hit_rate_at_1": 0.74,
+        "hit_rate_at_3": 0.92,
+        "hit_rate_at_10": 0.96,
+        "main_score": 0.83993,
+        "hf_subset": "fever",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.34,
+        "ndcg_at_3": 0.4012,
+        "ndcg_at_10": 0.42365,
+        "map_at_1": 0.20752,
+        "map_at_3": 0.32046,
+        "map_at_10": 0.35452,
+        "recall_at_1": 0.20752,
+        "recall_at_3": 0.40574,
+        "recall_at_10": 0.5061,
+        "mrr_at_1": 0.34,
+        "mrr_at_3": 0.446667,
+        "mrr_at_10": 0.461746,
+        "hit_rate_at_1": 0.34,
+        "hit_rate_at_3": 0.58,
+        "hit_rate_at_10": 0.66,
+        "main_score": 0.42365,
+        "hf_subset": "fiqa2018",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.82,
+        "ndcg_at_3": 0.67431,
+        "ndcg_at_10": 0.75174,
+        "map_at_1": 0.41,
+        "map_at_3": 0.6,
+        "map_at_10": 0.65478,
+        "recall_at_1": 0.41,
+        "recall_at_3": 0.64,
+        "recall_at_10": 0.82,
+        "mrr_at_1": 0.82,
+        "mrr_at_3": 0.873333,
+        "mrr_at_10": 0.88119,
+        "hit_rate_at_1": 0.82,
+        "hit_rate_at_3": 0.94,
+        "hit_rate_at_10": 0.98,
+        "main_score": 0.75174,
+        "hf_subset": "hotpotqa",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.28,
+        "ndcg_at_3": 0.41095,
+        "ndcg_at_10": 0.51342,
+        "map_at_1": 0.28,
+        "map_at_3": 0.38,
+        "map_at_10": 0.43025,
+        "recall_at_1": 0.28,
+        "recall_at_3": 0.5,
+        "recall_at_10": 0.78,
+        "mrr_at_1": 0.28,
+        "mrr_at_3": 0.38,
+        "mrr_at_10": 0.430246,
+        "hit_rate_at_1": 0.28,
+        "hit_rate_at_3": 0.5,
+        "hit_rate_at_10": 0.78,
+        "main_score": 0.51342,
+        "hf_subset": "msmarco",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.32,
+        "ndcg_at_3": 0.30101,
+        "ndcg_at_10": 0.23216,
+        "map_at_1": 0.03259,
+        "map_at_3": 0.04868,
+        "map_at_10": 0.07323,
+        "recall_at_1": 0.03259,
+        "recall_at_3": 0.05165,
+        "recall_at_10": 0.08971,
+        "mrr_at_1": 0.32,
+        "mrr_at_3": 0.356667,
+        "mrr_at_10": 0.377524,
+        "hit_rate_at_1": 0.32,
+        "hit_rate_at_3": 0.42,
+        "hit_rate_at_10": 0.56,
+        "main_score": 0.23216,
+        "hf_subset": "nfcorpus",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.36,
+        "ndcg_at_3": 0.42625,
+        "ndcg_at_10": 0.50242,
+        "map_at_1": 0.35,
+        "map_at_3": 0.40333,
+        "map_at_10": 0.43982,
+        "recall_at_1": 0.35,
+        "recall_at_3": 0.48,
+        "recall_at_10": 0.68,
+        "mrr_at_1": 0.36,
+        "mrr_at_3": 0.416667,
+        "mrr_at_10": 0.454802,
+        "hit_rate_at_1": 0.36,
+        "hit_rate_at_3": 0.5,
+        "hit_rate_at_10": 0.72,
+        "main_score": 0.50242,
+        "hf_subset": "nq",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.86,
+        "ndcg_at_3": 0.84143,
+        "ndcg_at_10": 0.88802,
+        "map_at_1": 0.73733,
+        "map_at_3": 0.81511,
+        "map_at_10": 0.84909,
+        "recall_at_1": 0.73733,
+        "recall_at_3": 0.844,
+        "recall_at_10": 0.97667,
+        "mrr_at_1": 0.86,
+        "mrr_at_3": 0.876667,
+        "mrr_at_10": 0.890722,
+        "hit_rate_at_1": 0.86,
+        "hit_rate_at_3": 0.9,
+        "hit_rate_at_10": 1.0,
+        "main_score": 0.88802,
+        "hf_subset": "quoraretrieval",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.34,
+        "ndcg_at_3": 0.25285,
+        "ndcg_at_10": 0.25325,
+        "map_at_1": 0.07,
+        "map_at_3": 0.119,
+        "map_at_10": 0.15697,
+        "recall_at_1": 0.07,
+        "recall_at_3": 0.139,
+        "recall_at_10": 0.249,
+        "mrr_at_1": 0.34,
+        "mrr_at_3": 0.406667,
+        "mrr_at_10": 0.441857,
+        "hit_rate_at_1": 0.34,
+        "hit_rate_at_3": 0.48,
+        "hit_rate_at_10": 0.66,
+        "main_score": 0.25325,
+        "hf_subset": "scidocs",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.4,
+        "ndcg_at_3": 0.5013,
+        "ndcg_at_10": 0.58002,
+        "map_at_1": 0.38,
+        "map_at_3": 0.47,
+        "map_at_10": 0.51063,
+        "recall_at_1": 0.38,
+        "recall_at_3": 0.575,
+        "recall_at_10": 0.79,
+        "mrr_at_1": 0.4,
+        "mrr_at_3": 0.483333,
+        "mrr_at_10": 0.516817,
+        "hit_rate_at_1": 0.4,
+        "hit_rate_at_3": 0.6,
+        "hit_rate_at_10": 0.8,
+        "main_score": 0.58002,
+        "hf_subset": "scifact",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "ndcg_at_1": 0.73469,
+        "ndcg_at_3": 0.57223,
+        "ndcg_at_10": 0.4816,
+        "map_at_1": 0.04764,
+        "map_at_3": 0.09652,
+        "map_at_10": 0.20054,
+        "recall_at_1": 0.04764,
+        "recall_at_3": 0.10633,
+        "recall_at_10": 0.26869,
+        "mrr_at_1": 0.734694,
+        "mrr_at_3": 0.792517,
+        "mrr_at_10": 0.808892,
+        "hit_rate_at_1": 0.73469,
+        "hit_rate_at_3": 0.85714,
+        "hit_rate_at_10": 0.95918,
+        "main_score": 0.4816,
+        "hf_subset": "touche2020",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 303.13778462901246,
+  "kg_co2_emissions": null,
+  "date": 1784218628.073604,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 6.26693895101198,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 6.270285859005526,
+      "end": 25.76598312202259,
+      "split": "test",
+      "subset": "arguana"
+    },
+    {
+      "name": "Scoring",
+      "start": 25.76612444402417,
+      "end": 25.863345974008553,
+      "split": "test",
+      "subset": "arguana"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 25.87361255902215,
+      "end": 55.713056218024576,
+      "split": "test",
+      "subset": "climatefever"
+    },
+    {
+      "name": "Scoring",
+      "start": 55.71319703001063,
+      "end": 55.81178751500556,
+      "split": "test",
+      "subset": "climatefever"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 55.82264518601005,
+      "end": 66.97740787200746,
+      "split": "test",
+      "subset": "dbpedia"
+    },
+    {
+      "name": "Scoring",
+      "start": 66.9775375740137,
+      "end": 67.08004347301903,
+      "split": "test",
+      "subset": "dbpedia"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 67.09203082701424,
+      "end": 101.54433919899748,
+      "split": "test",
+      "subset": "fever"
+    },
+    {
+      "name": "Scoring",
+      "start": 101.54447191001964,
+      "end": 101.6442288980179,
+      "split": "test",
+      "subset": "fever"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 101.65592343901517,
+      "end": 126.34821683799964,
+      "split": "test",
+      "subset": "fiqa2018"
+    },
+    {
+      "name": "Scoring",
+      "start": 126.34835568000562,
+      "end": 126.44922053001937,
+      "split": "test",
+      "subset": "fiqa2018"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 126.46149911801331,
+      "end": 136.63617103901925,
+      "split": "test",
+      "subset": "hotpotqa"
+    },
+    {
+      "name": "Scoring",
+      "start": 136.63628998000058,
+      "end": 136.73171274902415,
+      "split": "test",
+      "subset": "hotpotqa"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 136.74283760401886,
+      "end": 145.99349607800832,
+      "split": "test",
+      "subset": "msmarco"
+    },
+    {
+      "name": "Scoring",
+      "start": 145.9936232600012,
+      "end": 146.093028444011,
+      "split": "test",
+      "subset": "msmarco"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 146.10498146800091,
+      "end": 174.75500800600275,
+      "split": "test",
+      "subset": "nfcorpus"
+    },
+    {
+      "name": "Scoring",
+      "start": 174.75513431802392,
+      "end": 174.85532101101126,
+      "split": "test",
+      "subset": "nfcorpus"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 174.87007170601282,
+      "end": 190.77178483700845,
+      "split": "test",
+      "subset": "nq"
+    },
+    {
+      "name": "Scoring",
+      "start": 190.77191167802084,
+      "end": 190.8716888470226,
+      "split": "test",
+      "subset": "nq"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 190.8839964850049,
+      "end": 194.92107749302522,
+      "split": "test",
+      "subset": "quoraretrieval"
+    },
+    {
+      "name": "Scoring",
+      "start": 194.92119900500984,
+      "end": 195.01512005800032,
+      "split": "test",
+      "subset": "quoraretrieval"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 195.02704248100054,
+      "end": 207.8281021490111,
+      "split": "test",
+      "subset": "scidocs"
+    },
+    {
+      "name": "Scoring",
+      "start": 207.8282156510104,
+      "end": 207.92780594702344,
+      "split": "test",
+      "subset": "scidocs"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 207.94104152501677,
+      "end": 235.01694940999732,
+      "split": "test",
+      "subset": "scifact"
+    },
+    {
+      "name": "Scoring",
+      "start": 235.01707143199746,
+      "end": 235.1175365280069,
+      "split": "test",
+      "subset": "scifact"
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 235.13059916399652,
+      "end": 303.02479121202487,
+      "split": "test",
+      "subset": "touche2020"
+    },
+    {
+      "name": "Scoring",
+      "start": 303.0249173940101,
+      "end": 303.1241602160153,
+      "split": "test",
+      "subset": "touche2020"
+    }
+  ]
+}
