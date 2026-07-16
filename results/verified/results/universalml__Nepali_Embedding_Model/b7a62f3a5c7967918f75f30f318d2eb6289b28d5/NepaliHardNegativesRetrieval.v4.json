@@ -1,0 +1,78 @@
+{
+  "dataset_revision": "f92818df24ed4d95905ad928dbde18feb4aeb2fb",
+  "task_name": "NepaliHardNegativesRetrieval.v4",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.5375,
+        "ndcg_at_3": 0.66523,
+        "ndcg_at_5": 0.69202,
+        "ndcg_at_10": 0.71339,
+        "ndcg_at_20": 0.72391,
+        "ndcg_at_100": 0.73062,
+        "ndcg_at_1000": 0.73483,
+        "map_at_1": 0.5375,
+        "map_at_3": 0.63417,
+        "map_at_5": 0.64904,
+        "map_at_10": 0.65806,
+        "map_at_20": 0.66082,
+        "map_at_100": 0.66166,
+        "map_at_1000": 0.66183,
+        "recall_at_1": 0.5375,
+        "recall_at_3": 0.755,
+        "recall_at_5": 0.82,
+        "recall_at_10": 0.885,
+        "recall_at_20": 0.9275,
+        "recall_at_100": 0.965,
+        "recall_at_1000": 0.9975,
+        "mrr_at_1": 0.5375,
+        "mrr_at_3": 0.634167,
+        "mrr_at_5": 0.649042,
+        "mrr_at_10": 0.658056,
+        "mrr_at_20": 0.660825,
+        "mrr_at_100": 0.66166,
+        "mrr_at_1000": 0.661826,
+        "hit_rate_at_1": 0.5375,
+        "hit_rate_at_3": 0.755,
+        "hit_rate_at_5": 0.82,
+        "hit_rate_at_10": 0.885,
+        "hit_rate_at_20": 0.9275,
+        "hit_rate_at_100": 0.965,
+        "hit_rate_at_1000": 0.9975,
+        "main_score": 0.71339,
+        "hf_subset": "hard-negatives",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 3.5729129660176113,
+  "kg_co2_emissions": null,
+  "date": 1784217650.839121,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.6753848240186926,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 1.6855200889986008,
+      "end": 3.169128638022812,
+      "split": "test",
+      "subset": "hard-negatives"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.169297220010776,
+      "end": 3.5583269120252226,
+      "split": "test",
+      "subset": "hard-negatives"
+    }
+  ]
+}

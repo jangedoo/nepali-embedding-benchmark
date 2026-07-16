@@ -1,0 +1,80 @@
+{
+  "dataset_revision": "4b7dd8188039018701baa94eb56a1a63d0ab16d5",
+  "task_name": "NepaliEcommerceRetrieval.v1",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.18588,
+        "ndcg_at_3": 0.28271,
+        "ndcg_at_5": 0.32048,
+        "ndcg_at_10": 0.36617,
+        "ndcg_at_20": 0.39953,
+        "ndcg_at_100": 0.43945,
+        "ndcg_at_1000": 0.44891,
+        "map_at_1": 0.18588,
+        "map_at_3": 0.25922,
+        "map_at_5": 0.28016,
+        "map_at_10": 0.29902,
+        "map_at_20": 0.3082,
+        "map_at_100": 0.31414,
+        "map_at_1000": 0.31452,
+        "recall_at_1": 0.18588,
+        "recall_at_3": 0.35059,
+        "recall_at_5": 0.44235,
+        "recall_at_10": 0.58353,
+        "recall_at_20": 0.71529,
+        "recall_at_100": 0.92471,
+        "recall_at_1000": 0.99765,
+        "mrr_at_1": 0.185882,
+        "mrr_at_3": 0.259216,
+        "mrr_at_5": 0.280157,
+        "mrr_at_10": 0.299021,
+        "mrr_at_20": 0.308197,
+        "mrr_at_100": 0.314141,
+        "mrr_at_1000": 0.314522,
+        "hit_rate_at_1": 0.18588,
+        "hit_rate_at_3": 0.35059,
+        "hit_rate_at_5": 0.44235,
+        "hit_rate_at_10": 0.58353,
+        "hit_rate_at_20": 0.71529,
+        "hit_rate_at_100": 0.92471,
+        "hit_rate_at_1000": 0.99765,
+        "main_score": 0.36617,
+        "hf_subset": "ecommerce",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 3.2298001020390075,
+  "kg_co2_emissions": null,
+  "date": 1784217138.450129,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.5044178230164107,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 1.514782540005399,
+      "end": 2.813096927013248,
+      "split": "test",
+      "subset": "ecommerce"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.813275408989284,
+      "end": 3.214688391017262,
+      "split": "test",
+      "subset": "ecommerce"
+    }
+  ]
+}
