@@ -16,6 +16,32 @@
     },
     {
       "effective_prompts": {
+        "BitextMining": "task: search result | query: ",
+        "Classification": "task: classification | query: ",
+        "Clustering": "task: clustering | query: ",
+        "InstructionRetrieval": "task: code retrieval | query: ",
+        "MultilabelClassification": "task: classification | query: ",
+        "PairClassification": "task: sentence similarity | query: ",
+        "Reranking": "task: search result | query: ",
+        "Retrieval": "task: search result | query: ",
+        "Retrieval-document": "title: none | text: ",
+        "Retrieval-query": "task: search result | query: ",
+        "STS": "task: sentence similarity | query: ",
+        "Summarization": "task: summarization | query: ",
+        "document": "title: none | text: ",
+        "query": "task: search result | query: "
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T16:18:08.450988+00:00",
+      "is_latest": true,
+      "n_parameters": 302863104,
+      "name": "google/embeddinggemma-300m",
+      "repository": "google/embeddinggemma-300m",
+      "revision": "57c266a740f537b4dc058e1b0cda161fd15afa75",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
         "BitextMining": "query: ",
         "Classification": "query: ",
         "PairClassification": "query: ",
@@ -72,6 +98,20 @@
       "name": "jangedoo/sanolm-v1",
       "repository": "jangedoo/sanolm-v1",
       "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "",
+        "query": ""
+      },
+      "embed_dim": 768,
+      "evaluated_at": "2026-07-16T16:27:44.136556+00:00",
+      "is_latest": true,
+      "n_parameters": 136731648,
+      "name": "nomic-ai/nomic-embed-text-v1.5",
+      "repository": "nomic-ai/nomic-embed-text-v1.5",
+      "revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
       "status": "verified"
     },
     {
