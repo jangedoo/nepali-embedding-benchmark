@@ -207,7 +207,25 @@ def _score_map(result: TaskResult) -> dict[tuple[str, str], dict[str, Any]]:
     }
 
 
-def _merge_results(existing: TaskResult, incoming: TaskResult) -> TaskResult:
+def _result_values_equal(existing: Any, incoming: Any) -> bool:
+    if isinstance(existing, float) and isinstance(incoming, float):
+        if math.isnan(existing) and math.isnan(incoming):
+            return True
+    if isinstance(existing, dict) and isinstance(incoming, dict):
+        return existing.keys() == incoming.keys() and all(
+            _result_values_equal(existing[key], incoming[key]) for key in existing
+        )
+    if isinstance(existing, list) and isinstance(incoming, list):
+        return len(existing) == len(incoming) and all(
+            _result_values_equal(left, right)
+            for left, right in zip(existing, incoming, strict=True)
+        )
+    return existing == incoming
+
+
+def _merge_results(
+    existing: TaskResult, incoming: TaskResult, *, overwrite: bool = False
+) -> TaskResult:
     if (
         existing.task_name != incoming.task_name
         or existing.dataset_revision != incoming.dataset_revision
@@ -216,9 +234,21 @@ def _merge_results(existing: TaskResult, incoming: TaskResult) -> TaskResult:
     current = _score_map(existing)
     additions = _score_map(incoming)
     for key in current.keys() & additions.keys():
-        if current[key] != additions[key]:
-            raise ValueError(f"conflicting published scores for {key[0]}/{key[1]}")
-    scores = {split: list(entries) for split, entries in existing.scores.items()}
+        if not _result_values_equal(current[key], additions[key]) and not overwrite:
+            differing_fields = sorted(
+                field
+                for field in current[key].keys() | additions[key].keys()
+                if not _result_values_equal(current[key].get(field), additions[key].get(field))
+            )
+            raise ValueError(
+                f"conflicting published scores for {key[0]}/{key[1]}; "
+                f"differing fields: {', '.join(differing_fields)}; "
+                "pass --overwrite to replace them"
+            )
+    scores = {
+        split: [additions.get((split, entry["hf_subset"]), entry) for entry in entries]
+        for split, entries in existing.scores.items()
+    }
     for (split, _), entry in additions.items():
         if (split, entry["hf_subset"]) not in current:
             scores.setdefault(split, []).append(entry)
@@ -231,13 +261,60 @@ def _merge_results(existing: TaskResult, incoming: TaskResult) -> TaskResult:
     )
 
 
+def _settings_key(item: dict[str, Any]) -> tuple[Any, Any, Any]:
+    return item.get("task"), item.get("split"), item.get("subset")
+
+
+def _read_settings_lines(path: Path) -> list[tuple[str, dict[str, Any]]]:
+    lines: list[tuple[str, dict[str, Any]]] = []
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        if not raw.strip():
+            continue
+        try:
+            item = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"run_settings.jsonl contains malformed JSON: {path}") from exc
+        if not isinstance(item, dict):
+            raise ValueError(f"run_settings.jsonl contains a non-object entry: {path}")
+        lines.append((raw, item))
+    return lines
+
+
+def _merge_settings_lines(
+    existing: list[tuple[str, dict[str, Any]]],
+    incoming: list[tuple[str, dict[str, Any]]],
+    *,
+    overwrite: bool,
+) -> list[str]:
+    merged = list(existing)
+    positions = {_settings_key(item): index for index, (_, item) in enumerate(merged)}
+    for raw, item in incoming:
+        key = _settings_key(item)
+        position = positions.get(key)
+        if position is None:
+            positions[key] = len(merged)
+            merged.append((raw, item))
+            continue
+        if merged[position][1] == item:
+            continue
+        if not overwrite:
+            raise ValueError(
+                f"conflicting run settings for {key[0]}/{key[1]}/{key[2]}; "
+                "pass --overwrite to replace them"
+            )
+        merged[position] = (raw, item)
+    return [raw for raw, _ in merged]
+
+
 def publish_results(
     source: Path,
     status: VerificationStatus,
     root: Path,
+    *,
+    overwrite: bool = False,
 ) -> list[Path]:
-    """Publish native cache entries, merging only genuinely missing coverage."""
-    published: list[Path] = []
+    """Publish native caches, optionally replacing colliding canonical evidence."""
+    candidates: list[dict[str, Any]] = []
     for source_path in _task_jsons(source):
         incoming, meta, _ = validate_task_result(source_path, status=status)
         model_dir = meta["name"].replace("/", "__").replace(" ", "_")
@@ -250,31 +327,109 @@ def publish_results(
             / meta["revision"]
             / source_path.name
         )
-        destination.parent.mkdir(parents=True, exist_ok=True)
         destination_meta = destination.parent / "model_meta.json"
         source_meta = source_path.parent / "model_meta.json"
-        if destination_meta.exists() and _load_json(destination_meta) != _load_json(source_meta):
-            raise ValueError("conflicting model metadata for published revision")
+        source_meta_data = _load_json(source_meta)
+        destination_meta_data = _load_json(destination_meta) if destination_meta.exists() else None
+        if destination_meta_data is not None and destination_meta_data != source_meta_data:
+            if not overwrite:
+                raise ValueError(
+                    "conflicting model metadata for published revision; "
+                    "pass --overwrite with a complete revision cache to replace it"
+                )
         if destination.exists():
             existing, _, _ = validate_task_result(destination, status=status, root=root)
-            _merge_results(existing, incoming).to_disk(destination)
+            merged = _merge_results(existing, incoming, overwrite=overwrite)
+        else:
+            merged = incoming
+        candidates.append(
+            {
+                "source": source_path,
+                "incoming": incoming,
+                "meta": source_meta_data,
+                "source_meta": source_meta,
+                "destination": destination,
+                "destination_meta": destination_meta,
+                "destination_meta_data": destination_meta_data,
+                "merged": merged,
+            }
+        )
+
+    groups: dict[Path, list[dict[str, Any]]] = {}
+    for candidate in candidates:
+        groups.setdefault(candidate["destination"].parent, []).append(candidate)
+
+    group_settings: dict[Path, list[str]] = {}
+    for directory, group in groups.items():
+        source_metas = [candidate["meta"] for candidate in group]
+        if any(meta != source_metas[0] for meta in source_metas[1:]):
+            raise ValueError(f"source contains conflicting model metadata for {directory.name}")
+
+        metadata_changed = any(
+            candidate["destination_meta_data"] is not None
+            and candidate["destination_meta_data"] != candidate["meta"]
+            for candidate in group
+        )
+        if metadata_changed:
+            incoming_by_name = {candidate["destination"].name: candidate for candidate in group}
+            missing: list[str] = []
+            for existing_path in sorted(directory.glob("*.json")):
+                if existing_path.name == "model_meta.json":
+                    continue
+                candidate = incoming_by_name.get(existing_path.name)
+                if candidate is None:
+                    missing.append(existing_path.name)
+                    continue
+                existing, _, _ = validate_task_result(existing_path, status=status, root=root)
+                uncovered = _score_map(existing).keys() - _score_map(candidate["incoming"]).keys()
+                missing.extend(
+                    f"{existing_path.name}:{split}/{subset}" for split, subset in sorted(uncovered)
+                )
+            if missing:
+                details = ", ".join(missing)
+                raise ValueError(
+                    "overwriting model metadata requires source coverage for every "
+                    f"published score in the revision; missing {details}"
+                )
+
+        destination_settings = directory / "run_settings.jsonl"
+        existing_settings = (
+            _read_settings_lines(destination_settings) if destination_settings.exists() else []
+        )
+        incoming_settings: list[tuple[str, dict[str, Any]]] = []
+        for candidate in group:
+            result_keys = {
+                (candidate["incoming"].task_name, split, subset)
+                for split, subset in _score_map(candidate["incoming"])
+            }
+            source_settings = candidate["source"].parent / "run_settings.jsonl"
+            incoming_settings.extend(
+                (raw, item)
+                for raw, item in _read_settings_lines(source_settings)
+                if _settings_key(item) in result_keys
+            )
+        group_settings[directory] = _merge_settings_lines(
+            existing_settings, incoming_settings, overwrite=overwrite
+        )
+
+    published: list[Path] = []
+    for candidate in candidates:
+        source_path = candidate["source"]
+        destination = candidate["destination"]
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if destination.exists():
+            candidate["merged"].to_disk(destination)
         else:
             shutil.copy2(source_path, destination)
-        shutil.copy2(source_meta, destination_meta)
-
-        source_settings = source_path.parent / "run_settings.jsonl"
-        destination_settings = destination.parent / "run_settings.jsonl"
-        existing_lines = (
-            destination_settings.read_text(encoding="utf-8").splitlines()
-            if destination_settings.exists()
-            else []
-        )
-        incoming_lines = source_settings.read_text(encoding="utf-8").splitlines()
-        merged_lines = list(dict.fromkeys([*existing_lines, *incoming_lines]))
-        destination_settings.write_text("\n".join(merged_lines) + "\n", encoding="utf-8")
         write_checksum(destination)
-        validate_task_result(destination, status=status, root=root)
         published.append(destination)
+
+    for directory, group in groups.items():
+        shutil.copy2(group[0]["source_meta"], directory / "model_meta.json")
+        settings = group_settings[directory]
+        (directory / "run_settings.jsonl").write_text("\n".join(settings) + "\n", encoding="utf-8")
+        for candidate in group:
+            validate_task_result(candidate["destination"], status=status, root=root)
     return published
 
 

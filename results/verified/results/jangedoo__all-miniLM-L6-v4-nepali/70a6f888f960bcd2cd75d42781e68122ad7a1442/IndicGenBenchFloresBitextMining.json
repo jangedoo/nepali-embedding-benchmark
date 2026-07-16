@@ -1,0 +1,166 @@
+{
+  "dataset_revision": "07dcc23c08a2540ba37ebe1e487da9dc497cc15c",
+  "task_name": "IndicGenBenchFloresBitextMining",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "validation": [
+      {
+        "precision": 0.547599,
+        "recall": 0.633902,
+        "f1": 0.570464,
+        "accuracy": 0.633902,
+        "main_score": 0.570464,
+        "hf_subset": "nep-eng",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "precision": 0.529198,
+        "recall": 0.62989,
+        "f1": 0.55665,
+        "accuracy": 0.62989,
+        "main_score": 0.55665,
+        "hf_subset": "eng-nep",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ],
+    "test": [
+      {
+        "precision": 0.509933,
+        "recall": 0.603755,
+        "f1": 0.53507,
+        "accuracy": 0.603755,
+        "main_score": 0.53507,
+        "hf_subset": "nep-eng",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "precision": 0.495021,
+        "recall": 0.599802,
+        "f1": 0.523413,
+        "accuracy": 0.599802,
+        "main_score": 0.523413,
+        "hf_subset": "eng-nep",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 6.613547811022727,
+  "kg_co2_emissions": null,
+  "date": 1784209526.262842,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 4.8340996727347374e-05,
+      "end": 2.846781808999367,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Dataset transform",
+      "start": 2.846790329000214,
+      "end": 2.8467921289848164,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 3.001596897986019,
+      "end": 3.4037797130004037,
+      "split": "validation",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Encoding",
+      "start": 3.5135860040027183,
+      "end": 3.7443720609880984,
+      "split": "validation",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.744783815986011,
+      "end": 3.754208953003399,
+      "split": "validation",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Encoding",
+      "start": 3.920353810011875,
+      "end": 4.164847653009929,
+      "split": "validation",
+      "subset": "eng-nep"
+    },
+    {
+      "name": "Encoding",
+      "start": 4.2795516189944465,
+      "end": 4.668756655999459,
+      "split": "validation",
+      "subset": "eng-nep"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.669327943003736,
+      "end": 4.678996892005671,
+      "split": "validation",
+      "subset": "eng-nep"
+    },
+    {
+      "name": "Encoding",
+      "start": 4.8649123329960275,
+      "end": 5.282000145991333,
+      "split": "test",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Encoding",
+      "start": 5.396613591001369,
+      "end": 5.63138926398824,
+      "split": "test",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Scoring",
+      "start": 5.631861058995128,
+      "end": 5.64044705600827,
+      "split": "test",
+      "subset": "nep-eng"
+    },
+    {
+      "name": "Encoding",
+      "start": 5.811911124008475,
+      "end": 6.05308669898659,
+      "split": "test",
+      "subset": "eng-nep"
+    },
+    {
+      "name": "Encoding",
+      "start": 6.174116826005047,
+      "end": 6.582789843989303,
+      "split": "test",
+      "subset": "eng-nep"
+    },
+    {
+      "name": "Scoring",
+      "start": 6.5832086490117945,
+      "end": 6.591850816999795,
+      "split": "test",
+      "subset": "eng-nep"
+    }
+  ]
+}

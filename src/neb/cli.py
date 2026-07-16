@@ -146,10 +146,17 @@ def results_publish(
     source: Path,
     status: Annotated[VerificationStatus, typer.Option("--status")],
     root: Annotated[Path | None, typer.Option(help="Repository root")] = None,
+    overwrite: Annotated[
+        bool,
+        typer.Option(
+            "--overwrite",
+            help="Replace colliding scores, run settings, and complete revision metadata",
+        ),
+    ] = False,
 ) -> None:
     from neb.results import publish_results
 
-    for path in publish_results(source.resolve(), status, project_root(root)):
+    for path in publish_results(source.resolve(), status, project_root(root), overwrite=overwrite):
         typer.echo(path)
 
 

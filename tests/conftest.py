@@ -17,6 +17,8 @@ def make_sts_cache(
     model: str = "owner/model",
     revision: str = "a" * 40,
     subset: str = "ne-ne",
+    loader_kwargs: dict[str, object] | None = None,
+    batch_size: int = 2,
 ) -> Path:
     directory = root / "results" / model.replace("/", "__") / revision
     directory.mkdir(parents=True, exist_ok=True)
@@ -45,7 +47,7 @@ def make_sts_cache(
             {
                 "name": model,
                 "revision": revision,
-                "loader_kwargs": {"model_prompts": {"query": "query: "}},
+                "loader_kwargs": loader_kwargs or {"model_prompts": {"query": "query: "}},
                 "n_parameters": 10,
                 "embed_dim": 4,
             }
@@ -59,7 +61,7 @@ def make_sts_cache(
                 "split": "test",
                 "subset": subset,
                 "version": {"mteb": MTEB_VERSION},
-                "encode_kwargs": {"batch_size": 2},
+                "encode_kwargs": {"batch_size": batch_size},
             }
         )
         + "\n",

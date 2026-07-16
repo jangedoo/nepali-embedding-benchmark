@@ -1,9 +1,11 @@
 import json
+import math
 from pathlib import Path
 
 import pytest
 from conftest import make_sts_cache
 
+from neb.evaluation import write_checksum
 from neb.results import discover_results, publish_results, validate_task_result
 from neb.schemas import VerificationStatus
 
@@ -58,6 +60,74 @@ def test_publication_rejects_conflicts_but_allows_partial_additions(tmp_path: Pa
     conflict = make_sts_cache(tmp_path / "conflict", score=0.9, subset="ne-ne")
     with pytest.raises(ValueError, match="conflicting"):
         publish_results(conflict, VerificationStatus.community, root)
+
+
+def test_publication_treats_matching_nan_metrics_as_equal(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    first = make_sts_cache(tmp_path / "first")
+    repeated = make_sts_cache(tmp_path / "repeated")
+    for path in (first, repeated):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["scores"]["test"][0]["undefined_auxiliary_metric"] = math.nan
+        path.write_text(json.dumps(data), encoding="utf-8")
+        write_checksum(path)
+
+    publish_results(first, VerificationStatus.verified, root)
+    publish_results(repeated, VerificationStatus.verified, root)
+
+
+def test_publication_overwrite_replaces_scores_metadata_and_run_settings(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "repo"
+    first = make_sts_cache(tmp_path / "first", score=0.5, batch_size=2)
+    publish_results(first, VerificationStatus.verified, root)
+    replacement = make_sts_cache(
+        tmp_path / "replacement",
+        score=0.9,
+        loader_kwargs={
+            "model_prompts": {"query": "search: "},
+            "model_kwargs": {"torch_dtype": "float16"},
+        },
+        batch_size=8,
+    )
+
+    published = publish_results(replacement, VerificationStatus.verified, root, overwrite=True)
+
+    _, meta, records = validate_task_result(published[0], status=VerificationStatus.verified)
+    assert records[0].main_score == 0.9
+    assert records[0].effective_prompts == {"query": "search: "}
+    assert meta["loader_kwargs"]["model_kwargs"]["torch_dtype"] == "float16"
+    settings = [
+        json.loads(line)
+        for line in (published[0].parent / "run_settings.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert len(settings) == 1
+    assert settings[0]["encode_kwargs"]["batch_size"] == 8
+
+
+def test_metadata_overwrite_requires_complete_existing_coverage(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    publish_results(
+        make_sts_cache(tmp_path / "first", subset="ne-ne"),
+        VerificationStatus.verified,
+        root,
+    )
+    publish_results(
+        make_sts_cache(tmp_path / "second", subset="en-ne"),
+        VerificationStatus.verified,
+        root,
+    )
+    partial = make_sts_cache(
+        tmp_path / "partial",
+        subset="ne-ne",
+        loader_kwargs={"model_prompts": {"query": "search: "}},
+    )
+
+    with pytest.raises(ValueError, match="requires source coverage"):
+        publish_results(partial, VerificationStatus.verified, root, overwrite=True)
 
 
 def test_verified_precedence_is_per_subset(tmp_path: Path) -> None:

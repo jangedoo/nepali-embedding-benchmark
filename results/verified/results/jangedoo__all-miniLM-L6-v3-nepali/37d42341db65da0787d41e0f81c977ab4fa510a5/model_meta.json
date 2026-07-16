@@ -1,22 +1,19 @@
 {
     "loader_kwargs": {
         "model_prompts": {
-            "query": "query: ",
-            "document": "passage: "
+            "query": "",
+            "document": ""
         },
         "device": "cuda"
     },
-    "name": "jangedoo/sanolm-v1",
-    "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
-    "release_date": "2026-07-06",
-    "languages": [
-        "eng-Latn",
-        "nep-Deva"
-    ],
-    "n_parameters": 117653760,
+    "name": "jangedoo/all-miniLM-L6-v3-nepali",
+    "revision": "37d42341db65da0787d41e0f81c977ab4fa510a5",
+    "release_date": "2025-07-13",
+    "languages": null,
+    "n_parameters": 22713216,
     "n_active_parameters_override": null,
-    "n_embedding_parameters": 96014208,
-    "memory_usage_mb": 449,
+    "n_embedding_parameters": 11720448,
+    "memory_usage_mb": 87,
     "max_tokens": 512,
     "embed_dim": 384,
     "license": null,
@@ -27,11 +24,11 @@
         "Sentence Transformers",
         "safetensors"
     ],
-    "reference": "https://huggingface.co/jangedoo/sanolm-v1",
+    "reference": "https://huggingface.co/jangedoo/all-miniLM-L6-v3-nepali",
     "similarity_fn_name": "cosine",
     "use_instructions": null,
     "training_datasets": null,
-    "adapted_from": "intfloat/multilingual-e5-small",
+    "adapted_from": "jangedoo/all-MiniLM-L6-v2-nepali",
     "superseded_by": null,
     "modalities": [
         "text"
@@ -44,6 +41,6 @@
     "experiment_kwargs": null,
     "output_dtypes": null,
     "extra_requirements_groups": null,
-    "loader": "SentenceTransformerEncoderWrapper",
+    "loader": "_load_sentence_transformer",
     "is_cross_encoder": false
 }

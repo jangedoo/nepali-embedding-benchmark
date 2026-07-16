@@ -98,6 +98,15 @@ neb results publish runs --status verified
 
 Canonical caches live below `results/community/` and `results/verified/`. Community evidence is explicitly unverified. Verified evidence takes precedence per model revision, task, split, and subset; it never relabels unrelated community coverage. Existing canonical task files may gain missing splits or subsets, but conflicting scores are rejected.
 
+To intentionally replace a rerun's colliding scores and run settings, pass `--overwrite`. If
+the model loader metadata changed (for example prompts, dtype, or device), the source must be a
+complete cache covering every score already published for that model revision so retained scores
+cannot be relabeled with different evaluation settings:
+
+```bash
+neb results publish runs --status verified --overwrite
+```
+
 Maintainer-verified evidence is CODEOWNERS-protected. Real scores require the maintainer's local GPU environment and must never be fabricated.
 
 ## Static dashboard contract

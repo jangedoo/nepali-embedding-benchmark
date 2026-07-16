@@ -3,8 +3,8 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+dist/
 runs/
 site/node_modules/
 site/dist/
 site/.astro/
-

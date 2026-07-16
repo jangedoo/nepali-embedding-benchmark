@@ -1,0 +1,134 @@
+{
+  "dataset_revision": "4bfcc74faa37875185b27a5dc64888f4711e833b",
+  "task_name": "STSBNepali.v3",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "pearson": 0.63688,
+        "spearman": 0.634538,
+        "cosine_pearson": 0.63688,
+        "cosine_spearman": 0.63455,
+        "manhattan_pearson": 0.622574,
+        "manhattan_spearman": 0.634648,
+        "euclidean_pearson": 0.622211,
+        "euclidean_spearman": 0.634576,
+        "main_score": 0.63455,
+        "hf_subset": "ne-ne",
+        "languages": [
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "pearson": 0.438482,
+        "spearman": 0.431995,
+        "cosine_pearson": 0.438482,
+        "cosine_spearman": 0.431995,
+        "manhattan_pearson": 0.422073,
+        "manhattan_spearman": 0.418536,
+        "euclidean_pearson": 0.43454,
+        "euclidean_spearman": 0.431995,
+        "main_score": 0.431995,
+        "hf_subset": "en-ne",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "pearson": 0.470569,
+        "spearman": 0.469944,
+        "cosine_pearson": 0.470569,
+        "cosine_spearman": 0.469944,
+        "manhattan_pearson": 0.458953,
+        "manhattan_spearman": 0.461408,
+        "euclidean_pearson": 0.464259,
+        "euclidean_spearman": 0.469944,
+        "main_score": 0.469944,
+        "hf_subset": "ne-en",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 4.918010766996304,
+  "kg_co2_emissions": null,
+  "date": 1784204087.153352,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.976048724987777,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 2.003820520010777,
+      "end": 3.113716513995314,
+      "split": "test",
+      "subset": "ne-ne"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 3.1138335760042537,
+      "end": 3.47760893200757,
+      "split": "test",
+      "subset": "ne-ne"
+    },
+    {
+      "name": "Scoring",
+      "start": 3.477705942990724,
+      "end": 3.4950957449909765,
+      "split": "test",
+      "subset": "ne-ne"
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 3.539471133000916,
+      "end": 3.8214572189899627,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 3.8215481599909253,
+      "end": 4.184824230993399,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.1849270919919945,
+      "end": 4.189343340985943,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 4.235942264000187,
+      "end": 4.60546062400681,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 4.6055537550128065,
+      "end": 4.897339107992593,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Scoring",
+      "start": 4.8974576999899,
+      "end": 4.902795269008493,
+      "split": "test",
+      "subset": "ne-en"
+    }
+  ]
+}

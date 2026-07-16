@@ -47,7 +47,7 @@ publish: ## Publish a native MTEB cache/file from SOURCE with STATUS, then expor
 		echo "STATUS must be 'verified' or 'community'"; \
 		exit 2; \
 	fi
-	$(PYTHON) neb results publish "$(SOURCE)" --status "$(STATUS)"
+	$(PYTHON) neb results publish "$(SOURCE)" --status "$(STATUS)" $(if $(filter 1 true yes,$(OVERWRITE)),--overwrite,)
 	@$(MAKE) --no-print-directory export
 
 publish-verified: ## Publish SOURCE as maintainer-verified native MTEB evidence

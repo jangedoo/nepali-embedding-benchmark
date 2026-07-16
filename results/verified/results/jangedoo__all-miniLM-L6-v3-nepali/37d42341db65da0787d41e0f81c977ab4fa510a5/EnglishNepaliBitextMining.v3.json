@@ -1,0 +1,89 @@
+{
+  "dataset_revision": "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6",
+  "task_name": "EnglishNepaliBitextMining.v3",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "precision": 0.804674,
+        "recall": 0.862434,
+        "f1": 0.823104,
+        "accuracy": 0.862434,
+        "main_score": 0.823104,
+        "hf_subset": "en-ne",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      },
+      {
+        "precision": 0.78836,
+        "recall": 0.851852,
+        "f1": 0.808642,
+        "accuracy": 0.851852,
+        "main_score": 0.808642,
+        "hf_subset": "ne-en",
+        "languages": [
+          "nep-Deva",
+          "eng-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 1.6069089190277737,
+  "kg_co2_emissions": null,
+  "date": 1784209192.632915,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 1.299429594015237,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding",
+      "start": 1.324093453004025,
+      "end": 1.3673235810128972,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.385872911021579,
+      "end": 1.440432988019893,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Scoring",
+      "start": 1.4408312420127913,
+      "end": 1.4423918999964371,
+      "split": "test",
+      "subset": "en-ne"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.4753602020209655,
+      "end": 1.5293341719952878,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Encoding",
+      "start": 1.5471262329956517,
+      "end": 1.589647454005899,
+      "split": "test",
+      "subset": "ne-en"
+    },
+    {
+      "name": "Scoring",
+      "start": 1.5900466279999819,
+      "end": 1.5916602960205637,
+      "split": "test",
+      "subset": "ne-en"
+    }
+  ]
+}
