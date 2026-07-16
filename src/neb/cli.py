@@ -9,11 +9,7 @@ from typing import Annotated
 
 import typer
 
-from neb.evaluation import evaluate
-from neb.export import export_static
-from neb.results import publish_results, validate_repository
 from neb.schemas import VerificationStatus
-from neb.tasks import get_benchmark, get_tasks
 
 app = typer.Typer(no_args_is_help=True, help="Nepali Embedding Benchmark")
 results_app = typer.Typer(no_args_is_help=True, help="Native MTEB evidence commands")
@@ -32,6 +28,9 @@ def project_root(start: Path | None = None) -> Path:
 def validate_command(
     root: Annotated[Path | None, typer.Option(help="Repository root")] = None,
 ) -> None:
+    from neb.results import validate_repository
+    from neb.tasks import get_benchmark
+
     base = project_root(root)
     benchmark = get_benchmark()
     evidence = validate_repository(base)
@@ -62,6 +61,9 @@ def _run(
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
         force=True,
     )
+
+    from neb.evaluation import evaluate
+
     result = evaluate(
         model,
         revision,
@@ -130,6 +132,8 @@ def run_command(
 
 @app.command("tasks")
 def tasks_command() -> None:
+    from neb.tasks import get_tasks
+
     for task in get_tasks():
         typer.echo(
             f"{task.metadata.name}\t{task.metadata.type}\t{task.metadata.main_score}\t"
@@ -143,6 +147,8 @@ def results_publish(
     status: Annotated[VerificationStatus, typer.Option("--status")],
     root: Annotated[Path | None, typer.Option(help="Repository root")] = None,
 ) -> None:
+    from neb.results import publish_results
+
     for path in publish_results(source.resolve(), status, project_root(root)):
         typer.echo(path)
 
@@ -152,6 +158,8 @@ def export_command(
     output: Annotated[Path | None, typer.Option(help="Export directory")] = None,
     root: Annotated[Path | None, typer.Option(help="Repository root")] = None,
 ) -> None:
+    from neb.export import export_static
+
     for path in export_static(project_root(root), output):
         typer.echo(path)
 
