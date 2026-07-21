@@ -40,6 +40,30 @@
     },
     {
       "dataset": {
+        "name": "jangedoo/sano-beir",
+        "revision": "ad7e050b3dbacaeaecbe4a6f3b7b2f6c1bf3bd09",
+        "url": "https://huggingface.co/datasets/jangedoo/sano-beir/tree/ad7e050b3dbacaeaecbe4a6f3b7b2f6c1bf3bd09"
+      },
+      "description": "Nepali retrieval subsets.",
+      "display_name": "SanoBEIRRetrieval",
+      "main_score": "ndcg_at_10",
+      "name": "SanoBEIRRetrieval.v1",
+      "splits": [
+        "test"
+      ],
+      "subsets": [
+        {
+          "languages": [
+            "nep-Deva",
+            "nep-Latn"
+          ],
+          "name": "wiki"
+        }
+      ],
+      "type": "Retrieval"
+    },
+    {
+      "dataset": {
         "name": "jangedoo/NanoBEIR-ne",
         "revision": "dbe0a6befdfce448982392bd461ac5d16485e99e",
         "url": "https://huggingface.co/datasets/jangedoo/NanoBEIR-ne/tree/dbe0a6befdfce448982392bd461ac5d16485e99e"

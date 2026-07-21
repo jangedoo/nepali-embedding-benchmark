@@ -6,7 +6,7 @@
         "query": ""
       },
       "embed_dim": 768,
-      "evaluated_at": "2026-07-16T15:45:33.425912+00:00",
+      "evaluated_at": "2026-07-21T11:14:24.116495+00:00",
       "is_latest": true,
       "n_parameters": 237556224,
       "name": "Yunika/sentence-transformer-nepali",
@@ -32,7 +32,7 @@
         "query": "task: search result | query: "
       },
       "embed_dim": 768,
-      "evaluated_at": "2026-07-16T16:18:08.450988+00:00",
+      "evaluated_at": "2026-07-21T11:01:24.112606+00:00",
       "is_latest": true,
       "n_parameters": 302863104,
       "name": "google/embeddinggemma-300m",
@@ -50,7 +50,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T15:17:47.047323+00:00",
+      "evaluated_at": "2026-07-21T10:24:09.529740+00:00",
       "is_latest": true,
       "n_parameters": 117654272,
       "name": "intfloat/multilingual-e5-small",
@@ -78,7 +78,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-16T15:27:09.976914+00:00",
+      "evaluated_at": "2026-07-21T11:07:10.461731+00:00",
       "is_latest": true,
       "n_parameters": 22713216,
       "name": "jangedoo/all-miniLM-L6-v4-nepali",
@@ -106,7 +106,7 @@
         "query": "query: "
       },
       "embed_dim": 384,
-      "evaluated_at": "2026-07-21T09:17:39.524869+00:00",
+      "evaluated_at": "2026-07-21T10:54:22.190738+00:00",
       "is_latest": true,
       "n_parameters": 117653760,
       "name": "jangedoo/sanolm-v1",
@@ -134,7 +134,7 @@
         "query": ""
       },
       "embed_dim": 1024,
-      "evaluated_at": "2026-07-16T16:01:42.140451+00:00",
+      "evaluated_at": "2026-07-21T11:12:46.054893+00:00",
       "is_latest": true,
       "n_parameters": 559890432,
       "name": "universalml/Nepali_Embedding_Model",
