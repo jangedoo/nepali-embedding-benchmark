@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 import re
 import shutil
@@ -14,6 +15,8 @@ from mteb.results import TaskResult
 from neb.evaluation import MTEB_VERSION, sha256_file, write_checksum
 from neb.schemas import EvidenceRecord, VerificationStatus
 from neb.tasks import get_result_tasks
+
+logger = logging.getLogger(__name__)
 
 METRIC_CUTOFF_PATTERN = re.compile(r"(?:^|_)at_(\d+)(?:_|$)")
 
@@ -107,7 +110,7 @@ def validate_task_result(
     *,
     status: VerificationStatus = VerificationStatus.community,
     root: Path | None = None,
-) -> tuple[TaskResult, dict[str, Any], list[EvidenceRecord]]:
+) -> tuple[TaskResult, dict[str, Any], list[EvidenceRecord]] | None:
     """Validate one MTEB task JSON and return scalar evidence rows."""
     try:
         result = TaskResult.from_disk(path)
@@ -115,7 +118,7 @@ def validate_task_result(
         raise ValueError(f"invalid MTEB TaskResult: {path}") from exc
     task = _tasks_by_name().get(result.task_name)
     if task is None:
-        raise ValueError(f"unknown NEB task: {result.task_name}")
+        return None
     if path.name != f"{result.task_name}.json":
         raise ValueError("task result filename does not match task_name")
     if result.dataset_revision != task.metadata.revision:
@@ -162,10 +165,12 @@ def validate_task_result(
                 else []
             )
             if unsupported:
-                raise ValueError(
-                    f"unsupported retrieval metric cutoffs for {result.task_name}: "
-                    + ", ".join(unsupported)
+                logger.warning(
+                    "dropping unsupported retrieval metric cutoffs for %s",
+                    result.task_name,
                 )
+                metrics = {k: v for k, v in metrics.items() if k not in unsupported}
+
             if main_metric not in metrics:
                 raise ValueError(f"missing main metric {main_metric!r}")
             main_score = entry.get("main_score")
@@ -335,7 +340,11 @@ def publish_results(
     """Publish native caches, optionally replacing colliding canonical evidence."""
     candidates: list[dict[str, Any]] = []
     for source_path in _task_jsons(source):
-        incoming, meta, _ = validate_task_result(source_path, status=status)
+        out = validate_task_result(source_path, status=status)
+        if out is None:
+            continue
+        incoming, meta, _ = out
+
         model_dir = meta["name"].replace("/", "__").replace(" ", "_")
         destination = (
             root

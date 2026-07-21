@@ -26,7 +26,10 @@ ECOMMERCE_REVISION = "4b7dd8188039018701baa94eb56a1a63d0ab16d5"
 SANOIR_REVISION = "7e53250964a040dbad2aa11d95855548a7c6717e"
 PARAPHRASE_REVISION = "b521e5ab755a301191c9118c6afc6889895f37bf"
 PARALLEL_REVISION = "e4c18f52adbb7dfa4a7aead58c69394b2f446ea6"
-
+SANOBEIR_REVISION = "ad7e050b3dbacaeaecbe4a6f3b7b2f6c1bf3bd09"
+SANOBEIR_SUBSETS = {
+    "wiki": "wiki",
+}
 NANOBEIR_SUBSETS = {
     "arguana": "NanoArguAna",
     "climatefever": "NanoClimateFEVER",
@@ -409,10 +412,54 @@ class EnglishNepaliBitextMiningV3(AbsTaskBitextMining):
         self.data_loaded = True
 
 
+class SanoBEIRRetrievalV1(_NEBRetrievalTask):
+    metadata = _metadata(
+        name="SanoBEIRRetrieval.v1",
+        path="jangedoo/sano-beir",
+        revision=SANOBEIR_REVISION,
+        description="Nepali retrieval subsets.",
+        task_type="Retrieval",
+        eval_langs={name: ["nep-Deva", "nep-Latn"] for name in SANOBEIR_SUBSETS},
+        main_score="ndcg_at_10",
+        domains=["Web", "Written"],
+        prompt="Given a query, retrieve relevant passages.",
+    )
+
+    def load_data(self, num_proc: int | None = None, **kwargs: Any) -> None:
+        if self.data_loaded:
+            return
+        resources = {
+            config: load_dataset(
+                self.metadata.dataset["path"],
+                config,
+                revision=self.metadata.dataset["revision"],
+                num_proc=num_proc,
+            )
+            for config in ("corpus", "queries", "qrels")
+        }
+        self.dataset = {}
+        for subset, split in SANOBEIR_SUBSETS.items():
+            values = normalize_nanobeir(
+                resources["corpus"][split],
+                resources["queries"][split],
+                resources["qrels"][split],
+            )
+            self.dataset[subset] = {
+                "test": RetrievalSplitData(
+                    corpus=Dataset.from_list(values["corpus"]),
+                    queries=Dataset.from_list(values["queries"]),
+                    relevant_docs=values["relevant_docs"],
+                    top_ranked=None,
+                )
+            }
+        self.data_loaded = True
+
+
 def get_tasks() -> list[mteb.AbsTask]:
     """Return the fixed NEB task composition; no membership floats with MTEB."""
     return [
         STSBNepaliV3(),
+        SanoBEIRRetrievalV1(),
         NanoBEIRNepaliRetrievalV5(),
         NepaliHardNegativesRetrievalV5(),
         NepaliEcommerceRetrievalV2(),
