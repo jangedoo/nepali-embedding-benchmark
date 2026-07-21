@@ -1,0 +1,64 @@
+{
+  "dataset_revision": "ad7e050b3dbacaeaecbe4a6f3b7b2f6c1bf3bd09",
+  "task_name": "SanoBEIRRetrieval.v1",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "ndcg_at_1": 0.21322,
+        "ndcg_at_3": 0.2824,
+        "ndcg_at_10": 0.33311,
+        "ndcg_at_50": 0.37948,
+        "map_at_1": 0.21322,
+        "map_at_3": 0.26513,
+        "map_at_10": 0.28959,
+        "map_at_50": 0.29953,
+        "recall_at_1": 0.21322,
+        "recall_at_3": 0.33244,
+        "recall_at_10": 0.47281,
+        "recall_at_50": 0.68254,
+        "mrr_at_1": 0.213216,
+        "mrr_at_3": 0.265134,
+        "mrr_at_10": 0.289602,
+        "mrr_at_50": 0.299543,
+        "hit_rate_at_1": 0.21322,
+        "hit_rate_at_3": 0.33244,
+        "hit_rate_at_10": 0.47281,
+        "hit_rate_at_50": 0.68254,
+        "main_score": 0.33311,
+        "hf_subset": "wiki",
+        "languages": [
+          "nep-Deva",
+          "nep-Latn"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 9.608343885018257,
+  "kg_co2_emissions": null,
+  "date": 1784631975.687985,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 3.8978790010150988,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding queries and documents",
+      "start": 3.983660880010575,
+      "end": 9.078561775007984,
+      "split": "test",
+      "subset": "wiki"
+    },
+    {
+      "name": "Scoring",
+      "start": 9.07870447600726,
+      "end": 9.588218809018144,
+      "split": "test",
+      "subset": "wiki"
+    }
+  ]
+}

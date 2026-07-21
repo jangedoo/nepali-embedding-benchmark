@@ -8,6 +8,9 @@
             "PairClassification": "query: ",
             "BitextMining": "query: "
         },
+        "model_kwargs": {
+            "torch_dtype": "bfloat16"
+        },
         "device": "cuda"
     },
     "name": "intfloat/multilingual-e5-small",

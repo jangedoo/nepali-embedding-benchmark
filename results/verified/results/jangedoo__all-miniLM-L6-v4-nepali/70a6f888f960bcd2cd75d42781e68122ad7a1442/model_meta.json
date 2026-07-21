@@ -4,6 +4,9 @@
             "query": "query: ",
             "document": "passage: "
         },
+        "model_kwargs": {
+            "torch_dtype": "bfloat16"
+        },
         "device": "cuda"
     },
     "name": "jangedoo/all-miniLM-L6-v4-nepali",
