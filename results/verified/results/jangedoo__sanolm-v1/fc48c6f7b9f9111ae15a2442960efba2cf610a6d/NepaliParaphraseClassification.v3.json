@@ -1,0 +1,81 @@
+{
+  "dataset_revision": "b521e5ab755a301191c9118c6afc6889895f37bf",
+  "task_name": "NepaliParaphraseClassification.v3",
+  "mteb_version": "2.18.3",
+  "scores": {
+    "test": [
+      {
+        "similarity_accuracy": 1.0,
+        "similarity_f1": 1.0,
+        "similarity_precision": 1.0,
+        "similarity_recall": 1.0,
+        "similarity_ap": 1.0,
+        "cosine_accuracy": 1.0,
+        "cosine_f1": 1.0,
+        "cosine_precision": 1.0,
+        "cosine_recall": 1.0,
+        "cosine_ap": 1.0,
+        "manhattan_accuracy": 1.0,
+        "manhattan_f1": 1.0,
+        "manhattan_precision": 1.0,
+        "manhattan_recall": 1.0,
+        "manhattan_ap": 1.0,
+        "euclidean_accuracy": 1.0,
+        "euclidean_f1": 1.0,
+        "euclidean_precision": 1.0,
+        "euclidean_recall": 1.0,
+        "euclidean_ap": 1.0,
+        "dot_accuracy": 1.0,
+        "dot_f1": 1.0,
+        "dot_precision": 1.0,
+        "dot_recall": 1.0,
+        "dot_ap": 1.0,
+        "max_accuracy": 1.0,
+        "max_f1": 1.0,
+        "max_precision": 1.0,
+        "max_recall": 1.0,
+        "max_ap": 1.0,
+        "main_score": 1.0,
+        "hf_subset": "bilingual",
+        "languages": [
+          "eng-Latn",
+          "nep-Deva"
+        ],
+        "mteb_version": "2.18.3"
+      }
+    ]
+  },
+  "evaluation_time": 2.8017596360004973,
+  "kg_co2_emissions": null,
+  "date": 1784625430.699849,
+  "evaluation_phases": [
+    {
+      "name": "Data loading",
+      "start": 0.0,
+      "end": 2.736315451998962,
+      "split": "",
+      "subset": ""
+    },
+    {
+      "name": "Encoding samples 1",
+      "start": 2.7374837350216694,
+      "end": 2.7625672530266456,
+      "split": "test",
+      "subset": "bilingual"
+    },
+    {
+      "name": "Encoding samples 2",
+      "start": 2.7626526140084025,
+      "end": 2.7879937840043567,
+      "split": "test",
+      "subset": "bilingual"
+    },
+    {
+      "name": "Scoring",
+      "start": 2.78807354500168,
+      "end": 2.789315608009929,
+      "split": "test",
+      "subset": "bilingual"
+    }
+  ]
+}

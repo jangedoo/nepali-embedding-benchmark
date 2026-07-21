@@ -93,11 +93,25 @@
       },
       "embed_dim": 384,
       "evaluated_at": "2026-07-16T15:08:29.301389+00:00",
-      "is_latest": true,
+      "is_latest": false,
       "n_parameters": 117653760,
       "name": "jangedoo/sanolm-v1",
       "repository": "jangedoo/sanolm-v1",
       "revision": "cf6ab70bd1a95384477d2dcd1c7e28c378a024a0",
+      "status": "verified"
+    },
+    {
+      "effective_prompts": {
+        "document": "passage: ",
+        "query": "query: "
+      },
+      "embed_dim": 384,
+      "evaluated_at": "2026-07-21T09:17:39.524869+00:00",
+      "is_latest": true,
+      "n_parameters": 117653760,
+      "name": "jangedoo/sanolm-v1",
+      "repository": "jangedoo/sanolm-v1",
+      "revision": "fc48c6f7b9f9111ae15a2442960efba2cf610a6d",
       "status": "verified"
     },
     {
